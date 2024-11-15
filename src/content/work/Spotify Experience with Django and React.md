@@ -17,6 +17,8 @@ tags:
 
 <p>Through my exploration of how users engage with Spotify in collaborative settings during meetings and gatherings, I recognized the need for a more user-friendly way to access Spotify’s features. This led me to develop an application designed to enhance the collaborative experience, allowing users to easily share playlists and enjoy the premium features of Spotify, even in home party environments. My goal was to democratize access to these capabilities, enabling everyone to fully enjoy their music experience together, regardless of their individual subscription status.</p>
 
+<p>If you are curious about how this app looks like, run a <a href="https://houseparty.franciscocucullu.com/">House Party!</a></p>
+
 <h4>Resources Used</h4>
 
 <h5>Backend Development</h5>
