@@ -31,13 +31,14 @@ const projects = (await getCollection('work'))
 			<header class="hero">
 				<Hero
 					title="Hello, my name is Francisco Cucullu"
-					tagline="I am a technical product manager and software engineer currently based in Barcelona, Spain."
 					align="start"
-				>
+					tagline={`I’m a tech entrepreneur and product executive with a strong background in AI/ML.\nI connect strategic decision-making with technical execution to turn complex ideas into scalable, high-impact digital products.`}
+
+					>
 					<div class="roles">
+						<Pill><Icon icon="leadership" size="1.33em" /> Leadership</Pill>
 						<Pill><Icon icon="lightbulb" size="1.33em" /> Innovation</Pill>
 						<Pill><Icon icon="code" size="1.33em" /> Technology</Pill>
-						<Pill><Icon icon="leadership" size="1.33em" /> Leadership</Pill>
 					</div>
 				</Hero>
 

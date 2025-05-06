@@ -11,7 +11,14 @@ const { align = 'center', tagline, title } = Astro.props;
 <div class:list={['hero stack gap-4', align]}>
 	<div class="stack gap-2">
 		<h1 class="title">{title}</h1>
-		{tagline && <p class="tagline">{tagline}</p>}
+		{tagline && (
+  		<div class="tagline">
+    	{tagline.split('\n').map((line, index) => (
+      	<p key={index}>{line}</p>
+    ))}
+  </div>
+)}
+
 	</div>
 	<slot />
 </div>
