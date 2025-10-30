@@ -19,7 +19,7 @@ tags:
 
 <p>This resource was crucial, freeing my team from repetitive tasks and allowing them to focus on innovation and business intelligence projects that significantly improved my company's operations.</p>
 
-<p>For more details about this project, visit my <a href="https://github.com/fcucullu/RPA" target="_blank">GitHub repository</a>.</p>
+<p>For more details about this project, visit my <a data-fast-goal="click_on_repo_rpa" href="https://github.com/fcucullu/RPA" target="_blank">GitHub repository</a>.</p>
 
 <p>Note: This repo contains only files related to this specific objective and may lack the higher-level engine, as these resources were part of a larger software system I created. The purpose of this repo is not to provide a ready-to-use solution but to demonstrate my ability to build software relevant to its title.</p>
 
@@ -31,3 +31,6 @@ tags:
     <li>Pandas & Numpy</li>
     <li>Excel integrations (with VBA)</li>
 </ul>
+<script>
+  window?.datafast("surfed-to-project-rpa");
+</script>

@@ -17,7 +17,7 @@ tags:
 
 <p>To make this possible, the C-level executives tasked me with creating a sophisticated network of scrapers to monitor our competitors and ensure we delivered on our pricing claims. I developed 21 scrapers designed to track each competitor in the Argentine market. During development, I encountered challenges with two competitors that did not have public websites for scraping. To overcome this, I built a mobile emulator to run their applications on my server, enabling me to log in, navigate, and extract the necessary information.</p>
 
-<p>All compiled information was shared with the entire company through a simple Flask website, providing a straightforward dashboard to monitor the market. This project is stored in <a href="https://github.com/fcucullu/scrapers-webdrivers"> this GitHub Repository</a>.</p>
+<p>All compiled information was shared with the entire company through a simple Flask website, providing a straightforward dashboard to monitor the market. This project is stored in <a data-fast-goal="click_on_repo_scrappers" href="https://github.com/fcucullu/scrapers-webdrivers"> this GitHub Repository</a>.</p>
 
 <p>As a result of these developments, my company successfully captured around 20% of the country's market share, marking one of my significant career achievements. This knowledge has also been applied to other RPA developments I have undertaken.</p>
 
@@ -34,3 +34,6 @@ tags:
     <li>Scheduling</li>
     <li>Multithreading</li>
 </ul>
+<script>
+  window?.datafast("surfed-to-project-scrappers");
+</script>

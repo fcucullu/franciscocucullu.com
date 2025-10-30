@@ -15,7 +15,7 @@ tags:
 <h4>Business Case Context</h4>
 <p>This code is part of the software I developed for a startup dedicated to helping individuals manage their personal finances. My contributions were crucial in creating the minimum viable product (MVP), which was designed to simplify financial planning and support users in gaining control over their financial well-being. The web application provides tools and insights that empower users to make informed financial decisions and track their progress.</p>
 
-<p>Find this project on my <a href="https://github.com/fcucullu/django-finance-webapp" target="_blank">GitHub repository</a>.</p>
+<p>Find this project on my <a data-fast-goal="click_on_repo_personal_finance" href="https://github.com/fcucullu/django-finance-webapp" target="_blank">GitHub repository</a>.</p>
 
 <p>Note: This repo contains only files related to this specific objective and may lack the higher-level engine, as these resources were part of a larger software system I created. The purpose of this repo is not to provide a ready-to-use solution but to demonstrate my ability to build software relevant to its title.</p>
 
@@ -44,3 +44,6 @@ tags:
     <li>Docker</li>
     <li>Git</li>
 </ul>
+<script>
+  window?.datafast("surfed-to-project-personal-finance");
+</script>

@@ -16,7 +16,7 @@ tags:
 
 <p>Since I was proficient in Python, which was not very common at the time, I began developing these algorithms that were extremely innovative. This enabled my company to capitalize on these opportunities. This initiative was key to my professional growth, leading me to take on leadership roles in the trading desk and later in the Business Intelligence team that I managed.</p>
 
-<p>Find this project on my <a href="https://github.com/fcucullu/trading-fx" target="_blank">GitHub repository</a>.</p>
+<p>Find this project on my <a data-fast-goal="click_on_repo_fx_trading" href="https://github.com/fcucullu/trading-fx" target="_blank">GitHub repository</a>.</p>
 
 <p>Note: This repo contains only files related to this specific objective and may lack the higher-level engine, as these resources were part of a larger software system I created. The purpose of this repo is not to provide a ready-to-use solution but to demonstrate my ability to build software relevant to its title.</p>
 
@@ -29,3 +29,6 @@ tags:
     <li>Notify (push notifications to my mobile phone)</li>
     <li>Multithreading management (actually multiprocessing + Pools, Queues, Locks & Memory management)</li>
 </ul>
+<script>
+  window?.datafast("surfed-to-project-fx-trading");
+</script>

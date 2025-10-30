@@ -17,7 +17,7 @@ tags:
 
 <p>Xcapit aims to empower users with decentralized finance (DeFi) solutions, often with a social impact angle. The platform integrates with blockchain-based systems to create a transparent and secure environment for managing personal finances. Its mission aligns with promoting financial inclusion, especially in regions where access to traditional banking services is limited.</p>
 
-<p>Find this project on my <a href="https://github.com/fcucullu/trading-crypto" target="_blank">GitHub repository</a>.</p>
+<p>Find this project on my <a data-fast-goal="click_on_repo_quant_blockchain" href="https://github.com/fcucullu/trading-crypto" target="_blank">GitHub repository</a>.</p>
 
 <p>Note: This repo contains only files related to this specific objective and may lack the higher-level engine, as these resources were part of a larger software system I created. The purpose of this repo is not to provide a ready-to-use solution but to demonstrate my ability to build software relevant to its title.</p>
 
@@ -61,3 +61,6 @@ tags:
     <li>Quantstats</li>
     <li>Custom tools</li>
 </ul>
+<script>
+  window?.datafast("surfed-to-project-quant-blockchain");
+</script>

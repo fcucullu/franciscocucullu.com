@@ -12,7 +12,7 @@ tags:
 ---
 
 <h4>Description</h4>
-<p>During my career as a quantitative developer, I have researched and implemented many advanced mathematical models. This repository showcases some of my most used algorithms, including artificial intelligence, machine learning, and tools from stochastic calculus. You can view the full project on my <a href="https://github.com/fcucullu/AI-ML" target="_blank">GitHub repository</a></p>
+<p>During my career as a quantitative developer, I have researched and implemented many advanced mathematical models. This repository showcases some of my most used algorithms, including artificial intelligence, machine learning, and tools from stochastic calculus. You can view the full project on my <a data-fast-goal="click_on_repo_ai_ml_algo" href="https://github.com/fcucullu/AI-ML" target="_blank">GitHub repository</a></p>
 
 <p>Note: This repo contains only files related to this specific objective and may lack the higher-level engine, as these resources were part of a larger software system I created. The purpose of this repo is not to provide a ready-to-use solution but to demonstrate my ability to build software relevant to its title. <p>
 
@@ -56,3 +56,6 @@ tags:
     <li>Quantstats</li>
     <li>Custom tools</li>
 </ul>
+<script>
+  window?.datafast("surfed-to-project-ai-ml-algo");
+</script>
