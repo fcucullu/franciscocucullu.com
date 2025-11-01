@@ -28,7 +28,7 @@ const projects = (await getCollection('work'))
 <BaseLayout>
 	<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
-			<header data-fast-scroll="scroll_to_hero" class="hero">
+			<header class="hero">
 				<Hero
 					title="Hi! I’m Francisco"
 					align="start"
@@ -93,9 +93,7 @@ const projects = (await getCollection('work'))
 		<ContactCTA />
 	</div>
 </BaseLayout>
-<script>
-  window?.datafast("surfed-to-home");
-</script>
+
 <style>
 	.hero {
 		display: flex;
