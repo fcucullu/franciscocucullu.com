@@ -1,30 +1,9 @@
-# Astro Starter Kit: Portfolio
 
-```sh
-npm create astro@latest -- --template portfolio
-```
+# About
+<img width="2218" height="1132" alt="image" src="https://github.com/user-attachments/assets/074dcf8f-17c7-4ae1-8ff6-044628d66687" />
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/portfolio/devcontainer.json)
+Francisco is a senior product leader and AI/ML consultant with 15+ years of experience delivering high-impact digital products across startups, stock markets, and global financial institutions.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+His work focuses on scaling SaaS platforms, aligning product strategy with business goals, and leading cross-functional teams across engineering, design, and data. He has shipped AI-enabled products in fintech, MarTech, and enterprise transformation — often translating complex challenges into measurable business value.
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Today, he serves as an AI/ML product consultant, leading AI-driven product innovation at large companies.
