@@ -1,6 +1,6 @@
 ---
 title: Golden List
-publishDate: 2026-03-22 00:00:00
+publishDate: 2019-09-01 00:00:00
 img: /assets/stock-1.jpg
 img_alt: Screenshot of Golden List application
 description: |
