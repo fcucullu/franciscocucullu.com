@@ -1,0 +1,190 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import Pill from '../components/Pill.astro';
+
+const apps = (await getCollection('apps')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<BaseLayout
+	title="Apps | Francisco Cucullu"
+	description="Live apps built by Francisco Cucullu — a control tower for all my projects"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Apps"
+				tagline="Live apps I've built. User counts update in real time."
+				align="start"
+			/>
+			<div class="apps-grid">
+				{apps.map((app) => (
+					<a class="app-card" href={app.data.url} target="_blank" data-stats-url={app.data.statsUrl} data-fast-goal={`click_app_${app.slug}`}>
+						<img src={app.data.img} alt={app.data.img_alt || ''} loading="lazy" />
+						<div class="app-info">
+							<div class="app-header">
+								<h3>{app.data.title}</h3>
+								<span class:list={['status', app.data.status]}>{app.data.status}</span>
+							</div>
+							<p class="app-desc">{app.data.description}</p>
+							<div class="app-meta">
+								<div class="app-tags">
+									{app.data.tags.slice(0, 3).map((t) => <Pill>{t}</Pill>)}
+								</div>
+								<div class="app-stats">
+									<span class="stat users" data-app={app.slug}>— users</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<script>
+	document.querySelectorAll('[data-stats-url]').forEach(async (card) => {
+		const url = (card as HTMLElement).dataset.statsUrl;
+		if (!url) return;
+		try {
+			const res = await fetch(url);
+			if (!res.ok) return;
+			const data = await res.json();
+			const slug = card.querySelector('[data-app]')?.getAttribute('data-app');
+			const el = card.querySelector('.stat.users');
+			if (el && data.users != null) {
+				el.textContent = `${data.users} user${data.users !== 1 ? 's' : ''}`;
+			}
+		} catch {}
+	});
+	window?.datafast?.("surfed-to-apps");
+</script>
+
+<style>
+	.apps-grid {
+		display: grid;
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	.app-card {
+		display: grid;
+		grid-template-columns: 120px 1fr;
+		gap: 1.25rem;
+		padding: 1.25rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		text-decoration: none;
+		color: var(--gray-200);
+		transition: box-shadow var(--theme-transition), transform 0.2s;
+	}
+
+	.app-card:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.app-card img {
+		width: 120px;
+		height: 120px;
+		object-fit: cover;
+		border-radius: 0.75rem;
+		border: 1px solid var(--gray-800);
+	}
+
+	.app-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.app-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.app-header h3 {
+		font-size: var(--text-lg);
+		margin: 0;
+		color: var(--gray-0);
+	}
+
+	.status {
+		font-size: var(--text-xs, 0.75rem);
+		padding: 0.15rem 0.5rem;
+		border-radius: 999rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.status.live {
+		background: rgba(34, 197, 94, 0.15);
+		color: #22c55e;
+	}
+
+	.status.beta {
+		background: rgba(234, 179, 8, 0.15);
+		color: #eab308;
+	}
+
+	.status.offline {
+		background: rgba(239, 68, 68, 0.15);
+		color: #ef4444;
+	}
+
+	.app-desc {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.app-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: auto;
+	}
+
+	.app-tags {
+		display: flex;
+		gap: 0.25rem;
+		flex-wrap: wrap;
+	}
+
+	.app-stats {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.stat.users {
+		font-variant-numeric: tabular-nums;
+	}
+
+	@media (min-width: 50em) {
+		.apps-grid {
+			gap: 2rem;
+		}
+
+		.app-card {
+			grid-template-columns: 160px 1fr;
+			padding: 1.5rem;
+		}
+
+		.app-card img {
+			width: 160px;
+			height: 160px;
+		}
+	}
+</style>
