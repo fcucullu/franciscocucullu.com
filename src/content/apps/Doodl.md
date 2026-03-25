@@ -3,7 +3,7 @@ title: Doodl
 description: Draw and share doodles with your person. Pair via a 6-character code and exchange drawings in real-time with emoji reactions.
 url: https://doodl.franciscocucullu.com
 statsUrl: https://doodl.franciscocucullu.com/api/stats
-img: /assets/stock-1.jpg
+img: /assets/app-doodl.png
 img_alt: Screenshot of Doodl
 tags:
   - React

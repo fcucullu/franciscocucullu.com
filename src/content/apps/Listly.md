@@ -3,7 +3,7 @@ title: Listly
 description: Shared shopping lists for couples and friends. Add items in real-time, check them off with confetti, and share lists by email.
 url: https://listly.franciscocucullu.com
 statsUrl: https://listly.franciscocucullu.com/api/stats
-img: /assets/stock-1.jpg
+img: /assets/app-listly.png
 img_alt: Screenshot of Listly
 tags:
   - Next.js

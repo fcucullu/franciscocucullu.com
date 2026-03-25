@@ -3,7 +3,7 @@ title: PatternFinder
 description: Track recurring events and spot patterns. Double-tap to log, view charts by day/week/month, and share events with others for collaborative tracking.
 url: https://patternfinder.franciscocucullu.com
 statsUrl: https://patternfinder.franciscocucullu.com/api/stats
-img: /assets/stock-2.jpg
+img: /assets/app-patternfinder.png
 img_alt: PatternFinder app screenshot
 tags:
   - Next.js
