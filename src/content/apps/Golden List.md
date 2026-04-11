@@ -3,7 +3,7 @@ title: Golden List
 description: Stay in touch with the people who matter. Set reminders, track interactions, get push notifications. A mobile-first PWA that turns your relationships into a system — so you never lose touch with the people who matter most.
 url: https://goldenlist.franciscocucullu.com
 statsUrl: https://goldenlist.franciscocucullu.com/api/stats
-img: /assets/app-goldenlist.png
+img: /assets/goldenlist-icon.png
 img_alt: Golden List app screenshot
 tags:
   - Next.js
