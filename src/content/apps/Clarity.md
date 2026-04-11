@@ -3,7 +3,7 @@ title: Clarity
 description: A goal manifesting and journaling PWA that helps you set intentions, track progress, and build a daily reflection habit. Combines goal setting with mood tracking, streaks, and guided prompts.
 url: https://clarity.franciscocucullu.com
 statsUrl: https://clarity.franciscocucullu.com/api/stats
-img: /assets/stock-1.jpg
+img: /assets/clarity-icon.jpg
 img_alt: Screenshot of Clarity
 tags:
   - Next.js
