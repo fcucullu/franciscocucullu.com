@@ -24,7 +24,7 @@ const apps = (await getCollection('apps')).sort(
 			/>
 			<div class="apps-grid">
 				{apps.map((app) => (
-					<a class="app-card" href={app.data.url} target="_blank" data-stats-url={app.data.statsUrl} data-fast-goal={`click_app_${app.slug}`}>
+					<a class="app-card" href={app.data.url} target="_blank" data-fast-goal={`click_app_${app.slug}`}>
 						<img src={app.data.img} alt={app.data.img_alt || ''} loading="lazy" />
 						<div class="app-info">
 							<div class="app-header">
@@ -35,9 +35,6 @@ const apps = (await getCollection('apps')).sort(
 							<div class="app-meta">
 								<div class="app-tags">
 									{app.data.tags.slice(0, 3).map((t) => <Pill>{t}</Pill>)}
-								</div>
-								<div class="app-stats">
-									<span class="stat users" data-app={app.slug}>— users</span>
 								</div>
 							</div>
 						</div>
@@ -50,20 +47,6 @@ const apps = (await getCollection('apps')).sort(
 </BaseLayout>
 
 <script>
-	document.querySelectorAll('[data-stats-url]').forEach(async (card) => {
-		const url = (card as HTMLElement).dataset.statsUrl;
-		if (!url) return;
-		try {
-			const res = await fetch(url);
-			if (!res.ok) return;
-			const data = await res.json();
-			const slug = card.querySelector('[data-app]')?.getAttribute('data-app');
-			const el = card.querySelector('.stat.users');
-			if (el && data.users != null) {
-				el.textContent = `${data.users} user${data.users !== 1 ? 's' : ''}`;
-			}
-		} catch {}
-	});
 	window?.datafast?.("surfed-to-apps");
 </script>
 
@@ -163,14 +146,6 @@ const apps = (await getCollection('apps')).sort(
 		flex-wrap: wrap;
 	}
 
-	.app-stats {
-		font-size: var(--text-sm);
-		color: var(--gray-400);
-	}
-
-	.stat.users {
-		font-variant-numeric: tabular-nums;
-	}
 
 	@media (min-width: 50em) {
 		.apps-grid {
