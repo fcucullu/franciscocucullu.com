@@ -11,6 +11,7 @@ tags:
   - Supabase
   - Google Play
 status: live
+playStoreUrl: https://play.google.com/store/apps/details?id=com.franciscocucullu.goldenlist
 publishDate: 2026-03-23 00:00:00
 ---
 

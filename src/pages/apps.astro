@@ -36,6 +36,11 @@ const apps = (await getCollection('apps')).sort(
 								<div class="app-tags">
 									{app.data.tags.slice(0, 3).map((t) => <Pill>{t}</Pill>)}
 								</div>
+								{app.data.playStoreUrl && (
+									<a href={app.data.playStoreUrl} target="_blank" rel="noopener" class="play-store-badge" onclick="event.stopPropagation()">
+										<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="40" />
+									</a>
+								)}
 							</div>
 						</div>
 					</a>
@@ -146,6 +151,18 @@ const apps = (await getCollection('apps')).sort(
 		flex-wrap: wrap;
 	}
 
+
+	.play-store-badge {
+		flex-shrink: 0;
+	}
+
+	.play-store-badge img {
+		height: 40px;
+		width: auto;
+		border: none;
+		border-radius: 0;
+		aspect-ratio: auto;
+	}
 
 	@media (min-width: 50em) {
 		.apps-grid {
