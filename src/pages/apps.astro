@@ -81,7 +81,7 @@ const apps = (await getCollection('apps')).sort(
 		transform: translateY(-2px);
 	}
 
-	.app-card img {
+	.app-card > img {
 		width: 100%;
 		aspect-ratio: 16 / 9;
 		object-fit: cover;
@@ -177,7 +177,7 @@ const apps = (await getCollection('apps')).sort(
 			padding: 1.5rem;
 		}
 
-		.app-card img {
+		.app-card > img {
 			width: 160px;
 			height: 160px;
 			aspect-ratio: 1;
