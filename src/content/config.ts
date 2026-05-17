@@ -24,6 +24,7 @@ export const collections = {
 			tags: z.array(z.string()),
 			status: z.enum(['live', 'beta', 'offline']).default('live'),
 			playStoreUrl: z.string().optional(),
+			appStoreUrl: z.string().optional(),
 			publishDate: z.coerce.date(),
 		}),
 	}),
