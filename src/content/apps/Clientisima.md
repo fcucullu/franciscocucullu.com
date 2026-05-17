@@ -1,7 +1,7 @@
 ---
 title: Clientísima
 description: Client management platform for women entrepreneurs in services. Manage clients, appointments, payments, loyalty programs, and multi-professional calendars — all in one place.
-url: https://app.clientisima.com
+url: https://clientisima.com
 img: /assets/clientisima-icon.png
 img_alt: Clientísima app icon
 tags:
