@@ -66,13 +66,26 @@ const projects = (await getCollection('work'))
 							<h4>RAID — Rapid AI Development</h4>
 						</div>
 						<p>Leading the full AI product cycle from ideation to MVP in one week. Building and shipping AI-powered products at startup speed inside a global enterprise.</p>
+						<div class="ai-tags">
+							<span class="ai-pill">Rapid Prototyping</span>
+							<span class="ai-pill">Product Strategy</span>
+							<span class="ai-pill">LLMs</span>
+							<span class="ai-pill">MVP</span>
+						</div>
 					</div>
 					<div class="ai-card">
 						<div class="ai-card-header">
 							<span class="ai-tag">Enterprise AI</span>
 							<h4>AI Quality Assurance Suite</h4>
 						</div>
-						<p>Multi-modal AI system for a Fortune 500 CX company — analyzing millions of daily customer interactions using audio processing, speech-to-text, and LLM-based transcript analysis. Driving multi-million dollar annual savings.</p>
+						<p>Multi-modal AI system for a global CX leader — analyzing millions of daily customer interactions using audio processing, speech-to-text, and LLM-based transcript analysis. Driving multi-million dollar annual savings.</p>
+						<div class="ai-tags">
+							<span class="ai-pill">Multi-modal AI</span>
+							<span class="ai-pill">LLMs</span>
+							<span class="ai-pill">Speech-to-Text</span>
+							<span class="ai-pill">NLP</span>
+							<span class="ai-pill">Python</span>
+						</div>
 					</div>
 					<div class="ai-card">
 						<div class="ai-card-header">
@@ -80,6 +93,13 @@ const projects = (await getCollection('work'))
 							<h4>Xcapit — AI-Powered Wealth Management</h4>
 						</div>
 						<p>Algorithmic trading managing a $2M portfolio with 400%+ annual returns. AI-driven portfolio management services. Pivoted to financial inclusion — $650K in microloans to 330 underbanked individuals. Funded by UNICEF and Ethereum Foundation. Recognized as a Digital Public Good.</p>
+						<div class="ai-tags">
+							<span class="ai-pill">Algorithmic Trading</span>
+							<span class="ai-pill">ML</span>
+							<span class="ai-pill">Blockchain</span>
+							<span class="ai-pill">UNICEF</span>
+							<span class="ai-pill">Python</span>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -295,6 +315,24 @@ const projects = (await getCollection('work'))
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
+		background: var(--accent-overlay);
+		color: var(--accent-light);
+		white-space: nowrap;
+	}
+
+	.ai-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		margin-top: 0.75rem;
+	}
+
+	.ai-pill {
+		font-size: 0.65rem;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
 		background: var(--accent-overlay);
 		color: var(--accent-light);
 		white-space: nowrap;
