@@ -1,22 +1,21 @@
 ---
-import Icon from './Icon.astro';
 ---
 
-<section data-fast-scroll="scroll_to_skils" class="box skills">
+<section data-fast-scroll="scroll_to_skills" class="box skills">
   <div class="stack gap-2 lg:gap-4">
-    <Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
-    <h2>Awarded Leader</h2>
-    <p>Recognized for enabling cross-functional teams to perform at their highest potential.</p>
+    <div class="metric">9M+</div>
+    <h2>Interactions / Day</h2>
+    <p>Built an AI-powered QA system analyzing millions of daily customer interactions using multi-modal AI — audio, speech-to-text, and LLM-based transcript analysis.</p>
   </div>
   <div class="stack gap-2 lg:gap-4">
-    <Icon icon="strategy" color="var(--accent-regular)" size="2.5rem" gradient />
-    <h2>Strategic Thinker</h2>
-    <p>Bridges technology and business to deliver solutions that drive measurable impact.</p>
+    <div class="metric">$$$</div>
+    <h2>Multi-Million Savings</h2>
+    <p>Driving multi-million dollar annual savings for a Fortune 500 CX enterprise through automated quality assurance and AI-powered insights.</p>
   </div>
   <div class="stack gap-2 lg:gap-4">
-    <Icon icon="terminal-window" color="var(--accent-regular)" size="2.5rem" gradient />
-    <h2>Full-Stack Expertise</h2>
-    <p>Technical depth across the stack to translate product vision into real-world outcomes.</p>
+    <div class="metric">1 wk</div>
+    <h2>Idea → MVP</h2>
+    <p>Leading RAID (Rapid AI Development) — taking AI products from ideation to working MVP in one week. 13 personal apps shipped solo.</p>
   </div>
 </section>
 
@@ -44,6 +43,16 @@ import Icon from './Icon.astro';
 		color: var(--gray-400);
 	}
 
+	.metric {
+		font-size: 2.5rem;
+		font-weight: 800;
+		background: var(--gradient-accent-orange);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1;
+	}
+
 	@media (min-width: 50em) {
 		.box {
 			border-radius: 1.5rem;
@@ -58,6 +67,10 @@ import Icon from './Icon.astro';
 
 		.skills h2 {
 			font-size: var(--text-2xl);
+		}
+
+		.metric {
+			font-size: 3rem;
 		}
 	}
 </style>

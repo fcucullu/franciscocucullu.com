@@ -32,17 +32,17 @@ const projects = (await getCollection('work'))
 				<Hero
 					title="Hi! I’m Francisco"
 					align="start"
-					  tagline={`a product executive and tech entrepreneur.<br><br>I connect strategic decision-making with technical execution to turn complex ideas into scalable, high-impact digital products.`}
+					tagline={`AI Product Leader.<br><br>I build AI products at scale — from multi-modal quality systems analyzing millions of daily interactions to algorithmic trading with 400%+ returns. Harvard Business School. Dual MSc in Quantitative Finance.`}
 					>
 					<div class="roles">
-						<Pill><Icon icon="leadership" size="1.33em" /> Leadership</Pill>
-						<Pill><Icon icon="lightbulb" size="1.33em" /> Innovation</Pill>
-						<Pill><Icon icon="code" size="1.33em" /> Technology</Pill>
+						<Pill><Icon icon="code" size="1.33em" /> AI/ML</Pill>
+						<Pill><Icon icon="strategy" size="1.33em" /> Product</Pill>
+						<Pill><Icon icon="trophy" size="1.33em" /> Leadership</Pill>
 					</div>
 				</Hero>
 
 				<img
-					alt="Francisco Cucullu smiling in a black shirt with a 'love' inspiring inscription"
+					alt="Francisco Cucullu smiling in a black shirt with a ‘love’ inspiring inscription"
 					width="480"
 					height="620"
 					src="/assets/portrait.jpg"
@@ -53,10 +53,41 @@ const projects = (await getCollection('work'))
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
+			<section class="section with-background">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>AI Experience</h3>
+					<p>Building AI products in production — from enterprise scale to social impact.</p>
+				</header>
+
+				<div class="ai-cards">
+					<div class="ai-card">
+						<div class="ai-card-header">
+							<span class="ai-tag">Current</span>
+							<h4>RAID — Rapid AI Development</h4>
+						</div>
+						<p>Leading the full AI product cycle from ideation to MVP in one week. Building and shipping AI-powered products at startup speed inside a global enterprise.</p>
+					</div>
+					<div class="ai-card">
+						<div class="ai-card-header">
+							<span class="ai-tag">Enterprise AI</span>
+							<h4>AI Quality Assurance Suite</h4>
+						</div>
+						<p>Multi-modal AI system for a Fortune 500 CX company — analyzing millions of daily customer interactions using audio processing, speech-to-text, and LLM-based transcript analysis. Driving multi-million dollar annual savings.</p>
+					</div>
+					<div class="ai-card">
+						<div class="ai-card-header">
+							<span class="ai-tag">Fintech / AI</span>
+							<h4>Xcapit — AI-Powered Wealth Management</h4>
+						</div>
+						<p>Algorithmic trading managing a $2M portfolio with 400%+ annual returns. AI-driven portfolio management services. Pivoted to financial inclusion — $650K in microloans to 330 underbanked individuals. Funded by UNICEF and Ethereum Foundation. Recognized as a Digital Public Good.</p>
+					</div>
+				</div>
+			</section>
+
 			<section class="section with-background with-cta">
 				<header data-fast-scroll="scroll_to_projects_head" class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work</h3>
-					<p>Take a look below at some of my most exciting projects for different clients over the past few years.</p>
+					<p>Projects built for clients and companies across fintech, AI, and enterprise.</p>
 				</header>
 
 				<div data-fast-scroll="scroll_to_projects" class="gallery">
@@ -213,6 +244,70 @@ const projects = (await getCollection('work'))
 
 		.cta {
 			grid-area: cta;
+		}
+	}
+
+	/* ====================================================== */
+
+	.ai-cards {
+		display: grid;
+		gap: 1.25rem;
+		grid-column: 1 / -1;
+	}
+
+	.ai-card {
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		padding: 1.5rem;
+		transition: box-shadow 0.2s, transform 0.2s;
+	}
+
+	.ai-card:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.ai-card-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.ai-card h4 {
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+		margin: 0;
+	}
+
+	.ai-card p {
+		color: var(--gray-300);
+		font-size: var(--text-sm);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.ai-tag {
+		font-size: 0.7rem;
+		padding: 0.2rem 0.6rem;
+		border-radius: 999rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		background: var(--accent-overlay);
+		color: var(--accent-light);
+		white-space: nowrap;
+	}
+
+	@media (min-width: 50em) {
+		.ai-cards {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
+		}
+
+		.ai-card h4 {
+			font-size: var(--text-lg);
 		}
 	}
 
