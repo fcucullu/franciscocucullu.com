@@ -190,12 +190,38 @@ const projects = (await getCollection('work'))
 
 			<section data-fast-scroll="scroll_to_recommendations" class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Recommendations</h3>
+					<h3>What People Say</h3>
 					<p>
-						I have been fortunate enough to receive praise for my work on several occasions. Take
-						a look at <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="inline-link">my 20+ recommendations on LinkedIn</a>.
+						20+ recommendations on <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="inline-link">LinkedIn</a>.
 					</p>
 				</header>
+
+				<div class="testimonials">
+					<div class="testimonial">
+						<p class="quote">"Francisco approaches every challenge with proactivity and a constant drive to grow. His sharp critical thinking helps uncover smart, well-grounded solutions. He doesn't just adjust to change, he uses it as a tool for transformation."</p>
+						<p class="author"><strong>Leonardo Fister</strong> · Sr. Product & BI Manager, Supercanal</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"He quickly assumed the responsibilities of the Product Team and swiftly understood our needs. He is highly professional and possesses extensive knowledge of processes, product management, and priority setting."</p>
+						<p class="author"><strong>Martin Bettaglio</strong> · BI Consultant, Hastee</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Francisco possesses a remarkable ability to streamline processes seamlessly. His commitment to client satisfaction is exceptional. He brings out the best in the team, ensuring optimal outcomes while maintaining a strong client-centric approach."</p>
+						<p class="author"><strong>Muhammad Shaheen</strong> · Senior QA Consultant, Aster DM Healthcare</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Without a doubt, I would highlight his proactivity and resilience. He knows how to maximize everyone's capabilities. As a person, he is also a 10, honest and transparent."</p>
+						<p class="author"><strong>Daniel Rodrigo</strong> · Senior Engineer, Nordex Group</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Ha demostrado ser una persona muy proactiva, con gran iniciativa, mucha tenacidad y con gran adaptabilidad a los cambios. Tiene muy buenas habilidades de comunicacion y liderazgo."</p>
+						<p class="author"><strong>Jackson Echeverri</strong> · CTO & Cofounder, Lesiga</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Francisco es lo que se denomina un intraemprendor. Fue haciendose lugar como desarrollador utilizando Python para realizar algoritmos de trading, creando un nuevo area dentro de la empresa."</p>
+						<p class="author"><strong>Tobias Girado</strong> · Software Engineer, Chevron</p>
+					</div>
+				</div>
 			</section>
 		</main>
 
@@ -414,16 +440,16 @@ const projects = (await getCollection('work'))
 
 	.accent-link,
 	.inline-link {
-		color: var(--accent-light);
+		color: #a855f7;
 		font-weight: 600;
 		text-decoration: underline;
 		text-underline-offset: 0.2em;
-		transition: color 0.2s;
+		transition: opacity 0.2s;
 	}
 
 	.accent-link:hover,
 	.inline-link:hover {
-		color: var(--gray-0);
+		opacity: 0.8;
 	}
 
 	@media (min-width: 50em) {
@@ -434,6 +460,47 @@ const projects = (await getCollection('work'))
 
 		.ai-card h4 {
 			font-size: var(--text-lg);
+		}
+	}
+
+	/* ====================================================== */
+
+	.testimonials {
+		display: grid;
+		gap: 1.25rem;
+		grid-column: 1 / -1;
+	}
+
+	.testimonial {
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		padding: 1.5rem;
+	}
+
+	.quote {
+		color: var(--gray-200);
+		font-size: var(--text-sm);
+		line-height: 1.7;
+		font-style: italic;
+		margin: 0 0 0.75rem 0;
+	}
+
+	.author {
+		color: var(--gray-400);
+		font-size: 0.8rem;
+		margin: 0;
+	}
+
+	.author strong {
+		color: var(--gray-200);
+		font-size: 0.8rem;
+	}
+
+	@media (min-width: 50em) {
+		.testimonials {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
 		}
 	}
 
