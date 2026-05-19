@@ -1,10 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Component Imports
 import CallToAction from '../components/CallToAction.astro';
 import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
@@ -12,17 +10,12 @@ import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 
-// Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
 
-// Content Fetching: List most recent work projects
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 4);
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
 ---
 
 <BaseLayout>
@@ -30,7 +23,7 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hi! I’m Francisco"
+					title="Hi! I'm Francisco"
 					align="start"
 					tagline={`AI Product Leader.<br><br>I build AI products at scale: multi-modal quality systems analyzing millions of daily interactions, algorithmic trading with 400%+ returns. Dual MSc in Quantitative Finance.`}
 					>
@@ -42,7 +35,7 @@ const projects = (await getCollection('work'))
 				</Hero>
 
 				<img
-					alt="Francisco Cucullu smiling in a black shirt with a ‘love’ inspiring inscription"
+					alt="Francisco Cucullu smiling in a black shirt with a 'love' inspiring inscription"
 					width="480"
 					height="620"
 					src="/assets/portrait.jpg"
@@ -65,7 +58,7 @@ const projects = (await getCollection('work'))
 							<span class="ai-tag">Current</span>
 							<h4>RAID (Rapid AI Development)</h4>
 						</div>
-						<p>Leading the full AI product cycle from ideation to MVP in one week. Building and shipping AI-powered products at startup speed inside a global enterprise.</p>
+						<p>Leading the full AI product cycle from ideation to MVP in one week. Building and shipping AI-powered products at startup speed inside a global enterprise. Leading a cross-functional team of engineers and designers.</p>
 						<div class="ai-tags">
 							<span class="ai-pill">Rapid Prototyping</span>
 							<span class="ai-pill">Product Strategy</span>
@@ -78,7 +71,7 @@ const projects = (await getCollection('work'))
 							<span class="ai-tag">Enterprise AI</span>
 							<h4>AI Quality Assurance Suite</h4>
 						</div>
-						<p>Multi-modal AI system for a global CX leader. Analyzing millions of daily customer interactions using audio processing, speech-to-text, and LLM-based transcript analysis. Driving multi-million dollar annual savings.</p>
+						<p>Multi-modal AI system for a global CX leader (130K+ employees). Analyzing millions of daily customer interactions using audio processing, speech-to-text, and LLM-based transcript analysis. Driving multi-million dollar annual savings.</p>
 						<div class="ai-tags">
 							<span class="ai-pill">Multi-modal AI</span>
 							<span class="ai-pill">LLMs</span>
@@ -102,6 +95,16 @@ const projects = (await getCollection('work'))
 						</div>
 					</div>
 				</div>
+			</section>
+
+			<section class="section with-background">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>I Ship Fast</h3>
+					<p>
+						Apps built solo, from idea to production in days. Native Android apps on Google Play, PWAs, SaaS platforms.
+						<br /><a href="/apps" class="accent-link">See all apps →</a>
+					</p>
+				</header>
 			</section>
 
 			<section class="section with-background">
@@ -153,7 +156,7 @@ const projects = (await getCollection('work'))
 				</div>
 
 				<div class="github-cta">
-					<a href="https://github.com/fcucullu" target="_blank" rel="noopener" class="github-link">
+					<a href="https://github.com/fcucullu" target="_blank" rel="noopener" class="accent-link">
 						View all 30+ repos on GitHub →
 					</a>
 				</div>
@@ -185,22 +188,12 @@ const projects = (await getCollection('work'))
 				</div>
 			</section>
 
-			<section class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>I Ship Fast</h3>
-					<p>
-						Apps built solo, from idea to production in days. Native Android apps on Google Play, PWAs, SaaS platforms.
-						<br /><a href="/apps" style="color: var(--accent-light); font-weight: 600;">See all apps →</a>
-					</p>
-				</header>
-			</section>
-
 			<section data-fast-scroll="scroll_to_recommendations" class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Recommendations</h3>
 					<p>
 						I have been fortunate enough to receive praise for my work on several occasions. Take
-						a look at <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations">my 20+ recommendations</a>.
+						a look at <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="accent-link">my 20+ recommendations on LinkedIn</a>.
 					</p>
 				</header>
 			</section>
@@ -209,6 +202,10 @@ const projects = (await getCollection('work'))
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<script>
+	window?.datafast?.("surfed-to-apps");
+</script>
 
 <style>
 	.hero {
@@ -380,7 +377,7 @@ const projects = (await getCollection('work'))
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		background: var(--accent-overlay);
+		background: hsla(280, 70%, 60%, 0.2);
 		color: var(--accent-light);
 		white-space: nowrap;
 	}
@@ -398,7 +395,7 @@ const projects = (await getCollection('work'))
 		border-radius: 999rem;
 		font-weight: 600;
 		letter-spacing: 0.02em;
-		background: var(--accent-overlay);
+		background: hsla(280, 70%, 60%, 0.2);
 		color: var(--accent-light);
 		white-space: nowrap;
 	}
@@ -415,15 +412,14 @@ const projects = (await getCollection('work'))
 		margin-top: 0.5rem;
 	}
 
-	.github-link {
+	.accent-link {
 		color: var(--accent-light);
 		font-weight: 600;
-		font-size: var(--text-sm);
 		text-decoration: none;
 		transition: color 0.2s;
 	}
 
-	.github-link:hover {
+	.accent-link:hover {
 		color: var(--gray-0);
 	}
 
