@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Coach Summit | Francisco Cucullu" description="AI keynotes at enterprise summits">
+    <div class="wrapper">
+        <a href="/" class="back">← Back to home</a>
+        <h1>Coach Summit</h1>
+        <p class="subtitle">AI keynotes at enterprise leadership summits. Presenting AI strategy, product innovation, and the future of AI-powered operations.</p>
+
+        <section>
+            <h2>Seville, Spain</h2>
+            <p class="meta">May 2025 · ~60 attendees · Operations Managers, Coaches, QA Analysts, Team Leaders, Learning Specialists</p>
+            <p>Keynote on "AI: Our Next Future" at the Coach Summit, focused on recognizing and empowering leadership roles that directly support agent performance and well-being.</p>
+            <div class="photo-grid">
+                <img src="/assets/speaking-1779160596393-AQADZAxrG04GYER-.jpg" alt="Francisco presenting at Foundever Seville with 60+ attendees" />
+            </div>
+        </section>
+
+        <section>
+            <h2>Barcelona, Spain</h2>
+            <p class="meta">April 2025 · 22 attendees · Operations Managers, Coaches, QA, Team Leaders, Learning Specialists</p>
+            <p>Presented "AI: Our Next Future" to the Barcelona office leadership team. The event celebrated and recognized leadership teams who support agent performance and wellbeing.</p>
+            <div class="photo-grid">
+                <img src="/assets/speaking-foundever.jpg" alt="Francisco presenting AI at Foundever Barcelona" />
+            </div>
+        </section>
+
+        <section>
+            <h2>More photos</h2>
+            <div class="photo-grid multi">
+                <img src="/assets/speaking-1779160516834-AQADXAxrG04GYER-.jpg" alt="Francisco on TV" />
+                <img src="/assets/speaking-1779160537307-AQADXQxrG04GYER-.jpg" alt="Francisco being interviewed at South Summit" />
+                <img src="/assets/speaking-1779160559702-AQADXgxrG04GYER-.jpg" alt="Francisco on stage at South Summit" />
+                <img src="/assets/speaking-1779160564803-AQADXwxrG04GYER-.jpg" alt="Francisco on TV close-up" />
+                <img src="/assets/speaking-1779160570482-AQADYAxrG04GYER9.jpg" alt="Francisco pitching at South Summit Santander stage" />
+                <img src="/assets/speaking-1779160577814-AQADYQxrG04GYER-.jpg" alt="Francisco pitching at Santander Startups" />
+                <img src="/assets/speaking-1779160587594-AQADYgxrG04GYER-.jpg" alt="Francisco presenting at Warsaw" />
+                <img src="/assets/speaking-1779160592377-AQADYwxrG04GYER-.jpg" alt="Francisco presenting in Warsaw conference room" />
+            </div>
+        </section>
+    </div>
+</BaseLayout>
+
+<style>
+    .wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+    }
+
+    .back {
+        color: var(--accent-light);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        display: inline-block;
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: var(--text-4xl);
+        color: var(--gray-0);
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        color: var(--gray-300);
+        font-size: var(--text-lg);
+        margin-bottom: 3rem;
+        line-height: 1.6;
+    }
+
+    section {
+        margin-bottom: 3rem;
+    }
+
+    h2 {
+        font-size: var(--text-2xl);
+        color: var(--gray-0);
+        margin-bottom: 0.5rem;
+    }
+
+    .meta {
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+        margin-bottom: 0.75rem;
+    }
+
+    p {
+        color: var(--gray-300);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .photo-grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .photo-grid.multi {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .photo-grid img {
+        width: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid var(--gray-800);
+        object-fit: cover;
+        aspect-ratio: 16 / 10;
+    }
+
+    @media (min-width: 50em) {
+        .photo-grid.multi {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+</style>

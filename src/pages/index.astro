@@ -230,22 +230,13 @@ const projects = (await getCollection('work'))
 						</div>
 						<p>Radio interview on technology, entrepreneurship, and innovation.</p>
 					</a>
-					<div class="ai-card speaking-photo-card">
-						<img src="/assets/speaking-foundever.jpg" alt="Francisco presenting AI at Foundever Barcelona" class="speaking-photo" />
-						<div class="ai-card-header">
-							<span class="ai-tag">Talk</span>
-							<h4>AI Talk, Barcelona</h4>
-						</div>
-						<p>Presented "AI: Our Next Future" to Operation Managers, Coaches, QA Leads, and Team Leaders. 22 attendees.</p>
-					</div>
-					<div class="ai-card speaking-photo-card">
-						<img src="/assets/speaking-seville.jpg" alt="Francisco presenting at Foundever Coach Summit Seville" class="speaking-photo" />
+					<a href="/speaking/coach-summit" class="ai-card repo-card">
 						<div class="ai-card-header">
 							<span class="ai-tag">Summit</span>
-							<h4>Coach Summit, Seville</h4>
+							<h4>Coach Summit</h4>
 						</div>
-						<p>AI keynote at the Coach Summit. 60 attendees including Operations Managers, Coaches, QA Analysts, and Learning Specialists.</p>
-					</div>
+						<p>AI keynotes at enterprise summits in Barcelona and Seville. 80+ attendees across sessions including Operations Managers, Coaches, QA Leads, and Team Leaders.</p>
+					</a>
 				</div>
 			</section>
 
@@ -485,14 +476,6 @@ const projects = (await getCollection('work'))
 		background: var(--accent-regular);
 		color: var(--accent-text-over);
 		white-space: nowrap;
-	}
-
-	.speaking-photo {
-		width: 100%;
-		height: 140px;
-		object-fit: cover;
-		border-radius: 0.5rem;
-		margin-bottom: 0.75rem;
 	}
 
 	.repo-card {
