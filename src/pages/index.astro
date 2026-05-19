@@ -193,7 +193,7 @@ const projects = (await getCollection('work'))
 					<h3>Recommendations</h3>
 					<p>
 						I have been fortunate enough to receive praise for my work on several occasions. Take
-						a look at <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="accent-link">my 20+ recommendations on LinkedIn</a>.
+						a look at <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="inline-link">my 20+ recommendations on LinkedIn</a>.
 					</p>
 				</header>
 			</section>
@@ -413,15 +413,26 @@ const projects = (await getCollection('work'))
 	}
 
 	.accent-link {
+		display: inline-block;
+		color: var(--accent-text-over);
+		font-weight: 600;
+		text-decoration: none;
+		background: var(--accent-regular);
+		padding: 0.4rem 1rem;
+		border-radius: 999rem;
+		font-size: var(--text-sm);
+		transition: opacity 0.2s;
+	}
+
+	.accent-link:hover {
+		opacity: 0.85;
+	}
+
+	.inline-link {
 		color: var(--accent-light);
 		font-weight: 600;
 		text-decoration: underline;
 		text-underline-offset: 0.2em;
-		transition: color 0.2s;
-	}
-
-	.accent-link:hover {
-		color: var(--gray-0);
 	}
 
 	@media (min-width: 50em) {
