@@ -206,11 +206,19 @@ const apps = (await getCollection('apps'))
 	.store-badge img { height: 40px; width: auto; }
 
 	.web-link {
-		font-size: var(--text-sm);
-		color: var(--accent-light);
-		text-decoration: underline;
-		text-underline-offset: 0.2em;
+		font-size: var(--text-sm, 0.875rem);
+		color: #fff;
+		background: var(--accent-regular);
+		text-decoration: none;
 		white-space: nowrap;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+		font-weight: 600;
+		transition: background 0.2s;
+	}
+
+	.web-link:hover {
+		background: var(--accent-dark);
 	}
 
 	@media (max-width: 49.99em) {
