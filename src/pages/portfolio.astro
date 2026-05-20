@@ -75,15 +75,27 @@ const apps = (await getCollection('apps'))
 </BaseLayout>
 
 <script>
+	function activateTab(name: string) {
+		document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
+		document.querySelectorAll('.tab-content').forEach((c) => c.classList.remove('active'));
+		const tab = document.querySelector(`.tab[data-tab="${name}"]`);
+		tab?.classList.add('active');
+		document.getElementById(`tab-${name}`)?.classList.add('active');
+	}
+
 	document.querySelectorAll('.tab').forEach((tab) => {
 		tab.addEventListener('click', () => {
-			document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
-			document.querySelectorAll('.tab-content').forEach((c) => c.classList.remove('active'));
-			tab.classList.add('active');
-			const target = (tab as HTMLElement).dataset.tab;
-			document.getElementById(`tab-${target}`)?.classList.add('active');
+			const target = (tab as HTMLElement).dataset.tab!;
+			activateTab(target);
+			history.replaceState(null, '', `#${target}`);
 		});
 	});
+
+	// Activate tab from URL hash
+	const hash = window.location.hash.replace('#', '');
+	if (hash === 'work' || hash === 'apps') {
+		activateTab(hash);
+	}
 </script>
 
 <style>
