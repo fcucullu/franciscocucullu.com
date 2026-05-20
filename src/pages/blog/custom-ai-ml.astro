@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Building AI Before ChatGPT: Custom ML at a UNICEF-Backed Fintech | Francisco Cucullu" description="How a team of PhDs built custom neural networks, genetic algorithms, and Bayesian models from scratch at Xcapit.">
+    <article class="wrapper">
+        <a href="/blog" class="back">&larr; Back</a>
+
+        <header class="article-header">
+            <span class="tag">AI/ML</span>
+            <h1>Building AI Before ChatGPT: Custom ML at a UNICEF-Backed Fintech</h1>
+            <p class="subtitle">When there were no shortcuts, we built neural networks, genetic algorithms, and optimization models from the ground up.</p>
+            <p class="meta">By Francisco Cucullu &middot; AI Product Leader</p>
+        </header>
+
+        <div class="content">
+            <h2>The Problem</h2>
+
+            <p>At Xcapit, a fintech backed by UNICEF and the Ethereum Foundation, we were building algorithmic portfolio management and trading systems. Off-the-shelf ML libraries existed, but they did not give us the control we needed. Our strategies required custom mathematical implementations where we understood every parameter, every gradient, every decision the model made.</p>
+
+            <p>This was 2020. There was no ChatGPT to generate code. No Copilot to autocomplete functions. No foundation models to fine-tune. If you wanted a neural network that behaved a specific way, you wrote it yourself. Line by line.</p>
+
+            <h2>The Solution</h2>
+
+            <p>I worked alongside a team of 5 PhDs in mathematics, physics, and computer science. Together, we built a custom AI/ML toolkit from scratch in Python. The goal was full transparency and control over every model powering our trading engine.</p>
+
+            <p>We built custom genetic algorithms for combinatorial optimization, finding the best portfolio compositions across thousands of possible configurations. We implemented hyperparameter tuning strategies that went beyond grid search, using Bayesian methods to explore the search space efficiently. We wrote Monte Carlo simulations and stochastic calculus models for risk assessment. We trained LSTM networks for time-series price forecasting.</p>
+
+            <p>Every module was purpose-built. The genetic algorithm was not a library call. It was our own implementation, tuned to our specific optimization landscape. The validation framework was designed for financial data, where naive cross-validation leads to look-ahead bias and false confidence.</p>
+
+            <h2>The Impact</h2>
+
+            <p>These custom models powered the trading engine that achieved over 400% annual returns on a $2M portfolio. The work attracted press coverage from major outlets and validated the investment from UNICEF and the Ethereum Foundation.</p>
+
+            <p>More importantly, building from scratch gave us something that library users never get: deep understanding. When a model behaved unexpectedly, we could trace the issue to a specific mathematical assumption. When the market regime changed, we knew exactly which parameters to adjust and why.</p>
+
+            <p>Working with PhDs also shaped how I think about technical teams. The best AI work happens when domain expertise meets engineering discipline, and when the team has the patience to build things properly rather than just calling an API.</p>
+
+            <h2>Technical Details</h2>
+
+            <ul>
+                <li><strong>GeneticAlgorithm.py:</strong> Custom genetic algorithm for combinatorial optimization</li>
+                <li><strong>ModelOptimization.py:</strong> Hyperparameter tuning strategies</li>
+                <li><strong>ModelValidation.py:</strong> Robust cross-validation designed for financial data</li>
+                <li><strong>simulations.py:</strong> Monte Carlo simulations and stochastic calculus</li>
+                <li><strong>LSTM models:</strong> Time-series prediction for price forecasting</li>
+                <li><strong>Stack:</strong> Python, TensorFlow, NumPy, custom implementations</li>
+            </ul>
+
+            <p><a href="https://github.com/fcucullu/AI-ML" target="_blank">View source code on GitHub &rarr;</a></p>
+        </div>
+
+        <footer class="article-footer">
+            <p>Francisco Cucullu is an AI Product Leader building AI products at scale. <a href="/">Learn more</a>.</p>
+        </footer>
+    </article>
+</BaseLayout>
+
+<style>
+    .wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+    }
+
+    .back {
+        color: var(--accent-light);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        display: inline-block;
+        margin-bottom: 2rem;
+    }
+
+    .article-header {
+        margin-bottom: 3rem;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: var(--accent-regular);
+        color: var(--accent-text-over);
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: var(--text-3xl);
+        color: var(--gray-0);
+        margin-bottom: 0.75rem;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: var(--text-lg);
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+    }
+
+    .meta {
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+    }
+
+    .content {
+        color: var(--gray-200);
+        line-height: 1.8;
+        font-size: var(--text-md);
+    }
+
+    .content h2 {
+        font-size: var(--text-2xl);
+        color: var(--gray-0);
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .content h3 {
+        font-size: var(--text-xl);
+        color: var(--gray-0);
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .content p {
+        margin-bottom: 1.25rem;
+    }
+
+    .content ul, .content ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .content li {
+        margin-bottom: 0.5rem;
+    }
+
+    .content blockquote {
+        border-left: 3px solid var(--accent-regular);
+        padding-left: 1.25rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: var(--gray-300);
+    }
+
+    .content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: var(--text-sm);
+    }
+
+    .content th {
+        text-align: left;
+        padding: 0.75rem;
+        background: var(--gray-999_40);
+        color: var(--gray-0);
+        border-bottom: 1px solid var(--gray-800);
+    }
+
+    .content td {
+        padding: 0.75rem;
+        border-bottom: 1px solid var(--gray-800);
+        color: var(--gray-300);
+    }
+
+    .content hr {
+        border: none;
+        border-top: 1px solid var(--gray-800);
+        margin: 2rem 0;
+    }
+
+    .content a {
+        color: var(--accent-light);
+    }
+
+    .article-footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-800);
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+    }
+
+    .article-footer a {
+        color: var(--accent-light);
+    }
+
+    @media (min-width: 50em) {
+        h1 {
+            font-size: var(--text-4xl);
+        }
+    }
+</style>
