@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+
+const articles = [
+	{
+		title: "The WASP Framework: From Challenge to AI MVP in One Week",
+		description: "A hypothesis-driven methodology for building AI products at enterprise speed. Three phases: Challenge Scoping, Problem Space, Solution Space.",
+		href: "/blog/wasp-framework",
+		tag: "AI Product Management",
+		date: "May 2026",
+	},
+	{
+		title: "Dealing with Heteroscedasticity",
+		description: "Technical article on statistical modeling and handling non-constant variance in financial data.",
+		href: "https://www.linkedin.com/pulse/dealing-heterocedaticity-francisco-cucullu",
+		tag: "Quantitative Finance",
+		date: "2019",
+		external: true,
+	},
+];
+---
+
+<BaseLayout
+	title="Blog | Francisco Cucullu"
+	description="Articles on AI product management, quantitative finance, and technology"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Blog"
+				tagline="Thoughts on AI product management, quantitative finance, and building at scale."
+				align="center"
+			/>
+
+			<div class="articles-grid">
+				{articles.map((article) => (
+					<a href={article.href} target={article.external ? "_blank" : undefined} rel={article.external ? "noopener" : undefined} class="article-card">
+						<div class="article-tag-row">
+							<span class="article-tag">{article.tag}</span>
+							{article.external && <span class="external-badge">External</span>}
+						</div>
+						<h3>{article.title}</h3>
+						<p>{article.description}</p>
+						<span class="article-date">{article.date}</span>
+					</a>
+				))}
+			</div>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.articles-grid {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.article-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding: 1.5rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		text-decoration: none;
+		color: var(--gray-200);
+		transition: box-shadow 0.2s, transform 0.2s;
+	}
+
+	.article-card:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.article-tag-row {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	.article-tag {
+		font-size: 0.7rem;
+		padding: 0.2rem 0.6rem;
+		border-radius: 999rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		white-space: nowrap;
+	}
+
+	.external-badge {
+		font-size: 0.65rem;
+		padding: 0.15rem 0.5rem;
+		border-radius: 999rem;
+		font-weight: 600;
+		border: 1px solid var(--gray-800);
+		color: var(--gray-400);
+	}
+
+	.article-card h3 {
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+		margin: 0;
+	}
+
+	.article-card p {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	.article-date {
+		font-size: 0.75rem;
+		color: var(--gray-400);
+	}
+
+	@media (min-width: 50em) {
+		.articles-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+</style>
