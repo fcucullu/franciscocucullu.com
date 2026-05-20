@@ -111,8 +111,8 @@ const apps = (await getCollection('apps'))
 
 				<div class="app-carousel-wrapper">
 					<div class="app-carousel">
-						{apps.map((app) => (
-							<a href={app.data.playStoreUrl || app.data.url} target="_blank" rel="noopener" class="app-carousel-item">
+						{[...apps, ...apps].map((app, i) => (
+							<a href={app.data.playStoreUrl || app.data.url} target="_blank" rel="noopener" class="app-carousel-item" key={`${app.slug}-${i}`}>
 								<img src={app.data.img} alt={app.data.title} />
 								<span>{app.data.title}</span>
 							</a>
@@ -506,16 +506,18 @@ const apps = (await getCollection('apps'))
 
 	.app-carousel {
 		display: flex;
-		gap: 1.25rem;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		-webkit-overflow-scrolling: touch;
-		padding-bottom: 0.5rem;
-		scrollbar-width: none;
+		gap: 1.5rem;
+		animation: scroll-carousel 20s linear infinite;
+		width: max-content;
 	}
 
-	.app-carousel::-webkit-scrollbar {
-		display: none;
+	.app-carousel:hover {
+		animation-play-state: paused;
+	}
+
+	@keyframes scroll-carousel {
+		0% { transform: translateX(0); }
+		100% { transform: translateX(-50%); }
 	}
 
 	.app-carousel-item {
@@ -534,18 +536,18 @@ const apps = (await getCollection('apps'))
 	}
 
 	.app-carousel-item img {
-		width: 64px;
-		height: 64px;
-		border-radius: 1rem;
+		width: 80px;
+		height: 80px;
+		border-radius: 1.25rem;
 		border: 1px solid var(--gray-800);
 		object-fit: cover;
 	}
 
 	.app-carousel-item span {
-		font-size: 0.7rem;
+		font-size: 0.75rem;
 		color: var(--gray-300);
 		text-align: center;
-		max-width: 72px;
+		max-width: 88px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
