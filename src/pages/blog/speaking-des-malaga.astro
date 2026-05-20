@@ -25,13 +25,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
         
             <div class="photo-grid">
-                <img src="/assets/speaking-1779160577814-AQADYQxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
-                <img src="/assets/speaking-1779160570482-AQADYAxrG04GYER9.jpg" alt="Francisco Cucullu speaking" />
+                <a href="/assets/speaking-1779160577814-AQADYQxrG04GYER-.jpg" target="_blank"><img src="/assets/speaking-1779160577814-AQADYQxrG04GYER-.jpg" alt="Francisco Cucullu speaking" /></a>
+                <a href="/assets/speaking-1779160570482-AQADYAxrG04GYER9.jpg" target="_blank"><img src="/assets/speaking-1779160570482-AQADYAxrG04GYER9.jpg" alt="Francisco Cucullu speaking" /></a>
             </div>
-
-        <div class="article-links">
-            <a href="/speaking/des-malaga" class="link-button">View event page</a>
-        </div>
 
         <footer class="article-footer">
             <p>Francisco Cucullu is an AI Product Leader building AI products at scale. <a href="/">Learn more</a>.</p>
@@ -108,30 +104,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     .content a {
         color: #a855f7;
-    }
-
-    .article-links {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .link-button {
-        display: inline-block;
-        padding: 0.6rem 1.25rem;
-        border-radius: 0.5rem;
-        background: var(--accent-regular);
-        color: var(--accent-text-over);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: var(--text-sm);
-        transition: opacity 0.2s;
-    }
-
-    .link-button:hover {
-        opacity: 0.85;
     }
 
     
