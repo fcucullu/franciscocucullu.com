@@ -27,8 +27,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <p>Television appearances like this are valuable not just for visibility, but for practicing the skill of communicating complex ideas simply. When you have a few minutes on camera, every word counts.</p>
         </div>
 
+        
+            <div class="photo-grid">
+                <img src="/assets/speaking-1779160516834-AQADXAxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
+                <img src="/assets/speaking-1779160564803-AQADXwxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
+            </div>
+
         <div class="article-links">
-            <a href="/speaking/tv-interview" class="link-button">View photos and details</a>
+            <a href="/speaking/tv-interview" class="link-button">View event page</a>
         </div>
 
         <footer class="article-footer">
@@ -147,6 +153,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     .link-button:hover {
         opacity: 0.85;
+    }
+
+    
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid var(--gray-800);
+        object-fit: cover;
+        aspect-ratio: 16 / 10;
     }
 
     .article-footer {

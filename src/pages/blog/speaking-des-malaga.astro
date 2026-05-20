@@ -23,8 +23,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <p>Events like DES remind you that startups do not exist in a vacuum. The best products solve problems that matter to large organizations, and the founders who understand enterprise needs have a significant advantage when it comes to scaling.</p>
         </div>
 
+        
+            <div class="photo-grid">
+                <img src="/assets/speaking-1779160577814-AQADYQxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
+                <img src="/assets/speaking-1779160570482-AQADYAxrG04GYER9.jpg" alt="Francisco Cucullu speaking" />
+            </div>
+
         <div class="article-links">
-            <a href="/speaking/des-malaga" class="link-button">View photos and details</a>
+            <a href="/speaking/des-malaga" class="link-button">View event page</a>
         </div>
 
         <footer class="article-footer">
@@ -126,6 +132,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     .link-button:hover {
         opacity: 0.85;
+    }
+
+    
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid var(--gray-800);
+        object-fit: cover;
+        aspect-ratio: 16 / 10;
     }
 
     .article-footer {

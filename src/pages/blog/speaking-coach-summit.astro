@@ -25,8 +25,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <p>Presenting to enterprise users who will actually use your product is fundamentally different from pitching to investors. The questions are harder, the expectations are higher, and the feedback is more honest.</p>
         </div>
 
+        
+            <div class="photo-grid">
+                <img src="/assets/speaking-1779160596393-AQADZAxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
+                <img src="/assets/speaking-foundever.jpg" alt="Francisco Cucullu speaking" />
+            </div>
+
         <div class="article-links">
-            <a href="/speaking/coach-summit" class="link-button">View photos and details</a>
+            <a href="/speaking/coach-summit" class="link-button">View event page</a>
         </div>
 
         <footer class="article-footer">
@@ -128,6 +134,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     .link-button:hover {
         opacity: 0.85;
+    }
+
+    
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid var(--gray-800);
+        object-fit: cover;
+        aspect-ratio: 16 / 10;
     }
 
     .article-footer {

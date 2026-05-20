@@ -27,8 +27,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <p>Competing at this level taught me that confidence on stage comes from knowing your numbers cold and believing in the problem you are solving. If you truly understand the pain your users feel, the pitch writes itself.</p>
         </div>
 
+        
+            <div class="photo-grid">
+                <img src="/assets/speaking-1779160559702-AQADXgxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
+                <img src="/assets/speaking-1779160537307-AQADXQxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
+                <img src="/assets/speaking-1779160577814-AQADYQxrG04GYER-.jpg" alt="Francisco Cucullu speaking" />
+                <img src="/assets/speaking-1779160570482-AQADYAxrG04GYER9.jpg" alt="Francisco Cucullu speaking" />
+            </div>
+
         <div class="article-links">
-            <a href="/speaking/south-summit" class="link-button">View photos and details</a>
+            <a href="/speaking/south-summit" class="link-button">View event page</a>
         </div>
 
         <footer class="article-footer">
@@ -147,6 +155,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     .link-button:hover {
         opacity: 0.85;
+    }
+
+    
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid var(--gray-800);
+        object-fit: cover;
+        aspect-ratio: 16 / 10;
     }
 
     .article-footer {
