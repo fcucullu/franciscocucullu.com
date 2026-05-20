@@ -47,6 +47,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <p><a href="https://github.com/fcucullu/scrapers-webdrivers" target="_blank">View source code on GitHub &rarr;</a></p>
         </div>
 
+        <div class="article-links">
+            <a href="https://github.com/fcucullu/scrapers-webdrivers" target="_blank" rel="noopener" class="link-button">View source code on GitHub</a>
+            <a href="/work/web-scrapers-and-app-webdrivers" class="link-button">View project details</a>
+        </div>
+
+        <div class="article-links">
+            <a href="https://github.com/fcucullu/scrapers-webdrivers" target="_blank" rel="noopener" class="link-button">View source on GitHub</a>
+            <a href="/work/web-scrapers-and-app-webdrivers" class="link-button">View project details</a>
+        </div>
+
         <footer class="article-footer">
             <p>Francisco Cucullu is an AI Product Leader building AI products at scale. <a href="/">Learn more</a>.</p>
         </footer>
@@ -173,6 +183,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     .content a {
         color: var(--accent-light);
+    }
+
+    .article-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .link-button {
+        display: inline-block;
+        padding: 0.6rem 1.25rem;
+        border-radius: 0.5rem;
+        background: var(--accent-regular);
+        color: var(--accent-text-over);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: var(--text-sm);
+        transition: opacity 0.2s;
+    }
+
+    .link-button:hover {
+        opacity: 0.85;
     }
 
     .article-footer {
