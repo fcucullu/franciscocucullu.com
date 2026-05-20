@@ -26,22 +26,12 @@ const apps = (await getCollection('apps'))
 				align="center"
 			/>
 
-			<section>
-				<h2 class="section-title">Professional Work</h2>
-				<div class="gallery">
-					<Grid variant="offset">
-						{projects.map((project) => (
-							<li>
-								<PortfolioPreview project={project} />
-							</li>
-						))}
-					</Grid>
-				</div>
-			</section>
+			<div class="tabs">
+				<button class="tab active" data-tab="apps">Apps</button>
+				<button class="tab" data-tab="work">Professional Work</button>
+			</div>
 
-			<section>
-				<h2 class="section-title">Apps I Ship</h2>
-				<p class="section-subtitle">Built solo, from idea to production in days. Native Android apps on Google Play, PWAs, SaaS platforms.</p>
+			<section id="tab-apps" class="tab-content active">
 				<div class="apps-grid">
 					{apps.map((app) => (
 						<div class="app-card">
@@ -67,31 +57,74 @@ const apps = (await getCollection('apps'))
 					))}
 				</div>
 			</section>
+
+			<section id="tab-work" class="tab-content">
+				<div class="gallery">
+					<Grid variant="offset">
+						{projects.map((project) => (
+							<li>
+								<PortfolioPreview project={project} />
+							</li>
+						))}
+					</Grid>
+				</div>
+			</section>
 		</main>
 		<ContactCTA />
 	</div>
 </BaseLayout>
 
+<script>
+	document.querySelectorAll('.tab').forEach((tab) => {
+		tab.addEventListener('click', () => {
+			document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
+			document.querySelectorAll('.tab-content').forEach((c) => c.classList.remove('active'));
+			tab.classList.add('active');
+			const target = (tab as HTMLElement).dataset.tab;
+			document.getElementById(`tab-${target}`)?.classList.add('active');
+		});
+	});
+</script>
+
 <style>
-	.section-title {
-		font-size: var(--text-2xl);
-		color: var(--gray-0);
-		margin-bottom: 1rem;
-		text-align: center;
+	.tabs {
+		display: flex;
+		gap: 0.5rem;
+		justify-content: center;
 	}
 
-	.section-subtitle {
+	.tab {
+		padding: 0.6rem 1.5rem;
+		border-radius: 999rem;
+		border: 1px solid var(--gray-800);
+		background: transparent;
 		color: var(--gray-300);
-		text-align: center;
-		margin-bottom: 1.5rem;
 		font-size: var(--text-md);
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s;
 	}
 
-	.gallery {
-		margin-bottom: 3rem;
+	.tab:hover {
+		border-color: var(--accent-regular);
+		color: var(--gray-0);
 	}
 
-	/* Apps grid - same as /apps page */
+	.tab.active {
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		border-color: var(--accent-regular);
+	}
+
+	.tab-content {
+		display: none;
+	}
+
+	.tab-content.active {
+		display: block;
+	}
+
+	/* Apps grid */
 	.apps-grid {
 		display: grid;
 		gap: 1.5rem;
@@ -147,6 +180,8 @@ const apps = (await getCollection('apps'))
 	}
 
 	.status.live { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+	.status.beta { background: rgba(234, 179, 8, 0.15); color: #eab308; }
+	.status.offline { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
 
 	.app-desc {
 		font-size: var(--text-sm);
@@ -154,7 +189,7 @@ const apps = (await getCollection('apps'))
 		margin: 0;
 		line-height: 1.5;
 		display: -webkit-box;
-		-webkit-line-clamp: 2;
+		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
@@ -197,6 +232,5 @@ const apps = (await getCollection('apps'))
 			padding: 1.5rem;
 		}
 		.app-icon { width: 80px; height: 80px; }
-		.section-title { font-size: var(--text-4xl); }
 	}
 </style>
