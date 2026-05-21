@@ -128,5 +128,31 @@ const { title, description } = Astro.props;
 				}
 			}
 		</style>
+		<a href="mailto:francisco.cucullu@gmail.com" class="floating-cta" aria-label="Get in touch">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+		</a>
+		<style>
+			.floating-cta {
+				position: fixed;
+				bottom: 2rem;
+				right: 2rem;
+				width: 56px;
+				height: 56px;
+				border-radius: 50%;
+				background: var(--gradient-accent-orange);
+				color: #fff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+				z-index: 100;
+				transition: transform 0.2s, box-shadow 0.2s;
+				text-decoration: none;
+			}
+			.floating-cta:hover {
+				transform: scale(1.1);
+				box-shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
+			}
+		</style>
 	</body>
 </html>
