@@ -19,9 +19,11 @@ The Argentine FX market had persistent pricing inefficiencies due to rapid regul
 ## Impact
 
 - **Automated the entire trading desk workflow** for FX operations
-- **Captured spreads that manual traders consistently missed** due to reaction time limitations
+- **Captured ~20% market share** through automated pricing reactions
 - **Managed institutional capital** for the company's own portfolio
-- **Led to my promotion** from trader to trading desk leadership, then to Head of Business Intelligence
+- **Cut churn by 32%** using ML-driven user segmentation
+- **Reduced client onboarding from 72h to 24h** via process automation
+- **Led to my promotion** from trader to trading desk leadership, then to Head of BI
 - **Team:** Led a team of 4 at IOL
 
 ## Technical Details
