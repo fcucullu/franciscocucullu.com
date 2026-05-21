@@ -22,7 +22,7 @@ The Argentine FX market had persistent pricing inefficiencies due to rapid regul
 - **Captured spreads that manual traders consistently missed** due to reaction time limitations
 - **Managed institutional capital** for the company's own portfolio
 - **Led to my promotion** from trader to trading desk leadership, then to Head of Business Intelligence
-- **Team:** Led 1 person in the BI unit I created from scratch
+- **Team:** Led a team of 4 at IOL
 
 ## Technical Details
 
