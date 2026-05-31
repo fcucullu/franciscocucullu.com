@@ -5,3 +5,4 @@ Francisco is a senior product leader and AI/ML consultant with 15+ years of expe
 His work focuses on scaling SaaS platforms, aligning product strategy with business goals, and leading cross-functional teams across engineering, design, and data. He has shipped AI-enabled products in fintech, MarTech, and enterprise transformation — often translating complex challenges into measurable business value.
 
 Today, he serves as an AI/ML product consultant, leading AI-driven product innovation at large companies.
+
