@@ -3,6 +3,7 @@ title: Pearl
 description: Period & cycle tracker. Native Android app with color-coded calendar, predicted phases, daily recommendations, push notifications, and partner email alerts when phases change.
 url: https://pearl.franciscocucullu.com
 statsUrl: https://pearl.franciscocucullu.com/api/stats
+playStoreUrl: https://play.google.com/store/apps/details?id=com.franciscocucullu.pearl
 img: /assets/app-pearl.png
 img_alt: Screenshot of Pearl
 tags:
