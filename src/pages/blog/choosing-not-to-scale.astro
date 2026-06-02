@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Choosing Not to Scale | Francisco Cucullu" description="The most underrated engineering decision is removing the reason you needed to scale in the first place, instead of adding infrastructure or spend. A note on solving by subtraction.">
+    <article class="wrapper">
+        <a href="/blog" class="back">&larr; Back</a>
+
+        <header class="article-header">
+            <span class="tag">Engineering Judgment</span>
+            <h1>Choosing Not to Scale</h1>
+            <p class="subtitle">The most underrated engineering decision is removing the reason you needed to scale, instead of buying your way past the limit.</p>
+            <p class="meta">By Francisco Cucullu &middot; AI Product Leader</p>
+        </header>
+
+        <div class="content">
+            <h2>Scaling is the default answer, and that is the problem</h2>
+
+            <p>When a system hits a wall, the instinct is almost always additive. Add a bigger instance, add a cache, add a queue, add a tier on the bill. Scaling feels like progress because it produces an artifact: a new component, a config change, a line item you can point to. And most engineering culture rewards that. Nobody gets praised for the queue they didn't add.</p>
+
+            <p>But a lot of scaling is just paying to keep a bad assumption alive. The wall you hit is often telling you something about your design, not about your traffic. The cheaper move, and frequently the better one, is to go back and remove the reason you were pushing against the limit at all. Solve by subtraction.</p>
+
+            <h2>A small example that taught me a lot</h2>
+
+            <p>I run a handful of small apps. Different products, different users, but they share a backend platform to keep costs near zero and operations simple. At some point I hit a limit I had not designed around: the platform caps how many projects you can run per source repository on the free plan. I had been creating one project per app, all hanging off the same repo, and I ran out of slots.</p>
+
+            <p>The obvious fix was right there in the UI. Upgrade. Pay the monthly fee, get more project slots, move on. It would have taken two minutes and a credit card.</p>
+
+            <p>Instead I sat with the question for a bit. The limit was per repo, not per account. So the real constraint was not "too many apps," it was "too many apps tied to one repo." I restructured the work across separate repositories, so each cluster of apps lived under its own source and stayed comfortably inside the free allowance. A bit of plumbing, some deploy config to update, and the limit stopped being a limit. No upgrade, no recurring cost, and honestly a cleaner separation than what I had before.</p>
+
+            <p>Small thing. But the shape of it shows up everywhere, just with more zeros on the invoice.</p>
+
+            <h2>Why subtraction compounds</h2>
+
+            <p>When you scale to dodge a constraint, you usually take on a dependency. A paid tier you now have to keep paying. A cache you now have to invalidate correctly. A new service you now have to monitor, secure, and explain to the next person. Each of those is fine in isolation. The trouble is they stack. Six months later the system is more expensive and more complicated, and a chunk of that complexity is load-bearing only for a problem you could have removed.</p>
+
+            <p>Subtraction goes the other way. When you take out the reason for the pressure, you do not just avoid the cost this month. You avoid every downstream thing that cost would have grown into: the migration when you outgrow the tier, the on-call page when the cache misbehaves, the documentation nobody writes. Fewer dependencies compound, quietly, in your favor.</p>
+
+            <h2>The judgment call is knowing when not to</h2>
+
+            <p>I want to be careful here, because "just don't scale" is bad advice taken literally. Sometimes the demand is real and growing, and the right answer is absolutely to add capacity and pay for it. Refusing to scale out of frugality when your users are hitting timeouts is not discipline, it is negligence.</p>
+
+            <p>The skill is in the diagnosis. Before you reach for more infrastructure or a bigger bill, it is worth asking a few honest questions. Is this load real and durable, or am I working around my own structure? Does the limit point at a design assumption I can change cheaply? If I remove the reason instead of raising the ceiling, what do I gain that I keep forever?</p>
+
+            <p>If the demand is genuine, scale, and do it well. But if the wall is really a design smell wearing a capacity costume, the strongest move is to make the wall irrelevant. That decision rarely produces an impressive artifact. There is no new diagram, no shiny component, just a problem that quietly stops existing. I have come to think that absence is one of the better things an engineer can build.</p>
+
+        </div>
+
+        <div class="article-links">
+            <a href="/blog" class="link-button">More writing</a>
+            <a href="/" class="link-button">About me</a>
+        </div>
+
+        <footer class="article-footer">
+            <p>Francisco Cucullu is an AI Product Leader building AI products at scale. <a href="/">Learn more</a>.</p>
+        </footer>
+    </article>
+</BaseLayout>
+
+<style>
+    .wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+    }
+
+    .back {
+        color: #a855f7;
+        text-decoration: none;
+        font-size: var(--text-sm);
+        display: inline-block;
+        margin-bottom: 2rem;
+    }
+
+    .article-header {
+        margin-bottom: 3rem;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: var(--accent-regular);
+        color: var(--accent-text-over);
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: var(--text-3xl);
+        color: var(--gray-0);
+        margin-bottom: 0.75rem;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: var(--text-lg);
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+    }
+
+    .meta {
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+    }
+
+    .content {
+        color: var(--gray-200);
+        line-height: 1.8;
+        font-size: var(--text-md);
+    }
+
+    .content h2 {
+        font-size: var(--text-2xl);
+        color: var(--gray-0);
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .content h3 {
+        font-size: var(--text-xl);
+        color: var(--gray-0);
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .content p {
+        margin-bottom: 1.25rem;
+    }
+
+    .content ul, .content ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .content li {
+        margin-bottom: 0.5rem;
+    }
+
+    .content blockquote {
+        border-left: 3px solid var(--accent-regular);
+        padding-left: 1.25rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: var(--gray-300);
+    }
+
+    .content a {
+        color: #a855f7;
+    }
+
+    .article-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .link-button {
+        display: inline-block;
+        padding: 0.6rem 1.25rem;
+        border-radius: 0.5rem;
+        background: var(--accent-regular);
+        color: var(--accent-text-over);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: var(--text-sm);
+        transition: opacity 0.2s;
+    }
+
+    .link-button:hover {
+        opacity: 0.85;
+    }
+
+    .article-footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-800);
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+    }
+
+    .article-footer a {
+        color: #a855f7;
+    }
+
+    @media (min-width: 50em) {
+        h1 {
+            font-size: var(--text-4xl);
+        }
+    }
+</style>

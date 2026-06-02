@@ -98,9 +98,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<tr data-id="${p.id}">
 					<td class="col-platform"><span class="badge badge-${p.platform}">${label}</span></td>
 					<td class="col-topic">${p.topic ? escapeHtml(p.topic) : ''}</td>
-					<td class="col-post"><div class="post-full">${escapeHtml(p.content)}</div></td>
+					<td class="col-post">
+						<div class="post-full">${escapeHtml(p.content)}</div>
+						<textarea class="post-edit" hidden>${escapeHtml(p.content)}</textarea>
+					</td>
 					<td class="col-actions">
 						<button class="btn-secondary btn-copy">Copy</button>
+						<button class="btn-secondary btn-edit">Edit</button>
+						<button class="btn-primary btn-save" hidden>Save</button>
+						<button class="btn-secondary btn-cancel" hidden>Cancel</button>
 						<button class="btn-primary btn-publish">Mark published</button>
 					</td>
 				</tr>`;
@@ -119,6 +125,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				} catch {
 					alert('Could not copy to clipboard.');
 				}
+			});
+		});
+
+		function setEditMode(tr: HTMLElement, editing: boolean) {
+			(tr.querySelector('.post-full') as HTMLElement).hidden = editing;
+			(tr.querySelector('.post-edit') as HTMLElement).hidden = !editing;
+			(tr.querySelector('.btn-edit') as HTMLElement).hidden = editing;
+			(tr.querySelector('.btn-save') as HTMLElement).hidden = !editing;
+			(tr.querySelector('.btn-cancel') as HTMLElement).hidden = !editing;
+			(tr.querySelector('.btn-copy') as HTMLElement).hidden = editing;
+			(tr.querySelector('.btn-publish') as HTMLElement).hidden = editing;
+		}
+
+		rows.querySelectorAll<HTMLButtonElement>('.btn-edit').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const tr = btn.closest('tr') as HTMLElement;
+				const ta = tr.querySelector('.post-edit') as HTMLTextAreaElement;
+				ta.value = (tr.querySelector('.post-full') as HTMLElement).textContent || '';
+				setEditMode(tr, true);
+				ta.style.height = 'auto';
+				ta.style.height = ta.scrollHeight + 'px';
+				ta.focus();
+			});
+		});
+
+		rows.querySelectorAll<HTMLButtonElement>('.btn-cancel').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				setEditMode(btn.closest('tr') as HTMLElement, false);
+			});
+		});
+
+		rows.querySelectorAll<HTMLButtonElement>('.btn-save').forEach((btn) => {
+			btn.addEventListener('click', async () => {
+				const tr = btn.closest('tr') as HTMLElement;
+				const id = tr.dataset.id!;
+				const ta = tr.querySelector('.post-edit') as HTMLTextAreaElement;
+				const newContent = ta.value;
+				btn.disabled = true;
+				btn.textContent = 'Saving…';
+				const { error } = await supabase
+					.from('portfolio_content_posts')
+					.update({ content: newContent })
+					.eq('id', id);
+				btn.disabled = false;
+				btn.textContent = 'Save';
+				if (error) {
+					alert('Error saving: ' + error.message);
+					return;
+				}
+				(tr.querySelector('.post-full') as HTMLElement).textContent = newContent;
+				setEditMode(tr, false);
 			});
 		});
 
@@ -267,6 +324,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		line-height: 1.65;
 		color: var(--gray-100);
 		max-width: 70ch;
+	}
+	.post-edit {
+		width: 100%;
+		max-width: 70ch;
+		min-height: 8rem;
+		resize: vertical;
+		padding: 0.75rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--accent-regular);
+		background: var(--gray-999);
+		color: var(--gray-0);
+		font-family: var(--font-body, inherit);
+		font-size: var(--text-sm);
+		line-height: 1.65;
+		white-space: pre-wrap;
 	}
 
 	.badge {
