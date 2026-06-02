@@ -36,17 +36,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<p>No pending posts.</p>
 			</div>
 
-			<section class="platform-section" data-platform="linkedin">
-				<h2 class="platform-title">LinkedIn</h2>
-				<div class="posts" id="posts-linkedin"></div>
-				<p class="platform-empty" id="empty-linkedin">No pending LinkedIn posts.</p>
-			</section>
-
-			<section class="platform-section" data-platform="x">
-				<h2 class="platform-title">X</h2>
-				<div class="posts" id="posts-x"></div>
-				<p class="platform-empty" id="empty-x">No pending X posts.</p>
-			</section>
+			<div class="table-wrap" id="table-wrap">
+				<table class="content-table">
+					<thead>
+						<tr>
+							<th class="col-platform">Platform</th>
+							<th class="col-topic">Topic</th>
+							<th class="col-post">Post</th>
+							<th class="col-actions">Actions</th>
+						</tr>
+					</thead>
+					<tbody id="rows"></tbody>
+				</table>
+			</div>
 		</div>
 	</main>
 </BaseLayout>
@@ -85,41 +87,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	};
 
 	function renderPosts(posts: Post[]) {
-		const groups: Record<'linkedin' | 'x', Post[]> = { linkedin: [], x: [] };
-		for (const p of posts) {
-			if (p.platform === 'linkedin' || p.platform === 'x') groups[p.platform].push(p);
-		}
-
 		$('empty-state').hidden = posts.length > 0;
+		$('table-wrap').hidden = posts.length === 0;
 
-		(['linkedin', 'x'] as const).forEach((platform) => {
-			const container = $(`posts-${platform}`);
-			const list = groups[platform];
-			$(`empty-${platform}`).hidden = list.length > 0;
-			container.innerHTML = list
-				.map((p) => {
-					const label = platform === 'linkedin' ? 'LinkedIn' : 'X';
-					return `
-					<article class="card" data-id="${p.id}">
-						<div class="card-head">
-							<span class="badge badge-${platform}">${label}</span>
-							${p.topic ? `<span class="topic">${escapeHtml(p.topic)}</span>` : ''}
-						</div>
-						<textarea class="content-box" readonly>${escapeHtml(p.content)}</textarea>
-						<div class="card-actions">
-							<button class="btn-secondary btn-copy">Copy</button>
-							<button class="btn-primary btn-publish">Mark as published</button>
-						</div>
-					</article>`;
-				})
-				.join('');
-		});
+		const rows = $('rows');
+		rows.innerHTML = posts
+			.map((p) => {
+				const label = p.platform === 'linkedin' ? 'LinkedIn' : 'X';
+				return `
+				<tr data-id="${p.id}">
+					<td class="col-platform"><span class="badge badge-${p.platform}">${label}</span></td>
+					<td class="col-topic">${p.topic ? escapeHtml(p.topic) : ''}</td>
+					<td class="col-post"><div class="post-full">${escapeHtml(p.content)}</div></td>
+					<td class="col-actions">
+						<button class="btn-secondary btn-copy">Copy</button>
+						<button class="btn-primary btn-publish">Mark published</button>
+					</td>
+				</tr>`;
+			})
+			.join('');
 
-		// Wire up buttons
-		document.querySelectorAll<HTMLButtonElement>('.btn-copy').forEach((btn) => {
+		rows.querySelectorAll<HTMLButtonElement>('.btn-copy').forEach((btn) => {
 			btn.addEventListener('click', async () => {
-				const card = btn.closest('.card')!;
-				const text = card.querySelector('textarea')!.value;
+				const tr = btn.closest('tr')!;
+				const text = tr.querySelector('.post-full')!.textContent || '';
 				try {
 					await navigator.clipboard.writeText(text);
 					const orig = btn.textContent;
@@ -131,10 +122,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			});
 		});
 
-		document.querySelectorAll<HTMLButtonElement>('.btn-publish').forEach((btn) => {
+		rows.querySelectorAll<HTMLButtonElement>('.btn-publish').forEach((btn) => {
 			btn.addEventListener('click', async () => {
-				const card = btn.closest('.card') as HTMLElement;
-				const id = card.dataset.id!;
+				const tr = btn.closest('tr') as HTMLElement;
+				const id = tr.dataset.id!;
 				btn.disabled = true;
 				btn.textContent = 'Saving…';
 				const { error } = await supabase
@@ -143,23 +134,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					.eq('id', id);
 				if (error) {
 					btn.disabled = false;
-					btn.textContent = 'Mark as published';
+					btn.textContent = 'Mark published';
 					alert('Error: ' + error.message);
 					return;
 				}
-				card.remove();
-				refreshEmptyStates();
+				tr.remove();
+				const remaining = $('rows').querySelectorAll('tr').length;
+				$('empty-state').hidden = remaining > 0;
+				$('table-wrap').hidden = remaining === 0;
 			});
 		});
-	}
-
-	function refreshEmptyStates() {
-		(['linkedin', 'x'] as const).forEach((platform) => {
-			const count = $(`posts-${platform}`).querySelectorAll('.card').length;
-			$(`empty-${platform}`).hidden = count > 0;
-		});
-		const total = document.querySelectorAll('#state-dashboard .card').length;
-		$('empty-state').hidden = total > 0;
 	}
 
 	async function loadDashboard(email: string) {
@@ -229,7 +213,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		gap: 1rem;
 	}
 	#state-dashboard {
-		gap: 2.5rem;
+		gap: 1.5rem;
 	}
 	.toolbar {
 		display: flex;
@@ -242,40 +226,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		font-size: var(--text-sm);
 		color: var(--gray-300);
 	}
-	.platform-section {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-	.platform-title {
-		margin: 0;
-		font-size: var(--text-lg);
-		color: var(--gray-0);
-	}
-	.platform-empty {
-		color: var(--gray-300);
-		font-size: var(--text-sm);
-		margin: 0;
-	}
-	.posts {
-		display: grid;
-		gap: 1.25rem;
-	}
-	.card {
-		display: flex;
-		flex-direction: column;
-		gap: 0.85rem;
-		padding: 1.25rem;
-		background: var(--gradient-subtle);
+
+	.table-wrap {
+		overflow-x: auto;
 		border: 1px solid var(--gray-800);
 		border-radius: 1rem;
 	}
-	.card-head {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		flex-wrap: wrap;
+	.content-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--text-sm);
 	}
+	.content-table thead th {
+		text-align: left;
+		padding: 0.85rem 1rem;
+		background: var(--gray-999);
+		color: var(--gray-200);
+		font-weight: 700;
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		border-bottom: 1px solid var(--gray-800);
+		white-space: nowrap;
+	}
+	.content-table tbody td {
+		padding: 1rem;
+		border-bottom: 1px solid var(--gray-800);
+		vertical-align: top;
+	}
+	.content-table tbody tr:last-child td {
+		border-bottom: none;
+	}
+	.col-platform { width: 1%; white-space: nowrap; }
+	.col-topic { width: 14%; color: var(--gray-100); font-weight: 600; }
+	.col-post { width: auto; }
+	.col-actions { width: 1%; white-space: nowrap; }
+
+	.post-full {
+		white-space: pre-wrap;
+		line-height: 1.65;
+		color: var(--gray-100);
+		max-width: 70ch;
+	}
+
 	.badge {
 		font-size: 0.65rem;
 		padding: 0.2rem 0.6rem;
@@ -286,39 +279,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 	.badge-linkedin { background: rgba(10, 102, 194, 0.18); color: #4a9eff; }
 	.badge-x { background: rgba(255, 255, 255, 0.12); color: var(--gray-100); }
-	.topic {
-		font-size: var(--text-md);
-		font-weight: 600;
-		color: var(--gray-100);
+
+	.col-actions {
+		display: table-cell;
 	}
-	.content-box {
+	.col-actions .btn-secondary,
+	.col-actions .btn-primary {
+		display: block;
 		width: 100%;
-		min-height: 9rem;
-		resize: vertical;
-		padding: 0.85rem;
-		border-radius: 0.5rem;
-		border: 1px solid var(--gray-800);
-		background: var(--gray-999);
-		color: var(--gray-200);
-		font-family: var(--font-body, inherit);
-		font-size: var(--text-sm);
-		line-height: 1.6;
-		white-space: pre-wrap;
+		margin-bottom: 0.5rem;
 	}
-	.card-actions {
-		display: flex;
-		gap: 0.75rem;
-		flex-wrap: wrap;
+	.col-actions .btn-primary:last-child,
+	.col-actions .btn-secondary:last-child {
+		margin-bottom: 0;
 	}
+
 	.btn-primary,
 	.btn-secondary {
 		font-size: var(--text-sm);
 		font-weight: 600;
-		padding: 0.55rem 1.15rem;
+		padding: 0.5rem 1rem;
 		border-radius: 0.5rem;
 		cursor: pointer;
 		transition: all 0.2s;
 		border: 1px solid transparent;
+		white-space: nowrap;
 	}
 	.btn-primary {
 		background: var(--accent-regular);
