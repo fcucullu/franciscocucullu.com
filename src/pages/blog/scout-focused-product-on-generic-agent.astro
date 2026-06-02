@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="When to Build a Focused Product on Top of a Generic AI Agent | Francisco Cucullu" description="Generic AI browser agents can do almost anything. That is exactly why a focused product can still win. A product-strategy note, with Scout as the example.">
+    <article class="wrapper">
+        <a href="/blog" class="back">&larr; Back</a>
+
+        <header class="article-header">
+            <span class="tag">AI Product Strategy</span>
+            <h1>When to Build a Focused Product on Top of a Generic AI Agent</h1>
+            <p class="subtitle">Generic agents can do almost anything. That generality is precisely why a focused, opinionated product can still win the specific job.</p>
+            <p class="meta">By Francisco Cucullu &middot; AI Product Leader</p>
+        </header>
+
+        <div class="content">
+            <h2>The question every product team is now asking</h2>
+
+            <p>A new class of general-purpose AI agents can read and act inside your browser. They can fill forms, click through flows, summarize a page, and chain a few steps together. The capability is real, and it is improving fast. For anyone building software, this raises an uncomfortable question: if a generic agent can already do the thing your product does, why would your product exist?</p>
+
+            <p>I think the answer is more interesting than "it won't." Working as an AI product leader, the pattern I keep coming back to is that <strong>a generic agent is a capability, not a product</strong>. The capability is necessary, but it is rarely sufficient. The gap between "an agent can technically do this" and "a person reliably gets the outcome they wanted" is where focused products live, and that gap is wide.</p>
+
+            <h2>Why generality is a weakness at the point of use</h2>
+
+            <p>A generic agent optimizes for breadth. It has to be ready for any task on any page, which means it carries no opinion about <em>your</em> task. At the moment of use, that shows up as friction:</p>
+
+            <ul>
+                <li><strong>No memory of who you are.</strong> A general agent starts cold every session. It does not persist your context, your preferences, or your voice across runs.</li>
+                <li><strong>No opinion about the workflow.</strong> You have to prompt it, supervise it, and correct it. The cognitive load of driving the agent competes with the work you wanted to offload.</li>
+                <li><strong>No structure around the output.</strong> It produces a result and forgets it. There is no record, no scoring, no way to compare across runs or improve over time.</li>
+                <li><strong>It is not yours to shape.</strong> A first-party agent inside a provider's app can't be packaged, priced, branded, or sold as a distinct product. It is a feature of someone else's surface.</li>
+            </ul>
+
+            <p>None of these are model problems. A better model does not fix any of them. They are <em>product</em> problems, and product problems are solved by building a product.</p>
+
+            <h2>What a focused product adds</h2>
+
+            <p>A focused product wraps the generic capability in three things the capability doesn't have on its own: a persistent profile, an opinionated workflow, and structure around the output. Those are the moats. The model is rented; the workflow, the data, and the relationship are owned.</p>
+
+            <p>Concretely, the focused product:</p>
+
+            <ul>
+                <li><strong>Remembers context</strong> so the user doesn't re-explain themselves every time.</li>
+                <li><strong>Encodes the right workflow</strong> so the user gets the outcome without learning to drive an agent.</li>
+                <li><strong>Adds judgment</strong>, scoring, ranking, filtering, so the user spends effort where it pays off.</li>
+                <li><strong>Keeps a record</strong> so the experience compounds instead of resetting.</li>
+            </ul>
+
+            <p>This is the same lesson from the pre-LLM era of SaaS: a database is a capability, but Salesforce is a product. The capability commoditizes; the focused product captures the workflow, the data, and the trust.</p>
+
+            <h2>A concrete example: Scout</h2>
+
+            <p>To test this thinking, I built Scout, a focused product on top of a general LLM, delivered as a Chrome extension. Its job is narrow: help with applications to senior product and leadership roles. It detects a posting, drafts tailored, leadership-framed answers grounded in a persistent profile, scores how well the role fits, and then puts everything in front of a human to review and approve. Nothing is submitted automatically.</p>
+
+            <p>A generic browser agent could, in principle, attempt the same task. But Scout does the four things a generic agent doesn't: it holds a <strong>persistent profile</strong> that frames every answer consistently, it runs an <strong>opinionated end-to-end workflow</strong> instead of waiting to be prompted, it applies <strong>fit scoring</strong> so effort goes to the right roles, and it keeps a <strong>tracking record</strong> of what was drafted and submitted. The model writes the words; the product makes the words reliably useful and keeps a human firmly in control of the final action.</p>
+
+            <p>That last point is also where the focused product earns its keep on safety and trust. A deliberate human-in-the-loop step, the product drafts, the person decides, is something you design into a focused product on purpose. It is far harder to guarantee with an open-ended agent told to "go apply."</p>
+
+            <h2>A decision rule for product leaders</h2>
+
+            <p>The takeaway I'd offer to other product leaders is a rule of thumb. Build a focused product on top of a generic agent when the job has at least one of these properties:</p>
+
+            <ul>
+                <li><strong>It benefits from persistent, structured context</strong> the user shouldn't have to re-supply each time.</li>
+                <li><strong>The workflow is opinionated</strong>, there is a clearly better way to do it that you can encode.</li>
+                <li><strong>The output deserves structure</strong>, scoring, history, comparison, beyond a one-shot result.</li>
+                <li><strong>Trust and control matter</strong> enough that a deliberate human checkpoint is part of the value.</li>
+            </ul>
+
+            <p>If none of those hold, you probably don't need a product, the generic agent is fine. If several hold, the generic agent is your engine, not your competitor. The opportunity is to build the focused thing on top of it.</p>
+
+            <p>Generic agents don't make focused products obsolete. They make them cheaper to build and clearer to position. The model becomes a component; the product is everything you wrap around it. For product teams, that is the most leverage product teams have had in years.</p>
+
+        </div>
+
+        <div class="article-links">
+            <a href="https://scout.franciscocucullu.com" target="_blank" rel="noopener" class="link-button">See Scout</a>
+            <a href="/blog" class="link-button">More writing</a>
+        </div>
+
+        <footer class="article-footer">
+            <p>Francisco Cucullu is an AI Product Leader building AI products at scale. <a href="/">Learn more</a>.</p>
+        </footer>
+    </article>
+</BaseLayout>
+
+<style>
+    .wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+    }
+
+    .back {
+        color: #a855f7;
+        text-decoration: none;
+        font-size: var(--text-sm);
+        display: inline-block;
+        margin-bottom: 2rem;
+    }
+
+    .article-header {
+        margin-bottom: 3rem;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: var(--accent-regular);
+        color: var(--accent-text-over);
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: var(--text-3xl);
+        color: var(--gray-0);
+        margin-bottom: 0.75rem;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: var(--text-lg);
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+    }
+
+    .meta {
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+    }
+
+    .content {
+        color: var(--gray-200);
+        line-height: 1.8;
+        font-size: var(--text-md);
+    }
+
+    .content h2 {
+        font-size: var(--text-2xl);
+        color: var(--gray-0);
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .content h3 {
+        font-size: var(--text-xl);
+        color: var(--gray-0);
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .content p {
+        margin-bottom: 1.25rem;
+    }
+
+    .content ul, .content ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .content li {
+        margin-bottom: 0.5rem;
+    }
+
+    .content blockquote {
+        border-left: 3px solid var(--accent-regular);
+        padding-left: 1.25rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: var(--gray-300);
+    }
+
+    .content a {
+        color: #a855f7;
+    }
+
+    .article-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .link-button {
+        display: inline-block;
+        padding: 0.6rem 1.25rem;
+        border-radius: 0.5rem;
+        background: var(--accent-regular);
+        color: var(--accent-text-over);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: var(--text-sm);
+        transition: opacity 0.2s;
+    }
+
+    .link-button:hover {
+        opacity: 0.85;
+    }
+
+    .article-footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-800);
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+    }
+
+    .article-footer a {
+        color: #a855f7;
+    }
+
+    @media (min-width: 50em) {
+        h1 {
+            font-size: var(--text-4xl);
+        }
+    }
+</style>

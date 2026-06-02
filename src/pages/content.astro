@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Content | Francisco Cucullu"
+	description="Private content dashboard"
+	robots="noindex,nofollow"
+>
+	<main class="wrapper stack gap-8" id="content-root">
+		<header class="page-head stack gap-2">
+			<h1>Content</h1>
+			<p class="subtitle">Pending social posts ready to copy &amp; publish.</p>
+		</header>
+
+		<!-- States -->
+		<div id="state-loading" class="state">Loading…</div>
+
+		<div id="state-signin" class="state" hidden>
+			<p>Sign in to view your content dashboard.</p>
+			<button id="btn-google" class="btn-primary">Sign in with Google</button>
+		</div>
+
+		<div id="state-unauthorized" class="state" hidden>
+			<p>Not authorized. This account can't view this page.</p>
+			<button id="btn-signout-unauth" class="btn-secondary">Sign out</button>
+		</div>
+
+		<div id="state-dashboard" class="state" hidden>
+			<div class="toolbar">
+				<span id="user-email" class="user-email"></span>
+				<button id="btn-signout" class="btn-secondary">Sign out</button>
+			</div>
+
+			<div id="empty-state" class="state" hidden>
+				<p>No pending posts.</p>
+			</div>
+
+			<section class="platform-section" data-platform="linkedin">
+				<h2 class="platform-title">LinkedIn</h2>
+				<div class="posts" id="posts-linkedin"></div>
+				<p class="platform-empty" id="empty-linkedin">No pending LinkedIn posts.</p>
+			</section>
+
+			<section class="platform-section" data-platform="x">
+				<h2 class="platform-title">X</h2>
+				<div class="posts" id="posts-x"></div>
+				<p class="platform-empty" id="empty-x">No pending X posts.</p>
+			</section>
+		</div>
+	</main>
+</BaseLayout>
+
+<script>
+	import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+	const SUPABASE_URL = 'https://ytgyumihoeiwuyxbptjj.supabase.co';
+	const SUPABASE_ANON_KEY =
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl0Z3l1bWlob2Vpd3V5eGJwdGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMTY5ODksImV4cCI6MjA4OTc5Mjk4OX0.cz4Ok0rWud--UnHQCEPB2ebIsTtwpBzA1L6PLul-IVg';
+	const ALLOWED_EMAIL = 'francisco.cucullu@gmail.com';
+
+	const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+	const $ = (id: string) => document.getElementById(id)!;
+
+	function show(state: 'loading' | 'signin' | 'unauthorized' | 'dashboard') {
+		(['loading', 'signin', 'unauthorized', 'dashboard'] as const).forEach((s) => {
+			$(`state-${s}`).hidden = s !== state;
+		});
+	}
+
+	function escapeHtml(s: string) {
+		const d = document.createElement('div');
+		d.textContent = s;
+		return d.innerHTML;
+	}
+
+	type Post = {
+		id: string;
+		platform: 'linkedin' | 'x';
+		topic: string | null;
+		content: string;
+		status: string;
+		created_at: string;
+	};
+
+	function renderPosts(posts: Post[]) {
+		const groups: Record<'linkedin' | 'x', Post[]> = { linkedin: [], x: [] };
+		for (const p of posts) {
+			if (p.platform === 'linkedin' || p.platform === 'x') groups[p.platform].push(p);
+		}
+
+		$('empty-state').hidden = posts.length > 0;
+
+		(['linkedin', 'x'] as const).forEach((platform) => {
+			const container = $(`posts-${platform}`);
+			const list = groups[platform];
+			$(`empty-${platform}`).hidden = list.length > 0;
+			container.innerHTML = list
+				.map((p) => {
+					const label = platform === 'linkedin' ? 'LinkedIn' : 'X';
+					return `
+					<article class="card" data-id="${p.id}">
+						<div class="card-head">
+							<span class="badge badge-${platform}">${label}</span>
+							${p.topic ? `<span class="topic">${escapeHtml(p.topic)}</span>` : ''}
+						</div>
+						<textarea class="content-box" readonly>${escapeHtml(p.content)}</textarea>
+						<div class="card-actions">
+							<button class="btn-secondary btn-copy">Copy</button>
+							<button class="btn-primary btn-publish">Mark as published</button>
+						</div>
+					</article>`;
+				})
+				.join('');
+		});
+
+		// Wire up buttons
+		document.querySelectorAll<HTMLButtonElement>('.btn-copy').forEach((btn) => {
+			btn.addEventListener('click', async () => {
+				const card = btn.closest('.card')!;
+				const text = card.querySelector('textarea')!.value;
+				try {
+					await navigator.clipboard.writeText(text);
+					const orig = btn.textContent;
+					btn.textContent = 'Copied!';
+					setTimeout(() => (btn.textContent = orig), 1500);
+				} catch {
+					alert('Could not copy to clipboard.');
+				}
+			});
+		});
+
+		document.querySelectorAll<HTMLButtonElement>('.btn-publish').forEach((btn) => {
+			btn.addEventListener('click', async () => {
+				const card = btn.closest('.card') as HTMLElement;
+				const id = card.dataset.id!;
+				btn.disabled = true;
+				btn.textContent = 'Saving…';
+				const { error } = await supabase
+					.from('portfolio_content_posts')
+					.update({ status: 'published', published_at: new Date().toISOString() })
+					.eq('id', id);
+				if (error) {
+					btn.disabled = false;
+					btn.textContent = 'Mark as published';
+					alert('Error: ' + error.message);
+					return;
+				}
+				card.remove();
+				refreshEmptyStates();
+			});
+		});
+	}
+
+	function refreshEmptyStates() {
+		(['linkedin', 'x'] as const).forEach((platform) => {
+			const count = $(`posts-${platform}`).querySelectorAll('.card').length;
+			$(`empty-${platform}`).hidden = count > 0;
+		});
+		const total = document.querySelectorAll('#state-dashboard .card').length;
+		$('empty-state').hidden = total > 0;
+	}
+
+	async function loadDashboard(email: string) {
+		$('user-email').textContent = email;
+		const { data, error } = await supabase
+			.from('portfolio_content_posts')
+			.select('id, platform, topic, content, status, created_at')
+			.neq('status', 'published')
+			.order('created_at', { ascending: false });
+		if (error) {
+			alert('Error loading posts: ' + error.message);
+			renderPosts([]);
+			return;
+		}
+		renderPosts((data ?? []) as Post[]);
+	}
+
+	async function route() {
+		const { data: { session } } = await supabase.auth.getSession();
+		if (!session) {
+			show('signin');
+			return;
+		}
+		const email = session.user.email ?? '';
+		if (email.toLowerCase() !== ALLOWED_EMAIL) {
+			show('unauthorized');
+			return;
+		}
+		show('dashboard');
+		await loadDashboard(email);
+	}
+
+	$('btn-google').addEventListener('click', async () => {
+		await supabase.auth.signInWithOAuth({
+			provider: 'google',
+			options: { redirectTo: window.location.origin + window.location.pathname },
+		});
+	});
+
+	const signOut = async () => {
+		await supabase.auth.signOut();
+		show('signin');
+	};
+	$('btn-signout').addEventListener('click', signOut);
+	$('btn-signout-unauth').addEventListener('click', signOut);
+
+	supabase.auth.onAuthStateChange(() => {
+		route();
+	});
+
+	route();
+</script>
+
+<style>
+	.page-head h1 {
+		margin: 0;
+		font-size: var(--text-3xl);
+		color: var(--gray-0);
+	}
+	.subtitle {
+		color: var(--gray-300);
+		margin: 0;
+	}
+	.state {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	#state-dashboard {
+		gap: 2.5rem;
+	}
+	.toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.user-email {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+	}
+	.platform-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.platform-title {
+		margin: 0;
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+	}
+	.platform-empty {
+		color: var(--gray-300);
+		font-size: var(--text-sm);
+		margin: 0;
+	}
+	.posts {
+		display: grid;
+		gap: 1.25rem;
+	}
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+		padding: 1.25rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+	}
+	.card-head {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.badge {
+		font-size: 0.65rem;
+		padding: 0.2rem 0.6rem;
+		border-radius: 999rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+	.badge-linkedin { background: rgba(10, 102, 194, 0.18); color: #4a9eff; }
+	.badge-x { background: rgba(255, 255, 255, 0.12); color: var(--gray-100); }
+	.topic {
+		font-size: var(--text-md);
+		font-weight: 600;
+		color: var(--gray-100);
+	}
+	.content-box {
+		width: 100%;
+		min-height: 9rem;
+		resize: vertical;
+		padding: 0.85rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--gray-800);
+		background: var(--gray-999);
+		color: var(--gray-200);
+		font-family: var(--font-body, inherit);
+		font-size: var(--text-sm);
+		line-height: 1.6;
+		white-space: pre-wrap;
+	}
+	.card-actions {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.btn-primary,
+	.btn-secondary {
+		font-size: var(--text-sm);
+		font-weight: 600;
+		padding: 0.55rem 1.15rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		transition: all 0.2s;
+		border: 1px solid transparent;
+	}
+	.btn-primary {
+		background: var(--accent-regular);
+		color: #fff;
+	}
+	.btn-primary:hover { background: var(--accent-dark); }
+	.btn-primary:disabled { opacity: 0.6; cursor: default; }
+	.btn-secondary {
+		background: transparent;
+		border-color: var(--gray-800);
+		color: var(--gray-200);
+	}
+	.btn-secondary:hover {
+		background: var(--accent-subtle-overlay);
+		color: var(--gray-0);
+	}
+</style>
