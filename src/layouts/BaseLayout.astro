@@ -48,7 +48,14 @@ const { title, description, robots, image, ogType, publishedTime, articleSection
 			src="https://datafa.st/js/script.js">
 		</script>
 		
-	</head>
+				<script type="application/ld+json" set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@graph": [
+					{ "@type": "Person", "name": "Francisco Cucullu", "url": "https://franciscocucullu.com/", "jobTitle": "AI Product Leader", "description": "AI Product Leader who codes. Takes products from 0 to 1 to enterprise scale.", "sameAs": ["https://linkedin.com/in/franciscocucullu","https://github.com/fcucullu","https://x.com/fcucullu"], "knowsAbout": ["Artificial Intelligence","AI Product Management","Conversational AI","Machine Learning","Quantitative Finance","Product Leadership","Enterprise AI"] },
+					{ "@type": "WebSite", "name": "Francisco Cucullu", "url": "https://franciscocucullu.com/" }
+				]
+			})} />
+</head>
 	<body>
 		<div class="stack backgrounds">
 			<Nav />

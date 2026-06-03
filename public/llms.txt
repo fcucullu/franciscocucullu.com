@@ -1,0 +1,23 @@
+# Francisco Cucullu
+
+> AI Product Leader who codes. Takes products from 0 to 1 to enterprise scale. Led up to 24 engineers across 4 squads, drove multi-million-dollar savings with AI in production, and founded and sold products. Open to senior AI product roles (remote) and B2B consultancy, worldwide.
+
+Francisco Cucullu is a product leader, engineer, and founder with 15+ years across enterprise AI, fintech, and startups. Dual MSc in Quantitative Finance. Based in Barcelona, working worldwide.
+
+## Selected work
+- [AI Quality Assurance at Scale](https://franciscocucullu.com/work/ai-quality-assurance/): AI calibration framework for a European telecom operator. Contact-center QA from under 1% manual sampling to 100% automated coverage, 82% accuracy, across 51 accounts and 9,400 users; architected to scale to 9M+ daily interactions.
+- [Xcapit: UNICEF-Backed AI Fintech](https://franciscocucullu.com/work/quantitative-finance-for-blockchain/): AI wealth management built with 5 PhDs; pivoted to financial inclusion ($650K microloans to 330 people). Funded by UNICEF and the Ethereum Foundation; Digital Public Good.
+- [Timed Integrations: Sold to Factorial](https://franciscocucullu.com/work/timed-integrations/): Micro-SaaS integrating Italian ERPs with Factorial's HR platform; sold to Factorial.
+- [Hastee: 137% Engineering Velocity](https://franciscocucullu.com/work/hastee/): Redesigned delivery at an HR fintech; +137% engineering output, leading 13 engineers across 3 teams.
+- [AI Onboarding Agent](https://franciscocucullu.com/work/ai-onboarding-agent/): Claude-powered conversational onboarding platform.
+
+## Essays
+- [Choosing Not to Scale](https://franciscocucullu.com/blog/choosing-not-to-scale/): On engineering judgment and solving by subtraction.
+- [Running AI Agents Like a Team](https://franciscocucullu.com/blog/running-ai-agents-like-a-team/): On orchestrating AI coding agents.
+- [Scout: A Focused Product on a Generic Agent](https://franciscocucullu.com/blog/scout-focused-product-on-generic-agent/): On product strategy in the age of general-purpose AI.
+- [The WASP Framework](https://franciscocucullu.com/blog/wasp-framework/): From challenge to validated AI MVP in one week.
+
+## Contact
+- Site: https://franciscocucullu.com/
+- LinkedIn: https://linkedin.com/in/franciscocucullu
+- GitHub: https://github.com/fcucullu
