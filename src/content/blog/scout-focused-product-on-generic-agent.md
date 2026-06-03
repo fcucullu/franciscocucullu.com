@@ -19,7 +19,7 @@ A new class of general-purpose AI agents can read and act inside your browser. T
 
 I think the answer is more interesting than "it won't." Working as an AI product leader, the pattern I keep coming back to is that **a generic agent is a capability, not a product**. The capability is necessary, but it is rarely sufficient. The gap between "an agent can technically do this" and "a person reliably gets the outcome they wanted" is where focused products live, and that gap is wide.
 
-I have watched that gap decide real outcomes. Running enterprise AI systems that processed more than 9 million interactions a day, the raw model capability was never the thing that moved the numbers. What drove 20,000+ active users to keep coming back, and what turned into millions of dollars in annual savings, was the product layer on top: the persistence, the workflow, the structure that made the capability dependable at scale. The model was the easy part to acquire. The product was the part that compounded.
+I have watched that gap decide real outcomes. Running enterprise AI that reviews 100% of customer interactions across 51 client accounts, the raw model capability was never the thing that moved the numbers. What drove 9,400 active users to keep coming back, and what turned into multi-million dollar annual savings, was the product layer on top: the persistence, the workflow, the structure that made the capability dependable at scale. The model was the easy part to acquire. The product was the part that compounded.
 
 ## Why generality is a weakness at the point of use
 

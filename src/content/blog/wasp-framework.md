@@ -76,7 +76,7 @@ AI products are uniquely suited to this approach because:
 
 ## Real-World Application
 
-I used WASP to build an AI-powered quality assurance system for a global CX leader with 130,000+ employees. The challenge: QA analysts were manually reviewing customer interactions using multiple disconnected tools, covering only a fraction of total volume.
+I used WASP to build an AI-powered quality assurance system for a global CX leader with 170,000+ employees. The challenge: QA analysts were manually reviewing customer interactions using multiple disconnected tools, covering only a fraction of total volume.
 
 In one week, we went from challenge scoping to a validated prototype that consolidated fragmented tools, surfaced actionable signals, and automated evaluation workflows. The user reaction said it all:
 

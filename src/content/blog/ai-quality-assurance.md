@@ -1,16 +1,16 @@
 ---
 title: "Scaling QA with AI: From <1% to 100% Coverage"
-description: "How a global consumer electronics brand transformed QA operations with AI calibration at scale, reaching 82% accuracy while analyzing every customer interaction."
+description: "How a European telecom operator transformed QA operations with AI calibration at scale, reaching 82% accuracy while analyzing every customer interaction."
 pubDate: 2024-12-01
 tag: "AI Quality Assurance"
-subtitle: "How a global consumer electronics brand transformed QA operations by implementing AI calibration at scale, reaching 82% accuracy while analyzing every customer interaction."
+subtitle: "How a European telecom operator transformed QA operations by implementing AI calibration at scale, reaching 82% accuracy while analyzing every customer interaction."
 ---
 
 ## The QA Sampling Trap
 
 Traditional contact center QA operates under a simple economic constraint: it cannot manually review every interaction. Most organizations sample a few percent of cases. This creates blind spots, delayed feedback, and inconsistent quality standards.
 
-A global consumer electronics brand faced exactly this challenge. Less than 1% of interactions were manually evaluated, which left most of the operation unseen. They needed to scale QA without scaling cost in proportion.
+A European telecom operator faced exactly this challenge. Less than 1% of interactions were manually evaluated, which left most of the operation unseen. They needed to scale QA without scaling cost in proportion.
 
 **The challenge:** How do you ensure AI-generated outcomes align with human judgment while maintaining quality standards across 100% of interactions?
 
@@ -50,10 +50,6 @@ At production, the system analyzes 43,800 interactions and automates 637,000 que
         <span class="metric-value">51</span>
         <span class="metric-label">Accounts deployed, 9,400 active users</span>
     </div>
-    <div class="metric-card">
-        <span class="metric-value">1 week</span>
-        <span class="metric-label">From kickoff to production</span>
-    </div>
 
 </div>
 
@@ -78,7 +74,7 @@ Early implementations suffered from a subtle but critical flaw: scores included 
 <table>
     <thead>
         <tr>
-            <th>Day</th>
+            <th>Step</th>
             <th>Phase</th>
             <th>Activities</th>
         </tr>
@@ -90,17 +86,17 @@ Early implementations suffered from a subtle but critical flaw: scores included 
             <td>Design QA forms with automation in mind. Identify automatable questions. Select evaluators and interaction samples.</td>
         </tr>
         <tr>
-            <td>2-4</td>
+            <td>2</td>
             <td>Benchmark collection</td>
             <td>QA analysts complete evaluations in parallel, ensuring statistical significance.</td>
         </tr>
         <tr>
-            <td>5</td>
+            <td>3</td>
             <td>Calibration & refinement</td>
             <td>Measure AI vs. human accuracy. Introduce keywords/descriptions. Re-measure across iterations.</td>
         </tr>
         <tr>
-            <td>6-7</td>
+            <td>4</td>
             <td>Production deployment</td>
             <td>Deploy optimized configuration. Monitor accuracy continuously. Analyze 100% of interactions.</td>
         </tr>
