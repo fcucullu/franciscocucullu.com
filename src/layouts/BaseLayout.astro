@@ -11,14 +11,29 @@ interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 	robots?: string | undefined;
+	image?: string | undefined;
+	ogType?: string | undefined;
+	publishedTime?: string | undefined;
+	articleSection?: string | undefined;
+	jsonLd?: Record<string, unknown> | undefined;
 }
 
-const { title, description, robots } = Astro.props;
+const { title, description, robots, image, ogType, publishedTime, articleSection, jsonLd } =
+	Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<MainHead title={title} description={description} robots={robots} />
+		<MainHead
+			title={title}
+			description={description}
+			robots={robots}
+			image={image}
+			ogType={ogType}
+			publishedTime={publishedTime}
+			articleSection={articleSection}
+			jsonLd={jsonLd}
+		/>
 		
 		<script id="datafast-queue">
 			window.datafast = window.datafast || function() {

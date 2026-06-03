@@ -1,6 +1,28 @@
 import { defineCollection, z } from 'astro:content';
 
 export const collections = {
+	blog: defineCollection({
+		type: 'content',
+		schema: z.object({
+			title: z.string(),
+			description: z.string(),
+			pubDate: z.coerce.date(),
+			tag: z.string(),
+			ogImage: z.string().optional(),
+			draft: z.boolean().default(false),
+			// Preserved from the original hand-built pages so no content is lost.
+			subtitle: z.string().optional(),
+			links: z
+				.array(
+					z.object({
+						label: z.string(),
+						href: z.string(),
+						external: z.boolean().default(false),
+					}),
+				)
+				.optional(),
+		}),
+	}),
 	work: defineCollection({
 		type: 'content',
 		schema: z.object({

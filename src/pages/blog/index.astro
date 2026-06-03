@@ -3,7 +3,45 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import ContactCTA from '../../components/ContactCTA.astro';
 import EmailSignup from '../../components/EmailSignup.astro';
-import { articles } from '../../data/articles';
+import { getCollection } from 'astro:content';
+
+const MONTHS = [
+	'January', 'February', 'March', 'April', 'May', 'June',
+	'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+function formatDate(date: Date): string {
+	// Month-precision dates render as "Month Year"; year-only as just the year.
+	const month = date.getUTCMonth();
+	const day = date.getUTCDate();
+	const year = date.getUTCFullYear();
+	if (month === 0 && day === 1) return `${year}`;
+	return `${MONTHS[month]} ${year}`;
+}
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const articles = posts.map((post) => ({
+	title: post.data.title,
+	description: post.data.description,
+	href: `/blog/${post.slug}`,
+	tag: post.data.tag,
+	date: formatDate(post.data.pubDate),
+	external: false,
+}));
+
+// The "Dealing with Heteroscedasticity" piece lives on LinkedIn (no local page),
+// so it is kept here as an external listing to preserve the original index.
+articles.push({
+	title: 'Dealing with Heteroscedasticity',
+	description:
+		'Technical article on statistical modeling and handling non-constant variance in financial data.',
+	href: 'https://www.linkedin.com/pulse/dealing-heterocedaticity-francisco-cucullu',
+	tag: 'Quantitative Finance',
+	date: '2019',
+	external: true,
+});
 ---
 
 <BaseLayout

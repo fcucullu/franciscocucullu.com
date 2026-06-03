@@ -6,6 +6,10 @@ interface Props {
 	description?: string | undefined;
 	image?: string | undefined;
 	robots?: string | undefined;
+	ogType?: string | undefined;
+	publishedTime?: string | undefined;
+	articleSection?: string | undefined;
+	jsonLd?: Record<string, unknown> | undefined;
 }
 
 const SITE_URL = 'https://franciscocucullu.com';
@@ -15,6 +19,10 @@ const {
 	description = 'AI Product Leader who codes. Production AI at enterprise scale — 9M+ daily interactions, 20K+ users, $M+ in annual savings. Led 4 squads. Dual MSc in Quantitative Finance.',
 	image = '/assets/og-image.jpg',
 	robots,
+	ogType = 'website',
+	publishedTime,
+	articleSection,
+	jsonLd,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, SITE_URL).href;
@@ -30,7 +38,7 @@ const socialImage = new URL(image, SITE_URL).href;
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:site_name" content="Francisco Cucullu" />
 <meta property="og:title" content={title} />
@@ -39,6 +47,10 @@ const socialImage = new URL(image, SITE_URL).href;
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Francisco Cucullu — AI Product Leader who codes" />
+{ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{ogType === 'article' && <meta property="article:author" content="Francisco Cucullu" />}
+{ogType === 'article' && articleSection && <meta property="article:section" content={articleSection} />}
+{ogType === 'article' && articleSection && <meta property="article:tag" content={articleSection} />}
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -49,6 +61,7 @@ const socialImage = new URL(image, SITE_URL).href;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="alternate" type="application/rss+xml" title="Francisco Cucullu, Essays" href="/rss.xml" />
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
