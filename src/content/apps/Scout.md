@@ -2,7 +2,7 @@
 title: Scout
 description: An AI job-application agent (Chrome extension) for product and leadership roles. Detects the job, drafts tailored answers with a fit score, and lets you review before you submit.
 url: https://scout.franciscocucullu.com
-img: /assets/app-scout.png
+img: /assets/app-scout.png?v=2
 img_alt: Screenshot of Scout
 tags:
   - Chrome Extension
