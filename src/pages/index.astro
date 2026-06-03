@@ -225,11 +225,8 @@ const apps = (await getCollection('apps'))
 
 			<section class="section with-background">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Product Builder & Entrepreneur</h3>
-					<p>
-						I build products end to end to solve real problems, from idea to users. Native apps, PWAs, and SaaS platforms.
-						<br /><a href="/portfolio#apps" class="accent-link">See all apps →</a>
-					</p>
+					<h3>Builder</h3>
+					<p>I build and ship products end to end — native apps, PWAs, and SaaS — and write the code, open-sourcing along the way.</p>
 				</header>
 
 				<div class="app-carousel-wrapper">
@@ -242,13 +239,6 @@ const apps = (await getCollection('apps'))
 						))}
 					</div>
 				</div>
-			</section>
-
-			<section class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Code & Open Source</h3>
-					<p>I write code, not just specs. Here's what I've built and open-sourced.</p>
-				</header>
 
 				<div class="ai-cards">
 					<a href="https://github.com/fcucullu/api-contract-hub" target="_blank" rel="noopener" class="ai-card repo-card">
@@ -292,10 +282,9 @@ const apps = (await getCollection('apps'))
 					</a>
 				</div>
 
-				<div class="github-cta">
-					<a href="https://github.com/fcucullu" target="_blank" rel="noopener" class="accent-link">
-						View all 30+ repos on GitHub →
-					</a>
+				<div class="github-cta builder-links">
+					<a href="/portfolio#apps" class="accent-link">See all apps →</a>
+					<a href="https://github.com/fcucullu" target="_blank" rel="noopener" class="accent-link">View all 30+ repos on GitHub →</a>
 				</div>
 			</section>
 
@@ -624,6 +613,14 @@ const apps = (await getCollection('apps'))
 		grid-column: 1 / -1;
 		text-align: center;
 		margin-top: 0.5rem;
+	}
+
+	.builder-links {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem 1.75rem;
 	}
 
 	.accent-link,
