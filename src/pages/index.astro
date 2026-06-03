@@ -12,7 +12,6 @@ import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
-import EmailSignup from '../components/EmailSignup.astro';
 
 const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -43,10 +42,16 @@ const apps = (await getCollection('apps'))
 					tagline={`AI Product Leader who codes. I take products from 0&#8594;1 to enterprise scale.<br><br>Across my career I have led engineering teams (up to 4 squads, 24 engineers), driven multi-million dollar savings with AI in production, raised engineering velocity 137% at a fintech, and founded and sold products. Earlier, a quant background and algorithmic trading. Dual MSc in Quantitative Finance.`}
 					>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Builder</Pill>
-						<Pill><Icon icon="strategy" size="1.33em" /> Product</Pill>
-						<Pill><Icon icon="trophy" size="1.33em" /> AI/ML</Pill>
-						<Pill><Icon icon="leadership" size="1.33em" /> Leadership</Pill>
+						<Pill><Icon icon="strategy" size="1.33em" /> AI Products</Pill>
+						<Pill><Icon icon="code" size="1.33em" /> 0&#8594;1 to Enterprise Scale</Pill>
+						<Pill><Icon icon="leadership" size="1.33em" /> People Leader</Pill>
+					</div>
+					<p class="availability">Open to senior AI product roles (remote) and B2B consultancy, worldwide.</p>
+					<div class="hero-cta">
+						<CallToAction href="mailto:francisco.cucullu@gmail.com" data-fast-goal="click_on_hero_cta">
+							Let's talk
+							<Icon icon="paper-plane-tilt" size="1.1em" />
+						</CallToAction>
 					</div>
 				</Hero>
 
@@ -344,7 +349,6 @@ const apps = (await getCollection('apps'))
 				</div>
 			</section>
 
-			<EmailSignup source="home" />
 		</main>
 
 		<ContactCTA />
@@ -365,6 +369,18 @@ const apps = (await getCollection('apps'))
 
 	.roles {
 		display: none;
+	}
+
+	.availability {
+		font-size: var(--text-sm);
+		color: var(--accent-regular);
+		font-weight: 600;
+		margin-top: 0.25rem;
+		max-width: none;
+	}
+
+	.hero-cta {
+		margin-top: 1.25rem;
 	}
 
 	.hero img {

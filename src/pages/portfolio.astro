@@ -27,11 +27,11 @@ const apps = (await getCollection('apps'))
 			/>
 
 			<div class="tabs">
-				<button class="tab active" data-tab="apps">Apps</button>
-				<button class="tab" data-tab="work">Professional Work</button>
+				<button class="tab active" data-tab="work">Professional Work</button>
+				<button class="tab" data-tab="apps">Apps</button>
 			</div>
 
-			<section id="tab-apps" class="tab-content active">
+			<section id="tab-apps" class="tab-content">
 				<div class="apps-grid">
 					{apps.map((app) => (
 						<div class="app-card">
@@ -58,7 +58,7 @@ const apps = (await getCollection('apps'))
 				</div>
 			</section>
 
-			<section id="tab-work" class="tab-content">
+			<section id="tab-work" class="tab-content active">
 				<div class="gallery">
 					<Grid variant="offset">
 						{projects.map((project) => (
