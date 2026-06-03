@@ -27,9 +27,13 @@ We implemented a systematic calibration framework that enables QA managers to in
 
 ## Real Business Impact
 
-At production, the system analyzes 43,800 interactions and automates 637,000 question evaluations per month, deployed across 51 accounts.
+The system was architected to scale to 9M+ daily interactions and 20K+ users. Live in production today, it analyzes 43,800 interactions and automates 637,000 question evaluations per month across 51 accounts.
 
 <div class="metrics-grid">
+    <div class="metric-card">
+        <span class="metric-value">9M+</span>
+        <span class="metric-label">Daily interactions the system was built to scale to</span>
+    </div>
     <div class="metric-card">
         <span class="metric-value">82%</span>
         <span class="metric-label">AI accuracy against a human benchmark</span>
