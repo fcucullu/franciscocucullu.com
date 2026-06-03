@@ -1,16 +1,16 @@
 ---
-title: "Scaling QA with AI: From 2% to 100% Coverage"
-description: "How a telecom operator transformed QA operations with AI calibration at scale, achieving 82% accuracy while analyzing every customer interaction."
+title: "Scaling QA with AI: From <1% to 100% Coverage"
+description: "How a global consumer electronics brand transformed QA operations with AI calibration at scale, reaching 82% accuracy while analyzing every customer interaction."
 pubDate: 2024-12-01
 tag: "AI Quality Assurance"
-subtitle: "How a telecom operator transformed QA operations by implementing AI calibration at scale, achieving 80% accuracy while analyzing every customer interaction."
+subtitle: "How a global consumer electronics brand transformed QA operations by implementing AI calibration at scale, reaching 82% accuracy while analyzing every customer interaction."
 ---
 
 ## The QA Sampling Trap
 
-Traditional contact center QA operates under a simple economic constraint: it can't manually review every interaction. Most organizations sample 2-5% of calls. This creates blind spots, delayed feedback, and inconsistent quality standards.
+Traditional contact center QA operates under a simple economic constraint: it cannot manually review every interaction. Most organizations sample a few percent of cases. This creates blind spots, delayed feedback, and inconsistent quality standards.
 
-A major European telecom operator faced exactly this challenge: 9 million daily customer interactions, but only 2% of interactions were manually evaluated. They needed to scale QA without proportionally scaling costs.
+A global consumer electronics brand faced exactly this challenge. Less than 1% of interactions were manually evaluated, which left most of the operation unseen. They needed to scale QA without scaling cost in proportion.
 
 **The challenge:** How do you ensure AI-generated outcomes align with human judgment while maintaining quality standards across 100% of interactions?
 
@@ -20,33 +20,39 @@ We implemented a systematic calibration framework that enables QA managers to in
 
 ### The Calibration Cycle
 
-1. **Human benchmark creation.** Invite QA analysts to manually evaluate 35+ interactions, establishing a statistical baseline.
+1. **Human benchmark creation.** Invite QA analysts to manually evaluate a set of interactions, establishing a statistical baseline.
 2. **Initial accuracy measurement.** Run the AI pipeline against the human benchmark. Measure overall and per-question accuracy.
-3. **Iterative refinement.** Introduce keywords and descriptions to improve question interpretation. Re-measure up to 4 times.
+3. **Iterative refinement.** Introduce keywords and descriptions to improve question interpretation. Re-measure across a few iterations.
 4. **Production deployment.** Apply the optimized configuration to automatically analyze 100% of interactions.
 
 ## Real Business Impact
 
+At production, the system analyzes 43,800 interactions and automates 637,000 question evaluations per month, deployed across 51 accounts.
+
 <div class="metrics-grid">
     <div class="metric-card">
         <span class="metric-value">82%</span>
-        <span class="metric-label">Final AI accuracy after calibration</span>
+        <span class="metric-label">AI accuracy against a human benchmark</span>
     </div>
     <div class="metric-card">
         <span class="metric-value">100%</span>
-        <span class="metric-label">Call coverage vs 2% manual sample</span>
+        <span class="metric-label">Interaction coverage vs under 1% manual</span>
     </div>
     <div class="metric-card">
-        <span class="metric-value">90%</span>
-        <span class="metric-label">Reduction in QA analyst workload</span>
+        <span class="metric-value">72%</span>
+        <span class="metric-label">Automation score, from a fully manual process</span>
+    </div>
+    <div class="metric-card">
+        <span class="metric-value">50%</span>
+        <span class="metric-label">Improvement in process efficiency</span>
+    </div>
+    <div class="metric-card">
+        <span class="metric-value">51</span>
+        <span class="metric-label">Accounts deployed, 9,400 active users</span>
     </div>
     <div class="metric-card">
         <span class="metric-value">1 week</span>
         <span class="metric-label">From kickoff to production</span>
-    </div>
-    <div class="metric-card">
-        <span class="metric-value">20K+</span>
-        <span class="metric-label">Active users globally</span>
     </div>
 
 </div>
@@ -59,13 +65,13 @@ Not all QA questions can be automated with equal accuracy. Questions with clear,
 
 ### 2. Human benchmark quality over quantity
 
-The initial instinct is to collect thousands of human evaluations. But statistical significance arrives faster than expected: 35 well-distributed evaluations from experienced analysts deliver more value than 500 inconsistent reviews.
+The initial instinct is to collect thousands of human evaluations. But statistical significance arrives faster than expected: a small set of well-distributed evaluations from experienced analysts delivers more value than hundreds of inconsistent reviews.
 
 > Calibration accuracy depends more on evaluator consistency than sample size. Quality beats quantity.
 
 ### 3. Normalization prevents false signals
 
-Early implementations suffered from a subtle but critical flaw: scores included non-automatable questions, unfairly penalizing the AI. The fix: normalize scores to automatable and required questions only. This single change improved perceived accuracy by 15-20 percentage points.
+Early implementations suffered from a subtle but critical flaw: scores included non-automatable questions, unfairly penalizing the AI. The fix: normalize scores to automatable and required questions only. This single change meaningfully improved perceived accuracy.
 
 ## Implementation Roadmap
 
@@ -86,12 +92,12 @@ Early implementations suffered from a subtle but critical flaw: scores included 
         <tr>
             <td>2-4</td>
             <td>Benchmark collection</td>
-            <td>QA analysts complete evaluations in parallel. Minimum 35 interactions, ensuring statistical significance.</td>
+            <td>QA analysts complete evaluations in parallel, ensuring statistical significance.</td>
         </tr>
         <tr>
             <td>5</td>
             <td>Calibration & refinement</td>
-            <td>Measure AI vs. human accuracy. Introduce keywords/descriptions. Re-measure (up to 4 iterations).</td>
+            <td>Measure AI vs. human accuracy. Introduce keywords/descriptions. Re-measure across iterations.</td>
         </tr>
         <tr>
             <td>6-7</td>
@@ -103,12 +109,12 @@ Early implementations suffered from a subtle but critical flaw: scores included 
 
 ## The Token Economics Challenge
 
-With 9 million daily interactions, token consumption becomes a material cost. We implemented prompt caching, structured outputs, and efficient prompt engineering, reducing costs by 68% while maintaining accuracy.
+At production volume, token consumption becomes a material cost. We implemented prompt caching, structured outputs, and efficient prompt engineering to keep it manageable while maintaining accuracy.
 
 ## What We Got Wrong Initially
 
-- **Unlimited calibration attempts.** Allowing infinite re-measurements led to over-optimization. Limiting to 4 cycles forces better question design upfront.
-- **Ignoring non-technical users.** Complex metrics confused QA managers. We simplified to accuracy %, high/medium/low labels, and clear next actions.
+- **Unlimited calibration attempts.** Allowing infinite re-measurements led to over-optimization. Capping the cycles forces better question design upfront.
+- **Ignoring non-technical users.** Complex metrics confused QA managers. We simplified to accuracy, high/medium/low labels, and clear next actions.
 - **No progress visibility.** Showing accuracy evolution across calibration cycles dramatically increased user trust and adoption.
 
 ## The Bottom Line
