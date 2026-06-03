@@ -122,6 +122,91 @@ const apps = (await getCollection('apps'))
 				</div>
 			</section>
 
+			<section class="section with-background with-cta">
+				<header data-fast-scroll="scroll_to_projects_head" class="section-header stack gap-2 lg:gap-4">
+					<h3>Selected Work</h3>
+					<p>Projects built for clients and companies across fintech, AI, and enterprise.</p>
+				</header>
+
+				<div data-fast-scroll="scroll_to_projects" class="gallery">
+					<Grid variant="offset">
+						{
+							projects.map((project) => (
+								<li>
+									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+
+				<div class="cta">
+					<CallToAction data-fast-goal="click_on_view_all_projects" href="/portfolio#work">
+						View All
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
+				</div>
+			</section>
+
+			<section data-fast-scroll="scroll_to_recommendations" class="section with-background bg-variant">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>What People Say</h3>
+					<p>
+						20+ recommendations on <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="inline-link">LinkedIn</a>.
+					</p>
+				</header>
+
+				<div class="testimonials">
+					<div class="testimonial">
+						<p class="quote">"Francisco approaches every challenge with proactivity and a constant drive to grow. His sharp critical thinking helps uncover smart, well-grounded solutions. He doesn't just adjust to change, he uses it as a tool for transformation."</p>
+						<p class="author"><strong>Leonardo Fister</strong> · Sr. Product & BI Manager, Supercanal</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"He quickly assumed the responsibilities of the Product Team and swiftly understood our needs. He is highly professional and possesses extensive knowledge of processes, product management, and priority setting."</p>
+						<p class="author"><strong>Martin Bettaglio</strong> · BI Consultant, Hastee</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Francisco possesses a remarkable ability to streamline processes seamlessly. His commitment to client satisfaction is exceptional. He brings out the best in the team, ensuring optimal outcomes while maintaining a strong client-centric approach."</p>
+						<p class="author"><strong>Muhammad Shaheen</strong> · Senior QA Consultant, Aster DM Healthcare</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Without a doubt, I would highlight his proactivity and resilience. He knows how to maximize everyone's capabilities. As a person, he is also a 10, honest and transparent."</p>
+						<p class="author"><strong>Daniel Rodrigo</strong> · Senior Engineer, Nordex Group</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Ha demostrado ser una persona muy proactiva, con gran iniciativa, mucha tenacidad y con gran adaptabilidad a los cambios. Tiene muy buenas habilidades de comunicacion y liderazgo."</p>
+						<p class="author"><strong>Jackson Echeverri</strong> · CTO & Cofounder, Lesiga</p>
+					</div>
+					<div class="testimonial">
+						<p class="quote">"Francisco es lo que se denomina un intraemprendor. Fue haciendose lugar como desarrollador utilizando Python para realizar algoritmos de trading, creando un nuevo area dentro de la empresa."</p>
+						<p class="author"><strong>Tobias Girado</strong> · Software Engineer, Chevron</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="section with-background">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Latest Essays</h3>
+					<p>Writing on AI product strategy, engineering judgment, and building at scale.</p>
+				</header>
+
+				<div class="ai-cards">
+					{latestEssays.map((essay) => (
+						<a href={essay.href} target={essay.external ? "_blank" : undefined} rel={essay.external ? "noopener" : undefined} class="ai-card repo-card">
+							<div class="ai-card-header">
+								<span class="ai-tag">{essay.tag}</span>
+							</div>
+							<h4>{essay.title}</h4>
+							<p>{essay.description}</p>
+						</a>
+					))}
+				</div>
+
+				<div class="github-cta">
+					<a href="/blog" class="accent-link">Read all essays →</a>
+				</div>
+			</section>
+
 			<section class="section with-background">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Product Builder & Entrepreneur</h3>
@@ -198,55 +283,6 @@ const apps = (await getCollection('apps'))
 				</div>
 			</section>
 
-			<section class="section with-background with-cta">
-				<header data-fast-scroll="scroll_to_projects_head" class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Projects built for clients and companies across fintech, AI, and enterprise.</p>
-				</header>
-
-				<div data-fast-scroll="scroll_to_projects" class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-
-				<div class="cta">
-					<CallToAction data-fast-goal="click_on_view_all_projects" href="/portfolio#work">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
-				</div>
-			</section>
-
-			<section class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Latest Essays</h3>
-					<p>Writing on AI product strategy, engineering judgment, and building at scale.</p>
-				</header>
-
-				<div class="ai-cards">
-					{latestEssays.map((essay) => (
-						<a href={essay.href} target={essay.external ? "_blank" : undefined} rel={essay.external ? "noopener" : undefined} class="ai-card repo-card">
-							<div class="ai-card-header">
-								<span class="ai-tag">{essay.tag}</span>
-							</div>
-							<h4>{essay.title}</h4>
-							<p>{essay.description}</p>
-						</a>
-					))}
-				</div>
-
-				<div class="github-cta">
-					<a href="/blog" class="accent-link">Read all essays →</a>
-				</div>
-			</section>
-
 			<section class="section with-background">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Speaking & Media</h3>
@@ -310,42 +346,6 @@ const apps = (await getCollection('apps'))
 						</div>
 						<p>Technical article on statistical modeling and handling non-constant variance in financial data.</p>
 					</a>
-				</div>
-			</section>
-
-			<section data-fast-scroll="scroll_to_recommendations" class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>What People Say</h3>
-					<p>
-						20+ recommendations on <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="inline-link">LinkedIn</a>.
-					</p>
-				</header>
-
-				<div class="testimonials">
-					<div class="testimonial">
-						<p class="quote">"Francisco approaches every challenge with proactivity and a constant drive to grow. His sharp critical thinking helps uncover smart, well-grounded solutions. He doesn't just adjust to change, he uses it as a tool for transformation."</p>
-						<p class="author"><strong>Leonardo Fister</strong> · Sr. Product & BI Manager, Supercanal</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"He quickly assumed the responsibilities of the Product Team and swiftly understood our needs. He is highly professional and possesses extensive knowledge of processes, product management, and priority setting."</p>
-						<p class="author"><strong>Martin Bettaglio</strong> · BI Consultant, Hastee</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Francisco possesses a remarkable ability to streamline processes seamlessly. His commitment to client satisfaction is exceptional. He brings out the best in the team, ensuring optimal outcomes while maintaining a strong client-centric approach."</p>
-						<p class="author"><strong>Muhammad Shaheen</strong> · Senior QA Consultant, Aster DM Healthcare</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Without a doubt, I would highlight his proactivity and resilience. He knows how to maximize everyone's capabilities. As a person, he is also a 10, honest and transparent."</p>
-						<p class="author"><strong>Daniel Rodrigo</strong> · Senior Engineer, Nordex Group</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Ha demostrado ser una persona muy proactiva, con gran iniciativa, mucha tenacidad y con gran adaptabilidad a los cambios. Tiene muy buenas habilidades de comunicacion y liderazgo."</p>
-						<p class="author"><strong>Jackson Echeverri</strong> · CTO & Cofounder, Lesiga</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Francisco es lo que se denomina un intraemprendor. Fue haciendose lugar como desarrollador utilizando Python para realizar algoritmos de trading, creando un nuevo area dentro de la empresa."</p>
-						<p class="author"><strong>Tobias Girado</strong> · Software Engineer, Chevron</p>
-					</div>
 				</div>
 			</section>
 
