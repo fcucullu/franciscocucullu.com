@@ -55,19 +55,19 @@ const bg = `
 
   <text x="70" y="262" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#c9b8ef">AI Product Leader who codes</text>
 
-  <text x="70" y="328" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">Enterprise AI in production · 82% QA accuracy at scale</text>
-  <text x="70" y="366" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">Multi-million dollar savings · led 4 squads (24 engineers)</text>
+  <text x="70" y="328" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">Multi-million dollar AI savings · 137% engineering velocity</text>
+  <text x="70" y="366" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">Led 4 squads (24 engineers) · 0→1 to enterprise scale</text>
 
   <!-- role pills -->
   <g font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600">
-    <rect x="70" y="430" width="178" height="50" rx="25" fill="#a855f7"/>
-    <text x="159" y="463" fill="#ffffff" text-anchor="middle">AI Strategy</text>
+    <rect x="70" y="430" width="168" height="50" rx="25" fill="#a855f7"/>
+    <text x="154" y="463" fill="#ffffff" text-anchor="middle">AI Products</text>
 
-    <rect x="264" y="430" width="190" height="50" rx="25" fill="#7c3aed" fill-opacity="0.85"/>
-    <text x="359" y="463" fill="#ffffff" text-anchor="middle">0→1 Products</text>
+    <rect x="254" y="430" width="176" height="50" rx="25" fill="#7c3aed" fill-opacity="0.85"/>
+    <text x="342" y="463" fill="#ffffff" text-anchor="middle">0→1 to Scale</text>
 
-    <rect x="470" y="430" width="218" height="50" rx="25" fill="#f97316" fill-opacity="0.9"/>
-    <text x="579" y="463" fill="#ffffff" text-anchor="middle">Enterprise Scale</text>
+    <rect x="446" y="430" width="206" height="50" rx="25" fill="#f97316" fill-opacity="0.9"/>
+    <text x="549" y="463" fill="#ffffff" text-anchor="middle">People Leader</text>
   </g>
 
   <text x="70" y="552" font-family="Helvetica, Arial, sans-serif" font-size="23" font-weight="500" fill="#8a83a6">Dual MSc, Quantitative Finance  ·  franciscocucullu.com</text>
