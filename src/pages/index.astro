@@ -4,11 +4,9 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import CallToAction from '../components/CallToAction.astro';
-import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
@@ -23,10 +21,6 @@ const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 		tag: post.data.tag,
 		external: false,
 	}));
-
-const projects = (await getCollection('work'))
-	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 4);
 
 const apps = (await getCollection('apps'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
@@ -67,30 +61,30 @@ const apps = (await getCollection('apps'))
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>AI Experience</h3>
-					<p>Building AI products in production, from enterprise scale to social impact.</p>
+			<section class="section with-background with-cta">
+				<header data-fast-scroll="scroll_to_projects_head" class="section-header stack gap-2 lg:gap-4">
+					<h3>Selected Work &amp; Frameworks</h3>
+					<p>Business and product cases across enterprise AI, fintech, and 0&#8594;1 startups.</p>
 				</header>
 
-				<div class="ai-cards">
-					<a href="/blog/wasp-framework" class="ai-card repo-card">
+				<div data-fast-scroll="scroll_to_projects" class="ai-cards">
+					<a href="/work/quantitative-finance-for-blockchain" class="ai-card repo-card">
 						<div class="ai-card-header">
-							<span class="ai-tag">Current</span>
-							<h4>WASP (Weekly AI Sprint Protocol)</h4>
+							<span class="ai-tag">UNICEF-Backed Fintech</span>
+							<h4>Xcapit: UNICEF-Backed AI Fintech</h4>
 						</div>
-						<p>A hypothesis-driven method I use to take an AI product from challenge to a validated MVP in one week. Building and shipping AI products at startup speed inside a global enterprise.</p>
+						<p>AI-driven wealth management built with a team of 5 PhDs, then pivoted to financial inclusion: $650K in microloans to 330 underbanked individuals. Funded by UNICEF and the Ethereum Foundation, recognized as a Digital Public Good.</p>
 						<div class="ai-tags">
-							<span class="ai-pill">Rapid Prototyping</span>
-							<span class="ai-pill">Product Strategy</span>
-							<span class="ai-pill">LLMs</span>
-							<span class="ai-pill">MVP</span>
+							<span class="ai-pill">AI/ML</span>
+							<span class="ai-pill">Blockchain</span>
+							<span class="ai-pill">UNICEF</span>
+							<span class="ai-pill">Financial Inclusion</span>
 						</div>
 					</a>
-					<a href="/blog/ai-quality-assurance" class="ai-card repo-card">
+					<a href="/work/ai-quality-assurance" class="ai-card repo-card">
 						<div class="ai-card-header">
 							<span class="ai-tag">Enterprise AI</span>
-							<h4>AI Quality Assurance Suite</h4>
+							<h4>AI Quality Assurance at Scale</h4>
 						</div>
 						<p>Led a flagship multi-modal AI suite (audio, speech-to-text, LLMs) for a global CX leader (170K+ employees), driving multi-million dollar savings and a 50% efficiency gain. Architected to scale to 9M+ daily interactions and 20K+ users, live today across 51 client accounts.</p>
 						<div class="ai-tags">
@@ -101,43 +95,58 @@ const apps = (await getCollection('apps'))
 							<span class="ai-pill">Python</span>
 						</div>
 					</a>
-					<a href="/work/quantitative-finance-for-blockchain" class="ai-card repo-card">
+					<a href="/work/timed-integrations" class="ai-card repo-card">
 						<div class="ai-card-header">
-							<span class="ai-tag">Fintech / AI</span>
-							<h4>Xcapit: AI-Powered Wealth Management</h4>
+							<span class="ai-tag">Acquisition</span>
+							<h4>Timed Integrations: Sold to Factorial</h4>
 						</div>
-						<p>AI-driven wealth management built with a team of 5 PhDs, then pivoted to financial inclusion: $650K in microloans to 330 underbanked individuals. Funded by UNICEF and the Ethereum Foundation, recognized as a Digital Public Good. The trading engine managed a $2M portfolio with 400%+ returns.</p>
+						<p>Built a micro-SaaS integrating Italian ERPs with Factorial's HR platform, automating time-tracking data ingestion. Sold the product to Factorial.</p>
 						<div class="ai-tags">
-							<span class="ai-pill">Algorithmic Trading</span>
-							<span class="ai-pill">ML</span>
-							<span class="ai-pill">Blockchain</span>
-							<span class="ai-pill">UNICEF</span>
-							<span class="ai-pill">Python</span>
+							<span class="ai-pill">Micro-SaaS</span>
+							<span class="ai-pill">ERP Integration</span>
+							<span class="ai-pill">HR Tech</span>
+							<span class="ai-pill">Acquisition</span>
 						</div>
 					</a>
-				</div>
-
-				<div class="github-cta">
-					<a href="/blog/" class="accent-link">View all articles →</a>
-				</div>
-			</section>
-
-			<section class="section with-background with-cta">
-				<header data-fast-scroll="scroll_to_projects_head" class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Projects built for clients and companies across fintech, AI, and enterprise.</p>
-				</header>
-
-				<div data-fast-scroll="scroll_to_projects" class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
+					<a href="/work/hastee" class="ai-card repo-card">
+						<div class="ai-card-header">
+							<span class="ai-tag">Product Leadership</span>
+							<h4>Hastee: 137% Engineering Velocity</h4>
+						</div>
+						<p>Tech Product Manager at an HR fintech. Redesigned delivery processes to increase engineering output by 137%, leading 13 engineers across 3 teams and aligning the roadmap with C-level objectives.</p>
+						<div class="ai-tags">
+							<span class="ai-pill">Product Management</span>
+							<span class="ai-pill">HR/Fintech</span>
+							<span class="ai-pill">Engineering Velocity</span>
+							<span class="ai-pill">Agile</span>
+						</div>
+					</a>
+					<a href="/work/ai-onboarding-agent" class="ai-card repo-card">
+						<div class="ai-card-header">
+							<span class="ai-tag">AI Agent</span>
+							<h4>AI Onboarding Agent</h4>
+						</div>
+						<p>AI-native HR onboarding platform. New hires complete onboarding through a Claude-powered conversational agent, while an HR dashboard tracks pipeline, progress, and at-risk hires in real time.</p>
+						<div class="ai-tags">
+							<span class="ai-pill">Claude API</span>
+							<span class="ai-pill">Python</span>
+							<span class="ai-pill">FastAPI</span>
+							<span class="ai-pill">React</span>
+						</div>
+					</a>
+					<a href="/blog/wasp-framework" class="ai-card repo-card">
+						<div class="ai-card-header">
+							<span class="ai-tag">Framework</span>
+							<h4>WASP (Weekly AI Sprint Protocol)</h4>
+						</div>
+						<p>A hypothesis-driven methodology I developed to take an AI product from challenge to a validated MVP in five business days. Building and shipping AI products at startup speed inside a global enterprise.</p>
+						<div class="ai-tags">
+							<span class="ai-pill">Rapid Prototyping</span>
+							<span class="ai-pill">Product Strategy</span>
+							<span class="ai-pill">LLMs</span>
+							<span class="ai-pill">MVP</span>
+						</div>
+					</a>
 				</div>
 
 				<div class="cta">
