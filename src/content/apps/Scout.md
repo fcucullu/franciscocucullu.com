@@ -9,7 +9,7 @@ tags:
   - LLMs
   - Supabase
 status: beta
-publishDate: 2025-07-01 00:00:00
+publishDate: 2026-04-05 00:00:00
 ---
 
 Scout is a focused AI product that takes the busywork out of job applications for the people who use it. It reads a job posting in place, scores how well the role fits, and drafts tailored answers grounded in a persistent profile, then puts everything in front of the user to review and approve. Nothing is submitted automatically.
