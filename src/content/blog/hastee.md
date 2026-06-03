@@ -3,7 +3,7 @@ title: "137% Engineering Velocity: Transforming Delivery at an HR Fintech"
 description: "Redesigned delivery processes at Hastee, increasing engineering output 137%. Led 13 engineers across 3 teams."
 pubDate: 2023-01-01
 tag: "Product Management"
-subtitle: "Redesigning delivery processes at an advanced wages fintech to unlock 137% more engineering output."
+subtitle: "Redesigning delivery processes at an advanced wages fintech to increase engineering output by 137%."
 links:
   - label: "View project details"
     href: "/work/hastee"

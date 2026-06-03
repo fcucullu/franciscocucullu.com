@@ -3,7 +3,7 @@ title: "Radio Interview: Technology and Entrepreneurship"
 description: "Radio interview discussing technology, entrepreneurship, and innovation."
 pubDate: 2023-01-01
 tag: "Interview"
-subtitle: "A radio conversation about technology, building startups, and the role of innovation in today's economy."
+subtitle: "A radio conversation about technology, building startups, and the role of innovation in the economy."
 ---
 
 I joined a radio program to discuss technology, entrepreneurship, and innovation. Radio interviews have a unique format: there is no visual aid, no slides, no body language to lean on. Everything depends on how clearly you can explain your ideas with words alone.

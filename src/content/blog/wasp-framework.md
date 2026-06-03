@@ -82,7 +82,7 @@ In one week, we went from challenge scoping to a validated prototype that consol
 
 > "Instead of having to go to five different tools, I would have this single workspace. This would be fantastic."
 
-That prototype became the foundation for a product now analyzing millions of daily interactions and driving multi-million dollar annual savings.
+That prototype became the foundation for a product now live in production across 51 client accounts, architected to scale to 9M+ daily interactions, and driving multi-million dollar annual savings.
 
 ## The Framework in Practice
 
