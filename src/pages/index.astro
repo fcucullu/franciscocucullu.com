@@ -61,10 +61,10 @@ const apps = (await getCollection('apps'))
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
+			<section class="section with-background">
 				<header data-fast-scroll="scroll_to_projects_head" class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work &amp; Frameworks</h3>
-					<p>Business and product cases across enterprise AI, fintech, and 0&#8594;1 startups.</p>
+					<p>Business cases across enterprise AI, fintech, and 0&#8594;1 startups.</p>
 				</header>
 
 				<div data-fast-scroll="scroll_to_projects" class="ai-cards">
@@ -149,11 +149,8 @@ const apps = (await getCollection('apps'))
 					</a>
 				</div>
 
-				<div class="cta">
-					<CallToAction data-fast-goal="click_on_view_all_projects" href="/portfolio#work">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
+				<div class="github-cta">
+					<a href="/portfolio#work" class="accent-link" data-fast-goal="click_on_view_all_projects">See full portfolio →</a>
 				</div>
 			</section>
 
