@@ -9,15 +9,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
 	<main class="wrapper stack gap-8" id="content-root">
 		<header class="page-head stack gap-2">
-			<h1>Content</h1>
-			<p class="subtitle">Pending social posts ready to copy &amp; publish.</p>
+			<h1 id="page-title">Dashboard</h1>
+			<p class="subtitle" id="page-subtitle" hidden>Pending social posts ready to copy &amp; publish.</p>
 		</header>
 
 		<!-- States -->
 		<div id="state-loading" class="state">Loading…</div>
 
 		<div id="state-signin" class="state" hidden>
-			<p>Sign in to view your content dashboard.</p>
 			<button id="btn-google" class="btn-primary">Sign in with Google</button>
 		</div>
 
@@ -204,6 +203,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 
 	async function loadDashboard(email: string) {
+		$('page-title').textContent = 'Content';
+		$('page-subtitle').hidden = false;
 		$('user-email').textContent = email;
 		const { data, error } = await supabase
 			.from('portfolio_content_posts')
