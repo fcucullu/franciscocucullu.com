@@ -4,7 +4,7 @@ publishDate: 2024-12-01 00:00:00
 img: /assets/stock-7.jpg
 img_alt: AI quality assurance calibration at scale
 description: |
-  AI calibration framework for a European telecom operator. Took contact center QA from under 1% manual sampling to 100% automated coverage at 82% accuracy, reaching a 72% automation score across 51 accounts and 9,400 users, with a 50% improvement in process efficiency. Architected to scale to 9m+ daily interactions and 20k+ users, with the figures here reflecting what is live in production today.
+  AI calibration framework for a European telecom operator. Took contact center QA from under 1% manual sampling to 100% automated coverage at 82% accuracy, reaching a 72% automation score across 51 accounts and 9,400 users, with a 50% improvement in process efficiency. Architected to scale to 9M+ daily interactions and 20K+ users, with the figures here reflecting what is live in production today.
 tags:
   - AI Product
   - LLM Calibration

@@ -55,8 +55,8 @@ const bg = `
 
   <text x="70" y="262" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#c9b8ef">AI Product Leader who codes</text>
 
-  <text x="70" y="328" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">Enterprise AI at scale · 9M+ daily interactions</text>
-  <text x="70" y="366" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">20K+ users · $M+ annual savings · 4 squads led</text>
+  <text x="70" y="328" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">Enterprise AI in production · 82% QA accuracy at scale</text>
+  <text x="70" y="366" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="400" fill="#a9a2bf">Multi-million dollar savings · led 4 squads (24 engineers)</text>
 
   <!-- role pills -->
   <g font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600">
