@@ -12,6 +12,11 @@ import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
+import EmailSignup from '../components/EmailSignup.astro';
+
+import { articles } from '../data/articles';
+
+const latestEssays = articles.slice(0, 3);
 
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
@@ -209,6 +214,29 @@ const apps = (await getCollection('apps'))
 
 			<section class="section with-background">
 				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Latest Essays</h3>
+					<p>Writing on AI product strategy, engineering judgment, and building at scale.</p>
+				</header>
+
+				<div class="ai-cards">
+					{latestEssays.map((essay) => (
+						<a href={essay.href} target={essay.external ? "_blank" : undefined} rel={essay.external ? "noopener" : undefined} class="ai-card repo-card">
+							<div class="ai-card-header">
+								<span class="ai-tag">{essay.tag}</span>
+							</div>
+							<h4>{essay.title}</h4>
+							<p>{essay.description}</p>
+						</a>
+					))}
+				</div>
+
+				<div class="github-cta">
+					<a href="/blog" class="accent-link">Read all essays →</a>
+				</div>
+			</section>
+
+			<section class="section with-background">
+				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Speaking & Media</h3>
 					<p>Pitching, presenting, and representing products on stage and on screen.</p>
 				</header>
@@ -308,6 +336,8 @@ const apps = (await getCollection('apps'))
 					</div>
 				</div>
 			</section>
+
+			<EmailSignup source="home" />
 		</main>
 
 		<ContactCTA />

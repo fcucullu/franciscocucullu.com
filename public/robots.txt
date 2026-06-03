@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /content
+
+Sitemap: https://franciscocucullu.com/sitemap-index.xml

@@ -1,0 +1,180 @@
+---
+interface Props {
+	source: string;
+}
+
+const { source } = Astro.props;
+---
+
+<section class="email-signup" data-source={source}>
+	<div class="email-signup-inner">
+		<h3>Get new essays on building AI products at scale</h3>
+		<p>Notes on AI product strategy, engineering judgment, and shipping at speed. No spam, just the writing.</p>
+
+		<form class="email-form" novalidate>
+			<input
+				type="email"
+				name="email"
+				class="email-input"
+				placeholder="you@example.com"
+				autocomplete="email"
+				required
+			/>
+			<button type="submit" class="email-button">Subscribe</button>
+		</form>
+
+		<p class="email-status" role="status" aria-live="polite"></p>
+	</div>
+</section>
+
+<script>
+	import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+	const SUPABASE_URL = 'https://ytgyumihoeiwuyxbptjj.supabase.co';
+	const SUPABASE_ANON_KEY =
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl0Z3l1bWlob2Vpd3V5eGJwdGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMTY5ODksImV4cCI6MjA4OTc5Mjk4OX0.cz4Ok0rWud--UnHQCEPB2ebIsTtwpBzA1L6PLul-IVg';
+
+	const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+	document.querySelectorAll<HTMLElement>('.email-signup').forEach((section) => {
+		const form = section.querySelector<HTMLFormElement>('.email-form');
+		const input = section.querySelector<HTMLInputElement>('.email-input');
+		const button = section.querySelector<HTMLButtonElement>('.email-button');
+		const status = section.querySelector<HTMLParagraphElement>('.email-status');
+		const source = section.dataset.source || 'unknown';
+
+		if (!form || !input || !button || !status) return;
+
+		const setStatus = (message: string, kind: 'ok' | 'error' | '') => {
+			status.textContent = message;
+			status.className = 'email-status' + (kind ? ` is-${kind}` : '');
+		};
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+
+			const email = input.value.trim();
+			if (!email || !input.checkValidity()) {
+				setStatus('Please enter a valid email.', 'error');
+				return;
+			}
+
+			button.disabled = true;
+			setStatus('', '');
+
+			const { error } = await supabase
+				.from('portfolio_subscribers')
+				.insert({ email, source });
+
+			button.disabled = false;
+
+			if (error) {
+				if (error.code === '23505' || /duplicate/i.test(error.message)) {
+					setStatus('You are already on the list. Thanks.', 'ok');
+					form.reset();
+				} else {
+					setStatus('Something went wrong. Please try again in a moment.', 'error');
+				}
+				return;
+			}
+
+			setStatus('Thanks, you are subscribed.', 'ok');
+			form.reset();
+		});
+	});
+</script>
+
+<style>
+	.email-signup {
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		padding: 2rem 1.5rem;
+	}
+
+	.email-signup-inner {
+		max-width: 38rem;
+		margin-inline: auto;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		align-items: center;
+	}
+
+	.email-signup h3 {
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+		margin: 0;
+	}
+
+	.email-signup p {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.email-form {
+		display: flex;
+		gap: 0.5rem;
+		width: 100%;
+		max-width: 28rem;
+		margin-top: 0.5rem;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.email-input {
+		flex: 1 1 14rem;
+		min-width: 0;
+		padding: 0.65rem 0.9rem;
+		border-radius: 999rem;
+		border: 1px solid var(--gray-800);
+		background: var(--gray-999);
+		color: var(--gray-200);
+		font-size: var(--text-sm);
+		font-family: inherit;
+	}
+
+	.email-input:focus {
+		outline: none;
+		border-color: var(--accent-regular);
+	}
+
+	.email-button {
+		flex: 0 0 auto;
+		padding: 0.65rem 1.4rem;
+		border-radius: 999rem;
+		border: none;
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		font-weight: 600;
+		font-size: var(--text-sm);
+		font-family: inherit;
+		cursor: pointer;
+		transition: opacity 0.2s;
+	}
+
+	.email-button:hover {
+		opacity: 0.85;
+	}
+
+	.email-button:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	.email-status {
+		min-height: 1.2em;
+		font-size: 0.85rem;
+	}
+
+	.email-status.is-ok {
+		color: var(--gray-200);
+	}
+
+	.email-status.is-error {
+		color: #f87171;
+	}
+</style>
