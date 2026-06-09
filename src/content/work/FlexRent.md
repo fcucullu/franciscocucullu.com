@@ -4,7 +4,7 @@ publishDate: 2023-02-01 00:00:00
 img: /assets/stock-11.jpg
 img_alt: Digital nomads platform
 description: |
-  Founded and launched a room exchange platform for digital nomads. Built a community of 620 members, 32 paying customers. Pitched at South Summit, Warsaw, DES Malaga. Featured on TV.
+  Founded and launched a room exchange platform for digital nomads. Built a community of 600 members, 32 paying customers. Pitched at South Summit, Warsaw, DES Malaga. Featured on TV.
 tags:
   - Founder
   - 0→1
@@ -18,7 +18,7 @@ FlexRent was a room exchange platform for digital nomads, like HomeExchange but 
 
 ## Impact
 
-- **620 community members** built from scratch
+- **600 community members** built from scratch
 - **32 paying customers** (completed exchanges)
 - **Pitched at South Summit** (Europe's leading startup conference)
 - **Pitched at Warsaw Startup Stage** (international competition)

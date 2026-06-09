@@ -26,6 +26,18 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
+// These 6 topics exist as both a /work case study and a long-form /blog article.
+// Point the /work duplicate's canonical at its /blog twin so Google consolidates
+// ranking signal on the article. Both URLs stay live.
+const BLOG_CANON = new Set([
+	'ai-quality-assurance',
+	'api-contract-hub',
+	'discord-data-bot',
+	'flexrent',
+	'hastee',
+	'timed-integrations',
+]);
+
 const SITE = 'https://franciscocucullu.com';
 const pub = entry.data.publishDate instanceof Date ? entry.data.publishDate.toISOString() : entry.data.publishDate;
 const articleLd = {
@@ -43,6 +55,7 @@ const articleLd = {
 <BaseLayout
 	title={`${entry.data.title} | Francisco Cucullu`}
 	description={entry.data.description}
+	canonical={BLOG_CANON.has(entry.slug) ? `https://franciscocucullu.com/blog/${entry.slug}/` : undefined}
 	image={entry.data.img ? `${SITE}${entry.data.img}` : undefined}
 	ogType="article"
 	publishedTime={pub}
