@@ -1,16 +1,17 @@
 ---
-title: "AI Onboarding Agent"
+title: "AI Onboarding Agent: Automate Employee Onboarding"
 publishDate: 2025-03-01 00:00:00
 img: /assets/stock-3.jpg
-img_alt: AI conversational agent
-description: |
-  AI-native HR onboarding platform. New hires interact with a Claude-powered conversational agent. HR dashboard tracks pipeline, progress, and at-risk hires in real-time.
+img_alt: AI onboarding agent conversational interface for employee onboarding
+description: "How I built an AI onboarding agent that automates employee onboarding end-to-end: new hires chat with a Claude-powered AI agent while HR tracks pipeline, progress, and at-risk hires in real time."
 tags:
   - Claude API
   - Python
   - FastAPI
   - React
 ---
+
+An **AI agent for employee onboarding** that automates the onboarding process end to end. New hires get instant, accurate answers to their day-one questions from a Claude-powered conversational AI agent, while HR and hiring managers track the entire pipeline in real time. I designed and built it solo on Claude API, FastAPI, Supabase, and React.
 
 ## Business Case
 
