@@ -31,4 +31,4 @@ A client needed to automate the HR onboarding process for new employees. The goa
 - React frontend with real-time activity feed
 - Conversation history persistence for context continuity
 
-[View source code on GitHub →](https://github.com/fcucullu/orbio-onboarding)
+[Try the live product →](https://orbio.franciscocucullu.com) · [View source code on GitHub →](https://github.com/fcucullu/orbio-onboarding)
