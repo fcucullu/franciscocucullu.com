@@ -16,10 +16,17 @@ const socialImage = new URL(ogImage ?? '/assets/og-image.jpg', SITE_URL).href;
 const publishedISO = pubDate.toISOString();
 
 // Related posts: up to 3 other published posts sharing the same tag.
-const related = (await getCollection('blog'))
-	.filter((p) => !p.data.draft && p.slug !== post.slug && p.data.tag === tag)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3);
+// Related posts drive BOTH UX and crawl discovery. Same-tag-only + slice(3) left
+// posts with rare tags nearly orphaned (Google never discovered them). Now every
+// post links to 6 others: same-tag first, then a slug-rotated backfill so the
+// inbound links spread evenly across ALL posts (no orphans, dense link graph).
+const pool = (await getCollection('blog'))
+	.filter((p) => !p.data.draft && p.slug !== post.slug)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const sameTag = pool.filter((p) => p.data.tag === tag);
+const rotateBy = [...post.slug].reduce((a, c) => a + c.charCodeAt(0), 0) % Math.max(pool.length, 1);
+const ring = [...pool.slice(rotateBy), ...pool.slice(0, rotateBy)];
+const related = [...new Map([...sameTag, ...ring].map((p) => [p.slug, p])).values()].slice(0, 6);
 
 const jsonLd = {
 	'@context': 'https://schema.org',
