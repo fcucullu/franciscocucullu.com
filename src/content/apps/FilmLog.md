@@ -11,6 +11,9 @@ tags:
   - PWA
 status: live
 publishDate: 2026-04-29 00:00:00
+categories:
+  - Consumer
+  - PWA
 ---
 
 FilmLog helps analog photographers track camera settings for every shot on every roll. Log aperture, shutter speed, lens, and lighting conditions, then review what worked after developing. Features an exposure indicator based on the Sunny 16 rule to help beginners nail their exposure before they click the shutter.

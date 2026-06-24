@@ -10,8 +10,15 @@ import PortfolioPreview from '../components/PortfolioPreview.astro';
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 
-const apps = (await getCollection('apps'))
+const appsByDate = (await getCollection('apps'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+// Pin Clientísima first, then the rest by date.
+const apps = [
+	...appsByDate.filter((a) => a.data.title === 'Clientísima'),
+	...appsByDate.filter((a) => a.data.title !== 'Clientísima'),
+];
+// Filter chips (AI last so it can render as the highlighted one).
+const CATEGORIES = ['B2B SaaS', 'B2B', 'PWA', 'Native App', 'Consumer', 'AI'];
 ---
 
 <BaseLayout
@@ -32,15 +39,28 @@ const apps = (await getCollection('apps'))
 			</div>
 
 			<section id="tab-apps" class="tab-content">
+				<div class="filters">
+					<button class="filter active" data-filter="all">All</button>
+					{CATEGORIES.map((cat) => (
+						<button class:list={['filter', { 'filter-ai': cat === 'AI' }]} data-filter={cat}>{cat}</button>
+					))}
+				</div>
 				<div class="apps-grid">
 					{apps.map((app) => (
-						<div class="app-card">
+						<div class="app-card" data-categories={(app.data.categories || []).join('|')}>
 							<img src={app.data.img} alt={app.data.img_alt || ''} loading="lazy" class="app-icon" />
 							<div class="app-info">
 								<div class="app-header">
 									<h3>{app.data.title}</h3>
 									<span class:list={['status', app.data.status]}>{app.data.status}</span>
 								</div>
+								{(app.data.categories || []).length > 0 && (
+									<div class="cat-badges">
+										{(app.data.categories || []).map((cat) => (
+											<span class:list={['cat-badge', { 'cat-badge-ai': cat === 'AI' }]}>{cat}</span>
+										))}
+									</div>
+								)}
 								<p class="app-desc">{app.data.description}</p>
 							</div>
 							<div class="app-links">
@@ -96,6 +116,21 @@ const apps = (await getCollection('apps'))
 	if (hash === 'work' || hash === 'apps') {
 		activateTab(hash);
 	}
+
+	// Apps category filter
+	const filters = document.querySelectorAll('.filter');
+	const cards = document.querySelectorAll<HTMLElement>('.app-card');
+	filters.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const f = (btn as HTMLElement).dataset.filter!;
+			filters.forEach((b) => b.classList.remove('active'));
+			btn.classList.add('active');
+			cards.forEach((card) => {
+				const cats = (card.dataset.categories || '').split('|');
+				card.style.display = f === 'all' || cats.includes(f) ? '' : 'none';
+			});
+		});
+	});
 </script>
 
 <style>
@@ -135,6 +170,51 @@ const apps = (await getCollection('apps'))
 
 	.tab-content.active {
 		display: block;
+	}
+
+	/* Category filters */
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		justify-content: center;
+		margin-bottom: 1.5rem;
+	}
+	.filter {
+		padding: 0.4rem 0.9rem;
+		border-radius: 999rem;
+		border: 1px solid var(--gray-800);
+		background: transparent;
+		color: var(--gray-300);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+	.filter:hover { color: var(--gray-100); border-color: var(--gray-600); }
+	.filter.active { background: var(--accent-regular); color: var(--accent-text-over); border-color: var(--accent-regular); }
+	.filter-ai {
+		background: var(--gradient-accent-orange, linear-gradient(135deg, #f5a623, #f76b1c));
+		color: #fff;
+		border-color: transparent;
+	}
+	.filter-ai.active { box-shadow: 0 0 0 2px var(--gray-0); }
+
+	/* Category badges on cards */
+	.cat-badges { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+	.cat-badge {
+		font-size: 0.6rem;
+		padding: 0.12rem 0.45rem;
+		border-radius: 999rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		background: var(--gray-800);
+		color: var(--gray-200);
+	}
+	.cat-badge-ai {
+		background: var(--gradient-accent-orange, linear-gradient(135deg, #f5a623, #f76b1c));
+		color: #fff;
 	}
 
 	/* Apps grid */

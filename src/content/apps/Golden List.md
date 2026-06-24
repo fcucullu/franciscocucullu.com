@@ -13,6 +13,10 @@ tags:
 status: live
 playStoreUrl: https://play.google.com/store/apps/details?id=com.franciscocucullu.goldenlist
 publishDate: 2026-05-01 00:00:00
+categories:
+  - Consumer
+  - Native App
+  - PWA
 ---
 
 A native mobile app that helps you maintain meaningful relationships. Life gets busy and we often lose touch with important people simply because there's no system in place. Golden List solves that by letting you set customizable reminder frequencies for each contact, weekly, biweekly, monthly, or any custom interval. Import contacts from your phone, track your full interaction history, and get native push notifications when it's time to reach out. Available on Google Play with in-app subscriptions for unlimited contacts. Also available as a PWA at goldenlist.franciscocucullu.com.

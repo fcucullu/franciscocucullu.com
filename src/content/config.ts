@@ -44,6 +44,8 @@ export const collections = {
 			img: z.string(),
 			img_alt: z.string().optional(),
 			tags: z.array(z.string()),
+			// Category labels for the portfolio filter (B2B SaaS, B2B, PWA, Native App, AI, Consumer).
+			categories: z.array(z.string()).default([]),
 			status: z.enum(['live', 'beta', 'offline']).default('live'),
 			playStoreUrl: z.string().optional(),
 			appStoreUrl: z.string().optional(),

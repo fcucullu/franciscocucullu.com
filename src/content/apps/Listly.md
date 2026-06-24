@@ -11,6 +11,9 @@ tags:
   - PWA
 status: live
 publishDate: 2026-03-25 00:00:00
+categories:
+  - Consumer
+  - PWA
 ---
 
 Listly is a collaborative task list PWA for couples, roommates, and small teams. Create multiple lists, share them by email, assign items to specific members with colored initials, and set a draggable "today" line to prioritize what matters now. Real-time sync via Supabase means everyone sees changes instantly. Built with Google OAuth, emerald green theme, and designed as a mobile-first PWA.
