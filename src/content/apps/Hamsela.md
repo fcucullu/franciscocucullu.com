@@ -13,7 +13,6 @@ status: live
 publishDate: 2026-06-24 00:00:00
 categories:
   - B2B SaaS
-  - B2B
   - PWA
   - AI
 ---

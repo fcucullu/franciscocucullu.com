@@ -13,7 +13,6 @@ status: live
 publishDate: 2026-05-02 00:00:00
 categories:
   - B2B SaaS
-  - B2B
   - AI
 ---
 
