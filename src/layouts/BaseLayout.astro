@@ -25,6 +25,33 @@ const { title, description, canonical, robots, image, ogType, publishedTime, art
 
 <html lang="en">
 	<head>
+		<!--
+			OAuth landing safety-net. This site is the shared Supabase project's
+			Site URL, so when an app's Google login (e.g. clientisima.com, opened in
+			a WhatsApp in-app browser) loses its redirect, Supabase falls back here
+			and dumps the user — with their fresh auth code — onto the portfolio.
+			Catch that and forward the auth artifacts to the app so the session
+			completes there instead of stranding the visitor on the CV.
+			/content handles its own auth on this domain, so it's excluded.
+		-->
+		<script is:inline>
+			(function () {
+				try {
+					var path = location.pathname.replace(/\/$/, '');
+					if (path === '/content') return;
+					var qs = new URLSearchParams(location.search);
+					var hash = location.hash || '';
+					var code = qs.get('code') || '';
+					var looksLikeAuthCode = /^[0-9a-fA-F-]{20,}$/.test(code);
+					var hasImplicitToken = hash.indexOf('access_token=') > -1;
+					if (looksLikeAuthCode || hasImplicitToken) {
+						location.replace(
+							'https://clientisima.com/auth/callback' + location.search + hash
+						);
+					}
+				} catch (e) {}
+			})();
+		</script>
 		<MainHead
 			title={title}
 			description={description}
