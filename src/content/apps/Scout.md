@@ -9,7 +9,7 @@ tags:
   - Supabase
   - Next.js
 status: beta
-publishDate: 2026-04-05 00:00:00
+publishDate: 2026-05-01 12:00:00
 categories:
   - AI
   - Consumer
