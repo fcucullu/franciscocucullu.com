@@ -24,7 +24,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 const articles = posts.map((post) => ({
 	title: post.data.title,
 	description: post.data.description,
-	href: `/blog/${post.slug}`,
+	href: `/blog/${post.id}`,
 	tag: post.data.tag,
 	date: formatDate(post.data.pubDate),
 	external: false,

@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -18,13 +18,13 @@ interface Props {
 export async function getStaticPaths() {
 	const work = await getCollection('work');
 	return work.map((entry) => ({
-		params: { slug: entry.slug },
+		params: { slug: entry.id },
 		props: { entry },
 	}));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 // These 6 topics exist as both a /work case study and a long-form /blog article.
 // Point the /work duplicate's canonical at its /blog twin so Google consolidates
@@ -48,14 +48,14 @@ const articleLd = {
 	...(entry.data.img ? { image: `${SITE}${entry.data.img}` } : {}),
 	datePublished: pub,
 	author: { '@type': 'Person', name: 'Francisco Cucullu', url: `${SITE}/` },
-	url: `${SITE}/work/${entry.slug}/`,
+	url: `${SITE}/work/${entry.id}/`,
 };
 ---
 
 <BaseLayout
 	title={`${entry.data.title} | Francisco Cucullu`}
 	description={entry.data.description}
-	canonical={BLOG_CANON.has(entry.slug) ? `https://franciscocucullu.com/blog/${entry.slug}/` : undefined}
+	canonical={BLOG_CANON.has(entry.id) ? `https://franciscocucullu.com/blog/${entry.id}/` : undefined}
 	image={entry.data.img ? `${SITE}${entry.data.img}` : undefined}
 	ogType="article"
 	publishedTime={pub}
