@@ -5,7 +5,7 @@ export const GET: APIRoute = async () => {
 	const apps = (await getCollection('apps'))
 		.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 		.map((app) => ({
-			slug: app.slug,
+			slug: app.id,
 			title: app.data.title,
 			description: app.data.description,
 			url: app.data.url,

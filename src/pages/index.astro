@@ -17,7 +17,7 @@ const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 	.map((post) => ({
 		title: post.data.title,
 		description: post.data.description,
-		href: `/blog/${post.slug}`,
+		href: `/blog/${post.id}`,
 		tag: post.data.tag,
 		external: false,
 	}));
@@ -232,7 +232,7 @@ const apps = (await getCollection('apps'))
 				<div class="app-carousel-wrapper">
 					<div class="app-carousel">
 						{[...apps, ...apps].map((app, i) => (
-							<a href={app.data.playStoreUrl || app.data.url} target="_blank" rel="noopener" class="app-carousel-item" key={`${app.slug}-${i}`}>
+							<a href={app.data.playStoreUrl || app.data.url} target="_blank" rel="noopener" class="app-carousel-item" key={`${app.id}-${i}`}>
 								<img src={app.data.img} alt={app.data.title} />
 								<span>{app.data.title}</span>
 							</a>

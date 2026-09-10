@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry, render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -7,11 +7,11 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const { title, description, tag, pubDate, subtitle, links, ogImage } = post.data;
 
 const SITE_URL = 'https://franciscocucullu.com';
-const postUrl = new URL(`/blog/${post.slug}`, SITE_URL).href;
+const postUrl = new URL(`/blog/${post.id}`, SITE_URL).href;
 const socialImage = new URL(ogImage ?? '/assets/og-image.jpg', SITE_URL).href;
 const publishedISO = pubDate.toISOString();
 
@@ -21,12 +21,12 @@ const publishedISO = pubDate.toISOString();
 // post links to 6 others: same-tag first, then a slug-rotated backfill so the
 // inbound links spread evenly across ALL posts (no orphans, dense link graph).
 const pool = (await getCollection('blog'))
-	.filter((p) => !p.data.draft && p.slug !== post.slug)
+	.filter((p) => !p.data.draft && p.id !== post.id)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const sameTag = pool.filter((p) => p.data.tag === tag);
-const rotateBy = [...post.slug].reduce((a, c) => a + c.charCodeAt(0), 0) % Math.max(pool.length, 1);
+const rotateBy = [...post.id].reduce((a, c) => a + c.charCodeAt(0), 0) % Math.max(pool.length, 1);
 const ring = [...pool.slice(rotateBy), ...pool.slice(0, rotateBy)];
-const related = [...new Map([...sameTag, ...ring].map((p) => [p.slug, p])).values()].slice(0, 6);
+const related = [...new Map([...sameTag, ...ring].map((p) => [p.id, p])).values()].slice(0, 6);
 
 const jsonLd = {
 	'@context': 'https://schema.org',
@@ -99,7 +99,7 @@ const jsonLd = {
 					<h2>Related posts</h2>
 					<div class="related-grid">
 						{related.map((rel) => (
-							<a href={`/blog/${rel.slug}`} class="related-card">
+							<a href={`/blog/${rel.id}`} class="related-card">
 								<span class="related-tag">{rel.data.tag}</span>
 								<h3>{rel.data.title}</h3>
 								<p>{rel.data.description}</p>
