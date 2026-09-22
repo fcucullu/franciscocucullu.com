@@ -6,7 +6,7 @@ tag: "Startup"
 subtitle: "Building a room exchange platform for digital nomads, from first commit to TV appearances and investor backing."
 links:
   - label: "View project details"
-    href: "/work/flex-rent"
+    href: "/work/flexrent"
     external: false
 ---
 
