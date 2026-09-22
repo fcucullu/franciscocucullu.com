@@ -4,33 +4,44 @@ import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<BaseLayout title="About | Francisco Cucullu" description="About Francisco Cucullu">
+<BaseLayout title="About | Francisco Cucullu" description="Senior product leader with a founder mindset. From economics and trading software to founding products and leading enterprise teams.">
     <div class="stack gap-20">
         <main class="wrapper about">
+            <div class="about-hero" data-reveal>
             <Hero
-                title="Builder.<br/>Product Leader.<br/>AI at scale."
-                tagline=""
+                title="Senior Product Leader.<br/>Founder mindset."
+                display
+                align="center"
+                tagline="The career explains the combination: product, software, business, and companies I started myself."
                 data-fast-scroll="scroll_to_about_start"
             >
-                <img
-                    width="1553"
-                    height="873"
-                    src="/assets/at-work.jpg"
-                    alt="Francisco Cucullu pitching at South Summit"
-                />
+                <p class="sr-only">Francisco Cucullu pitching at South Summit</p>
             </Hero>
+            </div>
 
-            <section>
-                <h2 class="section-title">Summary</h2>
+            <section data-reveal>
+                <h2 class="section-title">The arc</h2>
                 <div class="content">
                     <p>
-                        Product leader, engineer, and founder with over 15 years across enterprise AI, fintech, and startups. I have led up to 24 engineers, driven multi-million dollar savings with AI in production, designed custom AI/ML alongside a team of 5 PhDs, founded and sold products, and built work recognized by UNICEF and featured at South Summit and on TV. I lead from strategy through production, and still write code.
+                        I lead software products. I also build them, and I have founded them. That is the profile: direction, teams, and software that ships. AI is part of the recent work. It is not the category.
                     </p>
+                    <div class="spacer"></div>
+                    <p><strong>Economics, then markets.</strong> A degree from the University of Buenos Aires, then a dual MSc in Quantitative Finance at Solvay and Universidad de San Andrés. I learned to treat a market as a system before I learned to ship software.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>Then the software.</strong> At HSBC, and after that at IOL, Argentina’s largest retail broker, I automated the work. An FX engine, 21 scrapers, a trading desk that stopped spending five hours a day on reconciliation. Building it got me the BI team.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>From building to leading.</strong> At Xcapit I led a team of five PhDs. At Hastee, 13 engineers across three teams. The job became direction, priorities, and delivery, not only the code.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>I also started companies.</strong> FlexRent, from zero to a community and angel investment. Timed Integrations, built and sold to Factorial. Pepino, a B2B SaaS with seven agencies. Those years are why I don’t lead like someone who has only managed a roadmap.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>Then the scale.</strong> Today I am Senior AI/ML Product Manager at Foundever, via IAG: four squads, 24 engineers, a product in production for a global CX company. The technology is AI. The work is product leadership.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>What I bring in.</strong> Find the problem, decide, build, and hold the outcome. Inside the company, not next to it.</p>
                 </div>
             </section>
 
-            <section>
-                <h2 class="section-title">Career</h2>
+            <section data-reveal>
+                <h2 class="section-title">The record</h2>
                 <div class="content">
                     <div class="role">
                         <strong>Senior AI/ML Product Manager</strong>
@@ -82,38 +93,32 @@ import Hero from '../components/Hero.astro';
                 </div>
             </section>
 
-            <section>
+            <section data-reveal>
                 <h2 class="section-title">Key Achievements</h2>
                 <div class="content">
-                    <p><strong>AI Innovation Award</strong><br />Recognized for integrating AI/ML into blockchain wealth management. <a href="https://www.corporatevision-news.com/winners/xcapit/">See full story</a></p>
+                    <p><strong>24 engineers, four squads</strong><br />Enterprise product in production for a global CX company. Multi-million dollar savings and a 50% efficiency gain. The technology is AI. <a href="/blog/ai-quality-assurance">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>UNICEF Digital Public Good</strong><br />Led a team of 5 PhDs to build an open-source crypto wallet for financial inclusion. $650K in microloans to 330 people. <a href="https://app.digitalpublicgoods.net/a/11545">See recognition</a></p>
+                    <p><strong>137% engineering output</strong><br />Redesigned delivery at Hastee, leading 13 engineers across 3 teams. <a href="/blog/hastee">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>Micro-SaaS Acquired by Factorial</strong><br />Built ERP integrations for the Italian market. Solo founder, built and sold. <a href="/blog/timed-integrations">Read the story</a></p>
+                    <p><strong>Micro-SaaS sold to Factorial</strong><br />Built ERP integrations for the Italian market. Solo founder, built and sold. <a href="/blog/timed-integrations">Read the story</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>400%+ Annual Returns</strong><br />Algorithmic trading on a $2M portfolio using custom ML and Bayesian optimization. Featured in <a href="https://www.cronista.com/infotechnology/finanzas-digitales/la-unica-inversion-que-hoy-paga-400-en-dolares-sin-riesgo-argentino-ni-impuestos/">Cronista</a></p>
+                    <p><strong>Startup to angel investment</strong><br />Founded FlexRent, built a community of 620 members, pitched at South Summit and other stages, secured angel funding. <a href="/blog/flexrent">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>20% Market Capture via Automation</strong><br />Built 21 real-time scrapers monitoring every competitor in the Argentine FX market. <a href="https://github.com/fcucullu/scrapers-webdrivers">See repository</a></p>
+                    <p><strong>20% of a market, via automation</strong><br />21 real-time scrapers covering every competitor in the Argentine FX market. <a href="/blog/competitive-intelligence">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>Featured on TV and International Stages</strong><br />Television interview on 101 TV, pitches at South Summit, Warsaw, and DES Malaga. <a href="/blog/speaking-tv-interview">Watch</a></p>
+                    <p><strong>UNICEF Digital Public Good</strong><br />Led a team of 5 PhDs. Open-source wallet, $650K in microloans to 330 people, and an AI Innovation Award. <a href="https://app.digitalpublicgoods.net/a/11545">See recognition</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>Enterprise AI at Scale</strong><br />Leading an AI product driving multi-million dollar savings and a 50% efficiency gain for a global CX leader with 170K+ employees. Architected to scale to 9M+ daily interactions and 20K+ users. <a href="/blog/ai-quality-assurance">Read more</a></p>
-                    <div class="spacer"></div>
-
-                    <p><strong>137% Engineering Velocity Increase</strong><br />Redesigned delivery processes at Hastee, leading 13 engineers across 3 teams. <a href="/blog/hastee">Read more</a></p>
-                    <div class="spacer"></div>
-
-                    <p><strong>Startup from Zero to Angel Investment</strong><br />Founded FlexRent, built a community of 620 members, pitched at South Summit and international stages, secured angel funding. <a href="/blog/flexrent">Read more</a></p>
+                    <p><strong>On stage and on TV</strong><br />South Summit, Warsaw, DES Málaga, and 101 TV. <a href="/blog/speaking-south-summit">South Summit</a></p>
                 </div>
             </section>
 
-            <section>
+            <section data-reveal>
                 <h2 class="section-title">Education</h2>
                 <div class="content">
                     <p>
@@ -154,10 +159,34 @@ import Hero from '../components/Hero.astro';
         gap: 3.5rem;
     }
 
-    img {
-        margin-top: 1.5rem;
-        border-radius: 1.5rem;
-        box-shadow: var(--shadow-md);
+    .about-hero {
+        margin-top: -3.5rem;
+        margin-inline: -1.5rem;
+        width: calc(100% + 3rem);
+    }
+
+    .about-hero :global(.hero) {
+        min-height: clamp(26rem, 54vw, 36rem);
+        justify-content: flex-end;
+        align-items: center;
+        text-align: center;
+        padding: 2.5rem 1.5rem 2rem;
+        background-image:
+            linear-gradient(to bottom, rgba(19, 28, 74, 0.08) 0%, rgba(19, 28, 74, 0.05) 46%, rgba(19, 28, 74, 0.82) 100%),
+            url('/assets/at-work.jpg');
+        background-size: cover;
+        background-position: center top;
+        color: #f7f4ee;
+    }
+
+    .about-hero :global(.title),
+    .about-hero :global(.tagline) {
+        color: #f7f4ee;
+        margin-inline: auto;
+    }
+
+    .about-hero :global(.title.display) {
+        max-width: 24ch;
     }
 
     section {
@@ -178,7 +207,7 @@ import Hero from '../components/Hero.astro';
     }
 
     .content :global(a) {
-        color: #a855f7;
+        color: var(--link-color);
         text-decoration: 1px solid underline transparent;
         text-underline-offset: 0.25em;
         transition: text-decoration-color var(--theme-transition);
@@ -231,12 +260,19 @@ import Hero from '../components/Hero.astro';
         }
 
         .about > :global(:first-child) {
-            grid-column-start: 2;
+            grid-column: 1 / -1;
         }
 
         section {
             display: contents;
             font-size: var(--text-lg);
+        }
+    }
+
+    @media (min-width: 83rem) {
+        .about-hero {
+            margin-inline: calc(-1 * ((100vw - 83rem) / 2 + 1.5rem));
+            width: 100vw;
         }
     }
 </style>

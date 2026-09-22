@@ -345,7 +345,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	.badge {
 		font-size: 0.65rem;
 		padding: 0.2rem 0.6rem;
-		border-radius: 999rem;
+		border-radius: var(--radius-ui);
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -380,7 +380,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 	.btn-primary {
 		background: var(--accent-regular);
-		color: #fff;
+		color: var(--accent-text-over);
 	}
 	.btn-primary:hover { background: var(--accent-dark); }
 	.btn-primary:disabled { opacity: 0.6; cursor: default; }

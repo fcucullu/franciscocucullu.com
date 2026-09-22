@@ -1,134 +1,347 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CallToAction from '../components/CallToAction.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 
 const channels = [
 	{
-		label: 'Email',
-		value: 'francisco.cucullu@gmail.com',
-		href: 'mailto:francisco.cucullu@gmail.com',
-		icon: 'mail-outline',
-		goal: 'click_on_contact_mail',
-	},
-	{
 		label: 'LinkedIn',
-		value: 'in/franciscocucullu',
 		href: 'https://linkedin.com/in/franciscocucullu',
 		icon: 'linkedin-logo',
 		goal: 'click_on_contact_linkedin',
 	},
 	{
 		label: 'X',
-		value: '@fcucullu',
 		href: 'https://x.com/fcucullu',
 		icon: 'x-logo',
 		goal: 'click_on_contact_x',
 	},
 	{
 		label: 'GitHub',
-		value: 'fcucullu',
 		href: 'https://github.com/fcucullu',
 		icon: 'github-logo',
 		goal: 'click_on_contact_github',
 	},
+	{
+		label: 'Email',
+		href: 'mailto:francisco.cucullu@gmail.com',
+		icon: 'mail-outline',
+		goal: 'click_on_contact_mail',
+	},
 ];
 ---
 
-<BaseLayout title="Contact | Francisco Cucullu" description="Get in touch with Francisco Cucullu — open to senior AI product roles (remote) and B2B consultancy, worldwide.">
-	<div class="stack gap-20">
-		<main class="wrapper stack gap-8">
+<BaseLayout title="Let's talk | Francisco Cucullu" description="Open to senior product leadership roles, startups, and companies that need an entrepreneur inside. Remote.">
+	<main class="wrapper contact-page">
+		<div class="contact-split">
 			<Hero
 				title="Let's talk"
-				tagline="Open to senior AI product roles (remote) and B2B consultancy, worldwide. The fastest way to reach me is email — I read every message."
+				display
+				tagline="Senior product roles, startups, and companies that need someone who can lead the product and still build. I also take the occasional collaboration or advisory brief. I read every message."
 				align="start"
 			/>
 
-			<div class="cta">
-				<CallToAction href="mailto:francisco.cucullu@gmail.com" data-fast-goal="click_on_contact_cta">
-					Email me
-					<Icon icon="paper-plane-tilt" size="1.1em" />
-				</CallToAction>
+			<div class="contact-panel">
+			<button type="button" class="open-form" id="open-form">Send a message</button>
+
+			<div id="form">
+				<form id="contact-form" class="contact-form">
+					<div class="hp" aria-hidden="true">
+						<label>
+							Company
+							<input name="hp_field" type="text" tabindex="-1" autocomplete="off" />
+						</label>
+					</div>
+					<label>
+						Full name
+						<input name="name" type="text" autocomplete="name" required maxlength="120" />
+					</label>
+					<label>
+						Email
+						<input name="email" type="email" autocomplete="email" required maxlength="200" />
+					</label>
+					<label>
+						Message
+						<textarea name="message" rows="6" required maxlength="5000"></textarea>
+					</label>
+					<button type="submit">Send</button>
+					<p class="form-status" role="status" aria-live="polite"></p>
+				</form>
 			</div>
+			</div>
+		</div>
 
 			<ul class="channels">
 				{
-					channels.map(({ label, value, href, icon, goal }) => (
+					channels.map(({ label, href, icon, goal }) => (
 						<li>
 							<a href={href} data-fast-goal={goal}>
-								<Icon icon={icon} color="var(--accent-regular)" size="1.6em" gradient />
-								<span class="channel-text">
-									<span class="channel-label">{label}</span>
-									<span class="channel-value">{value}</span>
-								</span>
+								<Icon icon={icon} color="currentColor" />
+								<span>{label}</span>
 							</a>
 						</li>
 					))
 				}
 			</ul>
-		</main>
-	</div>
+	</main>
+
+	<dialog id="contact-dialog" aria-labelledby="dialog-title">
+		<div class="dialog-bar">
+			<h2 id="dialog-title">Let's talk</h2>
+			<button type="button" id="close-form">Close</button>
+		</div>
+		<div id="dialog-host"></div>
+	</dialog>
 </BaseLayout>
 
+<script>
+	const form = document.getElementById('contact-form');
+	const host = document.getElementById('form');
+	const dialogHost = document.getElementById('dialog-host');
+	const dialog = document.getElementById('contact-dialog');
+	const openButton = document.getElementById('open-form');
+	const closeButton = document.getElementById('close-form');
+	const mobile = window.matchMedia('(max-width: 49.99em)');
+
+	const placeForm = () => {
+		if (!form || !host || !dialogHost || !openButton) return;
+		if (mobile.matches) {
+			dialogHost.append(form);
+			openButton.hidden = false;
+		} else {
+			host.append(form);
+			openButton.hidden = true;
+			dialog?.close();
+		}
+	};
+
+	const openDialog = () => {
+		if (!mobile.matches || !dialog) return;
+		placeForm();
+		dialog.showModal();
+	};
+
+	placeForm();
+	mobile.addEventListener('change', placeForm);
+	openButton?.addEventListener('click', openDialog);
+	closeButton?.addEventListener('click', () => dialog?.close());
+	dialog?.addEventListener('click', (event) => {
+		if (event.target === dialog) dialog.close();
+	});
+
+	if (mobile.matches && location.hash === '#form') openDialog();
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		const submit = form.querySelector('button[type="submit"]');
+		const status = form.querySelector('.form-status');
+		if (!submit || !status) return;
+
+		submit.disabled = true;
+		status.dataset.state = '';
+		status.textContent = 'Sending…';
+
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				body: new FormData(form),
+			});
+			const payload = await response.json().catch(() => ({}));
+			if (!response.ok) {
+				status.dataset.state = 'error';
+				status.textContent = payload.message || 'Something went wrong. Please try again.';
+				return;
+			}
+			form.reset();
+			status.dataset.state = 'ok';
+			status.textContent = 'Thanks. The message is on its way.';
+		} catch {
+			status.dataset.state = 'error';
+			status.textContent = 'Something went wrong. Please try again.';
+		} finally {
+			submit.disabled = false;
+		}
+	});
+</script>
+
 <style>
-	.cta {
-		display: flex;
-		justify-content: flex-start;
-	}
-
-	.channels {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1rem;
-		padding: 0;
-		margin: 0;
-		list-style: none;
-	}
-
-	.channels a {
-		display: flex;
+	.open-form,
+	.contact-form button,
+	#close-form {
+		display: inline-flex;
 		align-items: center;
+		justify-content: center;
+		width: fit-content;
+		padding: 0.7rem 1.25rem;
+		border: 0;
+		border-radius: var(--radius-ui);
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		font: inherit;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.open-form[hidden] {
+		display: none;
+	}
+
+	.contact-form {
+		display: grid;
 		gap: 1rem;
-		padding: 1.25rem 1.5rem;
-		border-radius: 0.75rem;
-		background-color: var(--gray-999_40);
-		border: 1px solid var(--gray-800);
-		box-shadow: var(--shadow-sm);
-		text-decoration: none;
-		color: var(--gray-200);
-		transition:
-			color var(--theme-transition),
-			background-color var(--theme-transition);
+		max-width: 36rem;
 	}
 
-	.channels a:hover,
-	.channels a:focus {
-		color: var(--gray-0);
-		background-color: var(--accent-subtle-overlay);
-	}
-
-	.channel-text {
-		display: flex;
-		flex-direction: column;
-		line-height: 1.3;
-	}
-
-	.channel-label {
-		font-family: var(--font-brand);
+	.contact-form label {
+		display: grid;
+		gap: 0.4rem;
+		font-size: var(--text-sm);
 		font-weight: 600;
 		color: var(--gray-0);
 	}
 
-	.channel-value {
+	.contact-form input,
+	.contact-form textarea {
+		width: 100%;
+		padding: 0.75rem 0.85rem;
+		border: 1px solid var(--gray-800);
+		border-radius: var(--radius-ui);
+		background: transparent;
+		color: var(--gray-0);
+		font: inherit;
+		font-weight: 400;
+	}
+
+	.contact-form textarea {
+		resize: vertical;
+	}
+
+	.contact-form button:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	.hp {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.form-status {
+		min-height: 1.2em;
+		margin: 0;
 		font-size: var(--text-sm);
-		color: var(--gray-300);
+		font-weight: 400;
+	}
+
+	.form-status[data-state='ok'] {
+		color: var(--gray-200);
+	}
+
+	.form-status[data-state='error'] {
+		color: #f87171;
+	}
+
+	.contact-page {
+		display: flex;
+		flex-direction: column;
+		gap: 2.5rem;
+	}
+
+	.channels {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: center;
+		gap: 1.1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.channels :global(svg) {
+		--size: 1.5rem;
+	}
+
+	.channels a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		color: var(--gray-0);
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.channels a:hover,
+	.channels a:focus {
+		color: var(--accent-dark);
+	}
+
+	#contact-dialog {
+		width: min(100% - 1.5rem, 32rem);
+		max-height: calc(100% - 2rem);
+		margin: auto;
+		padding: 1.25rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		background: var(--gray-999);
+		color: var(--gray-0);
+	}
+
+	#contact-dialog::backdrop {
+		background: rgba(19, 28, 74, 0.45);
+	}
+
+	.dialog-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.dialog-bar h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: var(--text-xl);
+	}
+
+	#close-form {
+		background: transparent;
+		color: var(--gray-0);
+		border: 1px solid var(--gray-800);
 	}
 
 	@media (min-width: 50em) {
+		.open-form {
+			display: none;
+		}
+
+		.contact-split {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(20rem, 32rem);
+			column-gap: 4rem;
+			align-items: start;
+		}
+
+		.contact-form {
+			max-width: none;
+		}
+
 		.channels {
-			grid-template-columns: 1fr 1fr;
-			gap: 1.5rem;
+			gap: 3.5rem;
+			padding-top: 1.5rem;
+		}
+
+		.channels a {
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+
+		.channels :global(svg) {
+			--size: 3.75rem;
 		}
 	}
 </style>

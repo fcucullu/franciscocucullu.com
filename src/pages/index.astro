@@ -6,8 +6,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CallToAction from '../components/CallToAction.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
-import Pill from '../components/Pill.astro';
-
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
 
@@ -19,275 +17,239 @@ const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 		description: post.data.description,
 		href: `/blog/${post.id}`,
 		tag: post.data.tag,
-		external: false,
 	}));
 
-const apps = (await getCollection('apps'))
-	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const cases = [
+	{
+		href: '/work/ai-quality-assurance',
+		kicker: 'Enterprise',
+		title: 'Leading an AI product at scale',
+		text: 'Four squads and 24 engineers. A multi-modal product in production for a global CX company: millions saved a year, 50% more efficient, live across 51 accounts. The technology is AI. The job is product leadership.',
+	},
+	{
+		href: '/work/hastee',
+		kicker: 'Product leadership',
+		title: '137% more engineering output',
+		text: 'Tech Product Manager at an HR fintech. Redesigned how 13 engineers across 3 teams delivered, and lined the roadmap up with what the business actually needed.',
+	},
+	{
+		href: '/work/timed-integrations',
+		kicker: 'Founder',
+		title: 'Built it, then sold it',
+		text: 'Factorial’s Italian clients were typing time-tracking in by hand. I built the integration and sold the product to Factorial.',
+	},
+];
+
+const principles = [
+	{
+		title: 'Clarity before process',
+		text: 'At Hastee the gain did not come from more ceremony. It came from a priority system the teams could execute, tied to C-level goals.',
+		href: '/work/hastee',
+		icon: 'strategy',
+	},
+	{
+		title: 'Evidence before investment',
+		text: 'WASP takes an AI idea to a working prototype in five days, so a company can stop or continue with proof. Same instinct as measuring a 28-second bounce before redesigning the screen.',
+		href: '/blog/wasp-framework',
+		icon: 'lightbulb',
+	},
+	{
+		title: 'A capability is not a product',
+		text: 'Enterprise QA moved because of the workflow around the model, not the model alone. Scout exists for the same reason: a generic agent does not do the job.',
+		href: '/blog/scout-focused-product-on-generic-agent',
+		icon: 'rocket-launch',
+	},
+];
+
+const ventures = [
+	{
+		title: 'Timed Integrations',
+		text: 'Saw the gap, built the product alone, sold it to Factorial.',
+	},
+	{
+		title: 'FlexRent',
+		text: 'Room exchange for digital nomads. From zero to a community, angel investment, and stages at South Summit, Warsaw, and DES Málaga.',
+	},
+	{
+		title: 'The Pepino Brand',
+		text: 'Co-founded a B2B SaaS for agencies. Rebuilt the product, closed 7 customers including Credo and BBK Foundation.',
+	},
+];
+
+const products = [
+	{
+		title: 'Clientísima',
+		problem: 'Service businesses were running clients across too many tools.',
+		user: 'Women who run salons, wellness studios, and clinics.',
+		href: 'https://clientisima.com',
+	},
+	{
+		title: 'Hamsela',
+		problem: 'Mentors were splitting sessions, tasks, and progress across apps.',
+		user: 'Coaches, mentors, and therapists.',
+		href: 'https://hamsela.com',
+	},
+	{
+		title: 'Scout',
+		problem: 'A generic AI agent can search jobs. It does not reliably do the job.',
+		user: 'People who want a daily shortlist matched to their CV.',
+		href: 'https://scout.franciscocucullu.com',
+	},
+];
 ---
 
 <BaseLayout>
 	<div class="stack gap-15 lg:gap-30">
 		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
+			<header class="hero" data-reveal>
 				<Hero
-					title="Hi! I'm Francisco"
+					title="Product <span class='mark'>Leader</span><br/>who builds."
+					display
 					align="start"
-					tagline={`AI Product Leader who codes. I take products from 0&#8594;1 to enterprise scale.<br><br>Across my career I have led engineering teams (up to 4 squads, 24 engineers), driven multi-million dollar savings with AI in production, raised engineering velocity 137% at a fintech, and founded and sold products. Earlier, a quant background and algorithmic trading. Dual MSc in Quantitative Finance.`}
-					>
-					<div class="roles">
-						<Pill><Icon icon="strategy" size="1.33em" /> AI Products</Pill>
-						<Pill><Icon icon="code" size="1.33em" /> 0&#8594;1 to Enterprise Scale</Pill>
-						<Pill><Icon icon="leadership" size="1.33em" /> People Leader</Pill>
-					</div>
-					<p class="availability">Open to senior AI product roles (remote) and B2B consultancy, worldwide.</p>
+					tagline="Leading software products from 0&#8594;1 to scale. Product, technology, and business. From startups to enterprise."
+				>
+					<p class="availability">Open to senior product roles. Startups, scaleups, and companies that need an entrepreneur inside.</p>
 					<div class="hero-cta">
-						<CallToAction href="mailto:francisco.cucullu@gmail.com" data-fast-goal="click_on_hero_cta">
+						<CallToAction href="/contact/#form" data-fast-goal="click_on_hero_cta">
 							Let's talk
-							<Icon icon="paper-plane-tilt" size="1.1em" />
 						</CallToAction>
 					</div>
 				</Hero>
 
-				<img
-					alt="Francisco Cucullu smiling in a black shirt with a 'love' inspiring inscription"
-					width="480"
-					height="620"
-					src="/assets/portrait.jpg"
-				/>
+				<div class="portrait" id="portrait">
+					<img
+						class="shot is-light"
+						alt="Francisco Cucullu"
+						width="1024"
+						height="1024"
+						src="/assets/francisco-light.webp"
+					/>
+					<img
+						class="shot is-dark"
+						alt=""
+						width="956"
+						height="1024"
+						src="/assets/francisco-dark.png"
+					/>
+				</div>
 			</header>
 
-			<Skills />
+			<div data-reveal>
+				<Skills />
+			</div>
 		</div>
 
 		<main class="wrapper stack gap-15 lg:gap-30">
-			<section class="section with-background">
-				<header data-fast-scroll="scroll_to_projects_head" class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Business cases across enterprise AI, fintech, and 0&#8594;1 startups.</p>
+			<section class="section" data-reveal>
+				<header class="section-header stack gap-2">
+					<p class="kicker">Selected impact</p>
+					<h3>Scope, not a stack.</h3>
 				</header>
-
-				<div data-fast-scroll="scroll_to_projects" class="ai-cards">
-					<a href="/work/quantitative-finance-for-blockchain" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">UNICEF-Backed Fintech</span>
-							<h4>Xcapit: UNICEF-Backed AI Fintech</h4>
-						</div>
-						<p>AI-driven wealth management built with a team of 5 PhDs, then pivoted to financial inclusion: $650K in microloans to 330 underbanked individuals. Funded by UNICEF and the Ethereum Foundation, recognized as a Digital Public Good.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">AI/ML</span>
-							<span class="ai-pill">Blockchain</span>
-							<span class="ai-pill">UNICEF</span>
-							<span class="ai-pill">Financial Inclusion</span>
-						</div>
-					</a>
-					<a href="/work/ai-quality-assurance" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">Enterprise AI</span>
-							<h4>AI Quality Assurance at Scale</h4>
-						</div>
-						<p>Led a flagship multi-modal AI suite (audio, speech-to-text, LLMs) for a global CX leader (170K+ employees), driving multi-million dollar savings and a 50% efficiency gain. Architected to scale to 9M+ daily interactions and 20K+ users, live today across 51 client accounts.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">Multi-modal AI</span>
-							<span class="ai-pill">LLMs</span>
-							<span class="ai-pill">Speech-to-Text</span>
-							<span class="ai-pill">NLP</span>
-							<span class="ai-pill">Python</span>
-						</div>
-					</a>
-					<a href="/work/timed-integrations" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">Acquisition</span>
-							<h4>Timed Integrations: Sold to Factorial</h4>
-						</div>
-						<p>Built a micro-SaaS integrating Italian ERPs with Factorial's HR platform, automating time-tracking data ingestion. Sold the product to Factorial.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">Micro-SaaS</span>
-							<span class="ai-pill">ERP Integration</span>
-							<span class="ai-pill">HR Tech</span>
-							<span class="ai-pill">Acquisition</span>
-						</div>
-					</a>
-					<a href="/work/hastee" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">Product Leadership</span>
-							<h4>Hastee: 137% Engineering Velocity</h4>
-						</div>
-						<p>Tech Product Manager at an HR fintech. Redesigned delivery processes to increase engineering output by 137%, leading 13 engineers across 3 teams and aligning the roadmap with C-level objectives.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">Product Management</span>
-							<span class="ai-pill">HR/Fintech</span>
-							<span class="ai-pill">Engineering Velocity</span>
-							<span class="ai-pill">Agile</span>
-						</div>
-					</a>
-					<a href="/work/ai-onboarding-agent" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">AI Agent</span>
-							<h4>AI Onboarding Agent</h4>
-						</div>
-						<p>AI-native HR onboarding platform. New hires complete onboarding through a Claude-powered conversational agent, while an HR dashboard tracks pipeline, progress, and at-risk hires in real time.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">Claude API</span>
-							<span class="ai-pill">Python</span>
-							<span class="ai-pill">FastAPI</span>
-							<span class="ai-pill">React</span>
-						</div>
-					</a>
-					<a href="/blog/wasp-framework" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">Framework</span>
-							<h4>WASP (Weekly AI Sprint Protocol)</h4>
-						</div>
-						<p>A hypothesis-driven methodology I developed to take an AI product from challenge to a validated MVP in five business days. Building and shipping AI products at startup speed inside a global enterprise.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">Rapid Prototyping</span>
-							<span class="ai-pill">Product Strategy</span>
-							<span class="ai-pill">LLMs</span>
-							<span class="ai-pill">MVP</span>
-						</div>
-					</a>
+				<div class="cards">
+					{cases.map((item) => (
+						<a href={item.href} class="card">
+							<span class="kicker">{item.kicker}</span>
+							<h4>{item.title}</h4>
+							<p>{item.text}</p>
+						</a>
+					))}
 				</div>
-
-				<div class="github-cta">
-					<a href="/portfolio#work" class="accent-link" data-fast-goal="click_on_view_all_projects">See full portfolio →</a>
-				</div>
+				<p class="more"><CallToAction href="/portfolio/#work" compact>All the work</CallToAction></p>
 			</section>
 
-			<section data-fast-scroll="scroll_to_recommendations" class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>What People Say</h3>
+			<section class="section" data-reveal>
+				<header class="section-header stack gap-2">
+					<p class="kicker">How I lead</p>
+					<h3>Decisions, tied to the work.</h3>
+				</header>
+				<ol class="principles">
+					{principles.map((item) => (
+						<li>
+							<a href={item.href}>
+								<span class="principle-mark"><Icon icon={item.icon} size="1.35rem" /></span>
+								<span>
+									<h4>{item.title}</h4>
+									<p>{item.text}</p>
+								</span>
+							</a>
+						</li>
+					))}
+				</ol>
+			</section>
+
+			<section class="section" data-reveal>
+				<header class="section-header stack gap-2">
+					<p class="kicker">Entrepreneurship</p>
+					<h3>I think like a founder because I've been one.</h3>
+					<p>That changes how I lead inside a company. These are not side projects.</p>
+				</header>
+				<ul class="ventures">
+					{ventures.map((item) => (
+						<li>
+							<h4>{item.title}</h4>
+							<p>{item.text}</p>
+						</li>
+					))}
+				</ul>
+				<div class="products">
+					{products.map((item) => (
+						<a href={item.href} class="product" target="_blank" rel="noopener">
+							<h4>{item.title}</h4>
+							<p>{item.problem}</p>
+							<p class="user">{item.user}</p>
+						</a>
+					))}
+				</div>
+				<p class="more"><CallToAction href="/portfolio/#apps" compact>More products</CallToAction></p>
+			</section>
+
+			<section class="section" data-reveal>
+				<header class="section-header stack gap-2">
+					<p class="kicker">Complex technology</p>
+					<h3>AI is part of the record. Not the job title.</h3>
 					<p>
-						20+ recommendations on <a data-fast-goal="click_on_recommendations" href="https://www.linkedin.com/in/franciscocucullu/details/recommendations" class="inline-link">LinkedIn</a>.
+						I lead enterprise AI in production, and earlier I built custom ML with a team of five PhDs at a UNICEF-backed fintech. Useful proof that I can take on hard technology. The category is still product leadership.
 					</p>
 				</header>
-
-				<div class="testimonials">
-					<div class="testimonial">
-						<p class="quote">"Francisco approaches every challenge with proactivity and a constant drive to grow. His sharp critical thinking helps uncover smart, well-grounded solutions. He doesn't just adjust to change, he uses it as a tool for transformation."</p>
-						<p class="author"><strong>Leonardo Fister</strong> · Sr. Product & BI Manager, Supercanal</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"He quickly assumed the responsibilities of the Product Team and swiftly understood our needs. He is highly professional and possesses extensive knowledge of processes, product management, and priority setting."</p>
-						<p class="author"><strong>Martin Bettaglio</strong> · BI Consultant, Hastee</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Francisco possesses a remarkable ability to streamline processes seamlessly. His commitment to client satisfaction is exceptional. He brings out the best in the team, ensuring optimal outcomes while maintaining a strong client-centric approach."</p>
-						<p class="author"><strong>Muhammad Shaheen</strong> · Senior QA Consultant, Aster DM Healthcare</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Without a doubt, I would highlight his proactivity and resilience. He knows how to maximize everyone's capabilities. As a person, he is also a 10, honest and transparent."</p>
-						<p class="author"><strong>Daniel Rodrigo</strong> · Senior Engineer, Nordex Group</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Ha demostrado ser una persona muy proactiva, con gran iniciativa, mucha tenacidad y con gran adaptabilidad a los cambios. Tiene muy buenas habilidades de comunicacion y liderazgo."</p>
-						<p class="author"><strong>Jackson Echeverri</strong> · CTO & Cofounder, Lesiga</p>
-					</div>
-					<div class="testimonial">
-						<p class="quote">"Francisco es lo que se denomina un intraemprendor. Fue haciendose lugar como desarrollador utilizando Python para realizar algoritmos de trading, creando un nuevo area dentro de la empresa."</p>
-						<p class="author"><strong>Tobias Girado</strong> · Software Engineer, Chevron</p>
-					</div>
+				<div class="actions">
+					<CallToAction href="/work/ai-quality-assurance" compact>The enterprise case</CallToAction>
+					<CallToAction href="/work/quantitative-finance-for-blockchain" compact>Xcapit</CallToAction>
 				</div>
 			</section>
 
-			<section class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Ideas &amp; Media</h3>
-					<p>Writing on AI product strategy and engineering judgment, plus selected talks and press.</p>
+			<section class="section" data-reveal>
+				<header class="section-header stack gap-2">
+					<p class="kicker">Thinking</p>
+					<h3>Notes from the work.</h3>
+					<p>Product decisions, teams, and building. It grows when there is something to say.</p>
 				</header>
-
-				<div class="ai-cards">
+				<div class="cards">
 					{latestEssays.map((essay) => (
-						<a href={essay.href} target={essay.external ? "_blank" : undefined} rel={essay.external ? "noopener" : undefined} class="ai-card repo-card">
-							<div class="ai-card-header">
-								<span class="ai-tag">{essay.tag}</span>
-							</div>
+						<a href={essay.href} class="card">
+							<span class="kicker">{essay.tag}</span>
 							<h4>{essay.title}</h4>
 							<p>{essay.description}</p>
 						</a>
 					))}
 				</div>
-
-				<div class="media-strip">
-					<span class="media-label">On stage &amp; in the press</span>
-					<div class="media-chips">
-						<a class="media-chip" href="/blog/speaking-south-summit">South Summit</a>
-						<a class="media-chip" href="/blog/speaking-coach-summit">Coach Summit</a>
-						<a class="media-chip" href="/blog/speaking-des-malaga">DES M&aacute;laga</a>
-						<a class="media-chip" href="/blog/speaking-tv-interview">TV Interview</a>
-					</div>
-				</div>
-
-				<div class="github-cta">
-					<a href="/blog" class="accent-link">See all articles &amp; media →</a>
-				</div>
+				<p class="more"><CallToAction href="/blog/" compact>All notes</CallToAction></p>
 			</section>
 
-			<section class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Builder</h3>
-					<p>I build and ship products end to end — native apps, PWAs, and SaaS — and write the code, open-sourcing along the way.</p>
+			<section class="section" data-reveal>
+				<header class="section-header stack gap-2">
+					<p class="kicker">Path</p>
+					<h3>Why this profile makes sense.</h3>
 				</header>
-
-				<div class="app-carousel-wrapper">
-					<div class="app-carousel">
-						{[...apps, ...apps].map((app, i) => (
-							<a href={app.data.playStoreUrl || app.data.url} target="_blank" rel="noopener" class="app-carousel-item" key={`${app.id}-${i}`}>
-								<img src={app.data.img} alt={app.data.title} />
-								<span>{app.data.title}</span>
-							</a>
-						))}
-					</div>
-				</div>
-
-				<div class="ai-cards">
-					<a href="https://github.com/fcucullu/api-contract-hub" target="_blank" rel="noopener" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">Full-Stack</span>
-							<h4>API Contract Hub</h4>
-						</div>
-						<p>Collaborative API contract platform that auto-generates test cases from schemas: structural, type-mismatch, and format validation tests. Prevents integration bugs before they ship.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">TypeScript</span>
-							<span class="ai-pill">Next.js</span>
-							<span class="ai-pill">Prisma</span>
-							<span class="ai-pill">Test Generation</span>
-						</div>
-					</a>
-					<a href="https://github.com/fcucullu/orbio-onboarding" target="_blank" rel="noopener" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">AI Agent</span>
-							<h4>AI Onboarding Agent</h4>
-						</div>
-						<p>AI-native HR onboarding platform. New hires complete onboarding via a Claude-powered conversational agent. HR dashboard tracks pipeline, progress, and at-risk hires in real-time.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">Claude API</span>
-							<span class="ai-pill">Python</span>
-							<span class="ai-pill">FastAPI</span>
-							<span class="ai-pill">React</span>
-						</div>
-					</a>
-					<a href="https://github.com/fcucullu/trading-fx" target="_blank" rel="noopener" class="ai-card repo-card">
-						<div class="ai-card-header">
-							<span class="ai-tag">Algorithmic</span>
-							<h4>FX Arbitrage Engine</h4>
-						</div>
-						<p>Automated trading system that exploited FX pricing inefficiencies in the Argentine market. Multi-threaded execution, real-time price monitoring, WebSocket feeds. Led to trading desk leadership.</p>
-						<div class="ai-tags">
-							<span class="ai-pill">Python</span>
-							<span class="ai-pill">WebSockets</span>
-							<span class="ai-pill">Multi-threading</span>
-							<span class="ai-pill">Real-time</span>
-						</div>
-					</a>
-				</div>
-
-				<div class="github-cta builder-links">
-					<a href="/portfolio#apps" class="accent-link">See all apps →</a>
-					<a href="https://github.com/fcucullu" target="_blank" rel="noopener" class="accent-link">View all 30+ repos on GitHub →</a>
-				</div>
+				<ol class="path">
+					<li>Economics and quantitative finance.</li>
+					<li>Deep into software, on a trading desk.</li>
+					<li>From building the tools to leading the team.</li>
+					<li>Founded products and companies.</li>
+					<li>Led larger teams and products, including enterprise AI.</li>
+					<li>Product, software, business, and a founder’s way of deciding.</li>
+				</ol>
+				<p class="more"><CallToAction href="/about/" compact>Read the story</CallToAction></p>
 			</section>
-
 		</main>
 
 		<ContactCTA />
@@ -295,7 +257,86 @@ const apps = (await getCollection('apps'))
 </BaseLayout>
 
 <script>
-	window?.datafast?.("surfed-to-apps");
+	const portrait = document.getElementById('portrait');
+	const root = document.documentElement;
+	let previousDark = root.classList.contains('theme-dark');
+	let audio: AudioContext | null = null;
+	let live: { stop: () => void } | null = null;
+
+	function flash() {
+		let el = document.querySelector('.mode-flash');
+		if (!el) {
+			el = document.createElement('div');
+			el.className = 'mode-flash';
+			document.body.appendChild(el);
+		}
+		el.classList.remove('is-on');
+		void (el as HTMLElement).offsetWidth;
+		el.classList.add('is-on');
+	}
+
+	function playTone() {
+		const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+		if (!AC) return;
+		audio = audio ?? new AC();
+		if (audio.state === 'suspended') audio.resume();
+		live?.stop();
+		const ctx = audio;
+		const t = ctx.currentTime;
+		const master = ctx.createGain();
+		master.gain.setValueAtTime(0.0001, t);
+		master.gain.exponentialRampToValueAtTime(0.045, t + 0.05);
+		master.gain.exponentialRampToValueAtTime(0.0001, t + 0.55);
+		master.connect(ctx.destination);
+
+		const oscs = [196, 293.66].map((freq, i) => {
+			const osc = ctx.createOscillator();
+			osc.type = 'sine';
+			osc.frequency.setValueAtTime(freq, t);
+			const gain = ctx.createGain();
+			gain.gain.setValueAtTime(i === 0 ? 0.8 : 0.28, t);
+			osc.connect(gain).connect(master);
+			osc.start(t);
+			osc.stop(t + 0.58);
+			return osc;
+		});
+
+		live = {
+			stop() {
+				const now = ctx.currentTime;
+				const level = Math.max(master.gain.value, 0.001);
+				master.gain.cancelScheduledValues(now);
+				master.gain.setValueAtTime(level, now);
+				master.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+				oscs.forEach((osc) => {
+					try {
+						osc.stop(now + 0.1);
+					} catch {
+						/* already stopped */
+					}
+				});
+			},
+		};
+	}
+
+	window.addEventListener('pointerdown', () => {
+		const AC = window.AudioContext;
+		if (!AC) return;
+		audio = audio ?? new AC();
+		if (audio.state === 'suspended') audio.resume();
+	});
+
+	portrait?.addEventListener('pointerenter', () => {
+		previousDark = root.classList.contains('theme-dark');
+		root.classList.toggle('theme-dark', !previousDark);
+		flash();
+		playTone();
+	});
+
+	portrait?.addEventListener('pointerleave', () => {
+		root.classList.toggle('theme-dark', previousDark);
+		live?.stop();
+	});
 </script>
 
 <style>
@@ -303,411 +344,310 @@ const apps = (await getCollection('apps'))
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 2rem;
+		justify-content: flex-end;
+		gap: 1.25rem;
+		border-bottom: 1px solid color-mix(in srgb, var(--gray-0) 12%, transparent);
 	}
 
-	.roles {
-		display: none;
+	.hero :global(.title) {
+		max-width: 16ch;
+	}
+
+	.hero :global(.mark) {
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		padding: 0 0.18em;
+		border-radius: 0.12em;
 	}
 
 	.availability {
 		font-size: var(--text-sm);
-		color: var(--accent-regular);
-		font-weight: 600;
-		margin-top: 0.25rem;
-		max-width: none;
+		color: var(--gray-300);
+		max-width: 38ch;
 	}
 
 	.hero-cta {
-		margin-top: 1.25rem;
+		margin-top: 0.5rem;
 	}
 
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: cover;
-		object-position: top;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
+	.portrait {
+		position: relative;
+		align-self: center;
+		width: min(78%, 22rem);
+		margin-top: 0.5rem;
+		line-height: 0;
+		cursor: pointer;
+		background: none;
+	}
+
+	.portrait .shot {
+		display: block;
+		width: 100%;
+		height: auto;
+		background: none;
+	}
+
+	.portrait .is-dark {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: bottom center;
+		opacity: 0;
+	}
+
+	:global(html.theme-dark) .portrait .is-light {
+		opacity: 0;
+	}
+
+	:global(html.theme-dark) .portrait .is-dark {
+		opacity: 1;
+	}
+
+	:global(.mode-flash) {
+		position: fixed;
+		inset: 0;
+		background: #fff;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 80;
+	}
+
+	:global(.mode-flash.is-on) {
+		animation: mode-flash 260ms ease-out;
+	}
+
+	@keyframes mode-flash {
+		0% {
+			opacity: 0.28;
+		}
+		100% {
+			opacity: 0;
+		}
 	}
 
 	@media (min-width: 50em) {
 		.hero {
 			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
+			grid-template-columns: 1.15fr 0.85fr;
+			align-items: end;
+			gap: 2rem 3rem;
 		}
 
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
+		.portrait {
+			align-self: end;
+			justify-self: end;
+			width: min(100%, 28rem);
+			margin-top: 0;
 		}
 
-		.hero img {
-			aspect-ratio: 3 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
+		.hero :global(.title),
+		.hero :global(.tagline),
+		.availability {
+			margin-inline: 0;
 		}
 	}
-
-	/* ====================================================== */
 
 	.section {
 		display: grid;
 		gap: 1.5rem;
 	}
 
-	.with-background {
-		position: relative;
-	}
-
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
-
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background:
-			url('/assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
-
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
-
 	.section-header {
-		justify-self: center;
-		text-align: center;
-		max-width: 50ch;
-		font-size: var(--text-md);
-		color: var(--gray-300);
+		max-width: 40rem;
 	}
 
 	.section-header h3 {
-		font-size: var(--text-2xl);
+		font-size: clamp(1.8rem, 3vw, 2.6rem);
 	}
 
-	@media (min-width: 50em) {
-		.section {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-			gap: 2.5rem;
-		}
-
-		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-		}
-
-		.section-header {
-			grid-area: header;
-			font-size: var(--text-lg);
-		}
-
-		.section-header h3 {
-			font-size: var(--text-4xl);
-		}
-
-		.with-cta .section-header {
-			justify-self: flex-start;
-			text-align: left;
-		}
-
-		.gallery {
-			grid-area: gallery;
-		}
-
-		.cta {
-			grid-area: cta;
-		}
+	.section-header p:not(.kicker) {
+		color: var(--gray-300);
+		font-size: var(--text-md);
 	}
 
-	/* ====================================================== */
-
-	.ai-cards {
-		display: grid;
-		gap: 1.25rem;
-		grid-column: 1 / -1;
-	}
-
-	.media-strip {
-		grid-column: 1 / -1;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		gap: 0.625rem 0.85rem;
-		margin-top: -0.75rem;
-		margin-bottom: -0.75rem;
-	}
-
-	.media-label {
-		font-size: var(--text-sm);
-		color: var(--gray-400);
+	.kicker {
+		font-family: var(--font-body);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		letter-spacing: 0.06em;
-		white-space: nowrap;
+		color: var(--gray-400);
 	}
 
-	.media-chips {
+	.cards,
+	.products {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.card,
+	.product {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 0.625rem;
-	}
-
-	.media-chip {
-		font-size: var(--text-sm);
-		color: var(--gray-200);
-		text-decoration: none;
-		padding: 0.4rem 0.95rem;
-		border: 1px solid var(--gray-800);
-		border-radius: 999rem;
-		background: var(--gray-999_40);
-		transition:
-			color var(--theme-transition),
-			background-color var(--theme-transition);
-	}
-
-	.media-chip:hover,
-	.media-chip:focus {
-		color: var(--gray-0);
-		background-color: var(--accent-subtle-overlay);
-	}
-
-	.ai-card {
-		background: var(--gradient-subtle);
+		flex-direction: column;
+		gap: 0.65rem;
+		padding: 1.35rem 1.4rem;
 		border: 1px solid var(--gray-800);
 		border-radius: 1rem;
-		padding: 1.5rem;
-		transition: box-shadow 0.2s, transform 0.2s;
+		background: transparent;
+		text-decoration: none;
+		color: inherit;
 	}
 
-	.ai-card:hover {
-		box-shadow: var(--shadow-md);
-		transform: translateY(-2px);
+	a.card:hover,
+	a.product:hover {
+		border-color: var(--accent-regular);
 	}
 
-	.ai-card-header {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		margin-bottom: 0.75rem;
+	.section[data-reveal] .card,
+	.section[data-reveal] .product,
+	.section[data-reveal] .path li {
+		opacity: 0;
+		transform: translateY(8px);
+		transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.2s ease;
 	}
 
-	.ai-card h4 {
+	.section.is-in .card,
+	.section.is-in .product,
+	.section.is-in .path li {
+		opacity: 1;
+		transform: none;
+	}
+
+	.section.is-in .card:nth-child(2),
+	.section.is-in .product:nth-child(2),
+	.section.is-in .path li:nth-child(2) {
+		transition-delay: 70ms;
+	}
+
+	.section.is-in .card:nth-child(3),
+	.section.is-in .product:nth-child(3),
+	.section.is-in .path li:nth-child(3) {
+		transition-delay: 140ms;
+	}
+
+	.section.is-in .path li:nth-child(4) {
+		transition-delay: 210ms;
+	}
+
+	.section.is-in .path li:nth-child(5) {
+		transition-delay: 280ms;
+	}
+
+	.section.is-in .path li:nth-child(6) {
+		transition-delay: 350ms;
+	}
+
+	.card h4,
+	.product h4 {
 		font-size: var(--text-lg);
-		color: var(--gray-0);
 		margin: 0;
 	}
 
-	.ai-card p {
+	.card p,
+	.product p {
+		margin: 0;
 		color: var(--gray-300);
 		font-size: var(--text-sm);
 		line-height: 1.6;
+	}
+
+	.user {
+		color: var(--gray-0);
+		font-weight: 600;
+	}
+
+	.more {
 		margin: 0;
 	}
 
-	.ai-tag {
-		font-size: 0.7rem;
-		padding: 0.2rem 0.6rem;
-		border-radius: 999rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		background: var(--accent-regular);
-		color: var(--accent-text-over);
-		white-space: nowrap;
-	}
-
-	.ai-tags {
+	.actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.4rem;
-		margin-top: 0.75rem;
+		gap: 0.75rem;
 	}
 
-	.ai-pill {
-		font-size: 0.65rem;
-		padding: 0.2rem 0.55rem;
-		border-radius: 999rem;
-		font-weight: 600;
-		letter-spacing: 0.02em;
-		background: var(--accent-regular);
-		color: var(--accent-text-over);
-		white-space: nowrap;
-	}
-
-	.app-carousel-wrapper {
-		grid-column: 1 / -1;
-		overflow: hidden;
-	}
-
-	.app-carousel {
-		display: flex;
-		gap: 1.5rem;
-		animation: scroll-carousel 20s linear infinite;
-		width: max-content;
-	}
-
-	.app-carousel:hover {
-		animation-play-state: paused;
-	}
-
-	@keyframes scroll-carousel {
-		0% { transform: translateX(0); }
-		100% { transform: translateX(-50%); }
-	}
-
-	.app-carousel-item {
-		scroll-snap-align: start;
-		flex-shrink: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-		text-decoration: none;
-		transition: transform 0.2s;
-	}
-
-	.app-carousel-item:hover {
-		transform: translateY(-3px);
-	}
-
-	.app-carousel-item img {
-		width: 80px;
-		height: 80px;
-		border-radius: 1.25rem;
-		border: 1px solid var(--gray-800);
-		object-fit: cover;
-	}
-
-	.app-carousel-item span {
-		font-size: 0.75rem;
-		color: var(--gray-300);
-		text-align: center;
-		max-width: 88px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	.repo-card {
-		text-decoration: none;
-		color: inherit;
-		cursor: pointer;
-	}
-
-	.github-cta {
-		grid-column: 1 / -1;
-		text-align: center;
-		margin-top: 0.5rem;
-	}
-
-	.builder-links {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		gap: 0.75rem 1.75rem;
-	}
-
-	.accent-link,
-	.inline-link {
-		color: #a855f7;
-		font-weight: 600;
-		text-decoration: underline;
-		text-underline-offset: 0.2em;
-		transition: opacity 0.2s;
-	}
-
-	.accent-link:hover,
-	.inline-link:hover {
-		opacity: 0.8;
-	}
-
-	@media (min-width: 50em) {
-		.ai-cards {
-			grid-template-columns: repeat(3, 1fr);
-			gap: 1.5rem;
-		}
-
-		.ai-card h4 {
-			font-size: var(--text-lg);
-		}
-	}
-
-	/* ====================================================== */
-
-	.testimonials {
+	.principles,
+	.ventures {
+		margin: 0;
+		padding: 0;
+		list-style: none;
 		display: grid;
 		gap: 1.25rem;
-		grid-column: 1 / -1;
 	}
 
-	.testimonial {
-		background: var(--gradient-subtle);
-		border: 1px solid var(--gray-800);
-		border-radius: 1rem;
-		padding: 1.5rem;
+	.principles a {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.9rem;
+		align-items: start;
+		text-decoration: none;
+		color: inherit;
 	}
 
-	.quote {
-		color: var(--gray-200);
-		font-size: var(--text-sm);
-		line-height: 1.7;
-		font-style: italic;
-		margin: 0 0 0.75rem 0;
+	.principle-mark {
+		display: grid;
+		place-items: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		border-radius: var(--radius-ui);
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
 	}
 
-	.author {
-		color: var(--gray-400);
-		font-size: 0.8rem;
+	.principles h4,
+	.ventures h4 {
+		margin: 0 0 0.35rem;
+		font-size: var(--text-lg);
+	}
+
+	.principles p,
+	.ventures p {
 		margin: 0;
-	}
-
-	.author strong {
-		color: var(--gray-200);
-		font-size: 0.8rem;
-	}
-
-	@media (min-width: 50em) {
-		.testimonials {
-			grid-template-columns: repeat(3, 1fr);
-			gap: 1.5rem;
-		}
-	}
-
-	/* ====================================================== */
-
-	.mention-card {
-		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
 		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
+		font-size: var(--text-sm);
+		line-height: 1.6;
+	}
+
+	.ventures li {
+		padding-top: 0.85rem;
+		border-top: 2px solid var(--accent-regular);
+	}
+
+	.path {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.75rem;
+		counter-reset: step;
+	}
+
+	.path li {
+		counter-increment: step;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.85rem;
+		align-items: baseline;
+		color: var(--gray-200);
+	}
+
+	.path li::before {
+		content: counter(step, decimal-leading-zero);
+		font-family: var(--font-display);
+		color: var(--gray-0);
+		font-size: var(--text-lg);
 	}
 
 	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
+		.cards,
+		.products,
+		.principles,
+		.ventures {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.25rem;
 		}
 	}
 </style>

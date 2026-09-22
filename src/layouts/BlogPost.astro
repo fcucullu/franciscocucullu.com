@@ -69,7 +69,7 @@ const jsonLd = {
 			<span class="tag">{tag}</span>
 			<h1>{title}</h1>
 			{subtitle && <p class="subtitle">{subtitle}</p>}
-			<p class="meta">By Francisco Cucullu &middot; AI Product Leader</p>
+			<p class="meta">By Francisco Cucullu &middot; Senior Product Leader</p>
 		</header>
 
 		<div class="content">
@@ -112,7 +112,7 @@ const jsonLd = {
 
 		<footer class="article-footer">
 			<p>
-				Francisco Cucullu is an AI Product Leader building AI products at scale. Follow along on{' '}
+				Francisco Cucullu is a senior product leader with a founder mindset. Follow along on{' '}
 				<a href="https://www.linkedin.com/in/franciscocucullu/">LinkedIn</a> and{' '}
 				<a href="https://x.com/fcucullu">X</a>, or <a href="/">learn more</a>.
 			</p>
@@ -128,7 +128,7 @@ const jsonLd = {
 	}
 
 	.back {
-		color: #a855f7;
+		color: var(--link-color);
 		text-decoration: none;
 		font-size: var(--text-sm);
 		display: inline-block;
@@ -142,7 +142,7 @@ const jsonLd = {
 	.tag {
 		font-size: 0.75rem;
 		padding: 0.25rem 0.75rem;
-		border-radius: 999rem;
+		border-radius: var(--radius-ui);
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -153,6 +153,9 @@ const jsonLd = {
 	}
 
 	h1 {
+		font-family: var(--font-body);
+		font-weight: 600;
+		letter-spacing: 0;
 		font-size: var(--text-3xl);
 		color: var(--gray-0);
 		margin-bottom: 0.75rem;
@@ -240,7 +243,7 @@ const jsonLd = {
 	}
 
 	.content :global(a) {
-		color: #a855f7;
+		color: var(--link-color);
 	}
 
 	.content :global(.metrics-grid) {
@@ -262,7 +265,7 @@ const jsonLd = {
 		display: block;
 		font-size: 2rem;
 		font-weight: 800;
-		color: #a855f7;
+		color: var(--link-color);
 		line-height: 1;
 		margin-bottom: 0.5rem;
 	}
@@ -348,23 +351,22 @@ const jsonLd = {
 		flex-direction: column;
 		gap: 0.5rem;
 		padding: 1.25rem;
-		background: var(--gradient-subtle);
+		background: transparent;
 		border: 1px solid var(--gray-800);
 		border-radius: 1rem;
 		text-decoration: none;
 		color: var(--gray-200);
-		transition: box-shadow 0.2s, transform 0.2s;
+		transition: border-color 0.2s;
 	}
 
 	.related-card:hover {
-		box-shadow: var(--shadow-md);
-		transform: translateY(-2px);
+		border-color: var(--accent-regular);
 	}
 
 	.related-tag {
 		font-size: 0.7rem;
 		padding: 0.2rem 0.6rem;
-		border-radius: 999rem;
+		border-radius: var(--radius-ui);
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -396,7 +398,7 @@ const jsonLd = {
 	}
 
 	.article-footer a {
-		color: #a855f7;
+		color: var(--link-color);
 	}
 
 	@media (min-width: 50em) {

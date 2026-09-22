@@ -2,23 +2,27 @@
 ---
 
 <section data-fast-scroll="scroll_to_skills" class="box skills">
-  <div class="stack gap-2 lg:gap-4">
-    <div class="metric">$M+</div>
-    <h2>Annual Savings</h2>
-    <p>Multi-million dollar annual savings from AI products in production at a global CX leader (170K+ employees).</p>
-  </div>
-  <div class="stack gap-2 lg:gap-4">
-    <div class="metric">137%</div>
-    <h2>Engineering Velocity</h2>
-    <p>Increased engineering output by 137% at an HR fintech by redesigning the delivery process, leading 13 engineers across 3 teams.</p>
-  </div>
-  <div class="stack gap-2 lg:gap-4">
-    <div class="metric">0&#8594;1</div>
-    <h2>Product Leadership</h2>
-    <p>Lead AI products from zero to one to enterprise scale, across 4 squads and 24 engineers, from strategy through production.</p>
-  </div>
+	<div class="stack gap-2">
+		<div class="metric">+137%</div>
+		<h2>Engineering output</h2>
+		<p>Redesigned delivery at an HR fintech. 13 engineers, 3 teams, roadmap aligned with the business.</p>
+	</div>
+	<div class="stack gap-2">
+		<div class="metric">24</div>
+		<h2>Engineers led</h2>
+		<p>Four squads on an enterprise product, from strategy through production.</p>
+	</div>
+	<div class="stack gap-2">
+		<div class="metric">Sold</div>
+		<h2>To Factorial</h2>
+		<p>Found a gap in their Italian market, built the integration, and sold them the product.</p>
+	</div>
+	<div class="stack gap-2">
+		<div class="metric">20%</div>
+		<h2>Market share</h2>
+		<p>FX share captured through automation at Argentina's largest retail broker.</p>
+	</div>
 </section>
-
 
 <style>
 	.box {
@@ -26,31 +30,35 @@
 		border-radius: 0.75rem;
 		padding: 1.5rem;
 		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
 	}
 
 	.skills {
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem 1.5rem;
 	}
 
 	.skills h2 {
-		font-size: var(--text-lg);
+		font-family: var(--font-body);
+		font-size: var(--text-md);
+		font-weight: 600;
+		letter-spacing: 0;
 	}
 
 	.skills p {
-		color: var(--gray-400);
+		color: var(--gray-300);
+		font-size: var(--text-sm);
 	}
 
 	.metric {
-		font-size: 2.5rem;
-		font-weight: 800;
-		background: var(--gradient-accent-orange);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
+		font-family: var(--font-display);
+		font-size: 2.25rem;
+		font-weight: 400;
+		color: var(--gray-0);
 		line-height: 1;
+		letter-spacing: -0.03em;
+		box-shadow: inset 0 -0.35rem 0 var(--accent-regular);
+		width: fit-content;
 	}
 
 	@media (min-width: 50em) {
@@ -60,17 +68,12 @@
 		}
 
 		.skills {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 5rem;
-		}
-
-		.skills h2 {
-			font-size: var(--text-2xl);
+			grid-template-columns: repeat(4, 1fr);
+			gap: 2rem;
 		}
 
 		.metric {
-			font-size: 3rem;
+			font-size: 2.75rem;
 		}
 	}
 </style>

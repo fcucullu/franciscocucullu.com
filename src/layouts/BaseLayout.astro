@@ -53,7 +53,7 @@ const { title, description, canonical, robots, image, ogType, publishedTime, art
 				<script type="application/ld+json" set:html={JSON.stringify({
 				"@context": "https://schema.org",
 				"@graph": [
-					{ "@type": "Person", "name": "Francisco Cucullu", "url": "https://franciscocucullu.com/", "jobTitle": "AI Product Leader", "description": "AI Product Leader who codes. Takes products from 0 to 1 to enterprise scale.", "sameAs": ["https://linkedin.com/in/franciscocucullu","https://github.com/fcucullu","https://x.com/fcucullu"], "knowsAbout": ["Artificial Intelligence","AI Product Management","Conversational AI","Machine Learning","Quantitative Finance","Product Leadership","Enterprise AI"] },
+					{ "@type": "Person", "name": "Francisco Cucullu", "url": "https://franciscocucullu.com/", "jobTitle": "Senior Product Leader", "description": "Senior product leader with a founder mindset. Leads software products from 0 to 1 to scale.", "sameAs": ["https://linkedin.com/in/franciscocucullu","https://github.com/fcucullu","https://x.com/fcucullu"], "knowsAbout": ["Product Leadership","Software Products","Entrepreneurship","Product Strategy","Engineering Leadership","Artificial Intelligence","Quantitative Finance"] },
 					{ "@type": "WebSite", "name": "Francisco Cucullu", "url": "https://franciscocucullu.com/" }
 				]
 			})} />
@@ -128,21 +128,9 @@ const { title, description, canonical, robots, image, ogType, publishedTime, art
 			}
 
 			.backgrounds {
-				min-height: 100%;
+				min-height: 100dvh;
 				isolation: isolate;
-				background:
-					/*noise*/
-					url('/assets/backgrounds/noise.png') top center/220px repeat,
-					/*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
-					/*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
-					/*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
-					/*base*/ var(--gray-999);
-				background-blend-mode: /*noise*/
-					overlay,
-					/*footer*/ var(--bg-blend-mode),
-					/*header1*/ var(--bg-svg-blend-mode),
-					/*header2*/ normal,
-					/*base*/ normal;
+				background: var(--gray-999);
 			}
 			@media (forced-colors: active) {
 				/* Deactivate custom backgrounds for high contrast users. */
@@ -153,31 +141,97 @@ const { title, description, canonical, robots, image, ogType, publishedTime, art
 				}
 			}
 		</style>
-		<a href="mailto:francisco.cucullu@gmail.com" class="floating-cta" aria-label="Get in touch">
+		<a href="/contact/" class="floating-cta floating-mail" aria-label="Contact">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
 		</a>
+		<a href="/contact/#form" class="floating-talk">Let's talk</a>
 		<style>
-			.floating-cta {
+			.floating-mail,
+			.floating-talk {
 				position: fixed;
+				z-index: 100;
+				background: var(--accent-regular);
+				color: #131c4a;
+				text-decoration: none;
+				border-radius: var(--radius-ui);
+			}
+			.floating-mail {
+				display: none;
 				bottom: 2rem;
 				right: 2rem;
 				width: 56px;
 				height: 56px;
-				border-radius: 50%;
-				background: var(--gradient-accent-orange);
-				color: #fff;
-				display: flex;
 				align-items: center;
 				justify-content: center;
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-				z-index: 100;
-				transition: transform 0.2s, box-shadow 0.2s;
-				text-decoration: none;
 			}
-			.floating-cta:hover {
-				transform: scale(1.1);
-				box-shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
+			.floating-talk {
+				display: none;
+				bottom: 1.25rem;
+				left: 50%;
+				transform: translateX(-50%);
+				padding: 0.7rem 1.25rem;
+				font-weight: 600;
+				font-size: var(--text-sm);
+				white-space: nowrap;
+			}
+			.floating-talk.is-on {
+				display: inline-flex;
+			}
+			@media (min-width: 50em) {
+				.floating-mail {
+					display: flex;
+				}
+				.floating-talk,
+				.floating-talk.is-on {
+					display: none;
+				}
 			}
 		</style>
+		<script>
+			const talk = document.querySelector('.floating-talk');
+			const hero = document.querySelector('.hero');
+			const mobile = window.matchMedia('(max-width: 49.99em)');
+			let heroVisible = Boolean(hero);
+			const setTalk = () => {
+				if (!talk) return;
+				talk.classList.toggle('is-on', mobile.matches && !heroVisible);
+			};
+			if (talk) {
+				if (hero) {
+					const heroWatch = new IntersectionObserver(([entry]) => {
+						heroVisible = entry.isIntersecting;
+						setTalk();
+					}, { threshold: 0 });
+					heroWatch.observe(hero);
+				}
+				mobile.addEventListener('change', setTalk);
+				setTalk();
+				talk.addEventListener('click', (event) => {
+					const dialog = document.getElementById('contact-dialog');
+					if (!dialog || !mobile.matches) return;
+					event.preventDefault();
+					dialog.showModal();
+				});
+			}
+		</script>
+		<script>
+			const nodes = document.querySelectorAll('[data-reveal]');
+			const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (reduce || !('IntersectionObserver' in window)) {
+				nodes.forEach((node) => node.classList.add('is-in'));
+			} else {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+							entry.target.classList.add('is-in');
+							observer.unobserve(entry.target);
+						}
+					},
+					{ threshold: 0.14, rootMargin: '0px 0px -6% 0px' },
+				);
+				nodes.forEach((node) => observer.observe(node));
+			}
+		</script>
 	</body>
 </html>

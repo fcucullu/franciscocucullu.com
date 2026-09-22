@@ -1,27 +1,31 @@
 ---
 interface Props {
 	href: string;
+	compact?: boolean;
 }
 
-const { href } = Astro.props;
+const { href, compact = false } = Astro.props;
 ---
 
-<a href={href}><slot /></a>
+<a href={href} class:list={{ compact }}><slot /></a>
 
 <style>
 	a {
 		position: relative;
-		display: flex;
+		display: inline-flex;
+		width: fit-content;
 		place-content: center;
 		text-align: center;
 		padding: 0.56em 2em;
 		gap: 0.8em;
 		color: var(--accent-text-over);
+		font-family: var(--font-body);
+		font-weight: 600;
 		text-decoration: none;
 		line-height: 1.1;
-		border-radius: 999rem;
+		border-radius: var(--radius-ui);
 		overflow: hidden;
-		background: var(--gradient-accent-orange);
+		background: var(--accent-regular);
 		box-shadow: var(--shadow-md);
 		white-space: nowrap;
 	}
@@ -47,10 +51,21 @@ const { href } = Astro.props;
 		background-color: hsla(var(--gray-999-basis), 0.3);
 	}
 
+	a.compact {
+		padding: 0.6rem 1.1rem;
+		font-size: var(--text-sm);
+		box-shadow: none;
+	}
+
 	@media (min-width: 50em) {
 		a {
 			padding: 1.125rem 2.5rem;
 			font-size: var(--text-xl);
+		}
+
+		a.compact {
+			padding: 0.65rem 1.15rem;
+			font-size: var(--text-sm);
 		}
 	}
 </style>

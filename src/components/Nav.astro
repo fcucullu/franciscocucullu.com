@@ -5,9 +5,8 @@ import type { iconPaths } from './IconPaths';
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Portfolio', href: '/portfolio/' },
-	{ label: 'Blog', href: '/blog/' },
+	{ label: 'Work', href: '/portfolio/' },
+	{ label: 'Thinking', href: '/blog/' },
 	{ label: 'About', href: '/about/' },
 ];
 
@@ -23,17 +22,23 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 <nav>
 	<div class="menu-header">
 		<a href="/" class="site-title">
-			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
-			Francisco Cucullu
+			<img src="/assets/logo.png" alt="Francisco Cucullu" width="363" height="164" />
 		</a>
-		<menu-button>
+		<div class="header-actions">
+			<a class="nav-cta header-cta" href="/contact/#form">Let's talk</a>
+			<menu-button>
 			<template>
 				<button class="menu-button" aria-expanded="false">
 					<span class="sr-only">Menu</span>
-					<Icon icon="list" />
+					<svg class="menu-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+						<line class="line1" x1="4" y1="6" x2="20" y2="6" />
+						<line class="line2" x1="4" y1="12" x2="20" y2="12" />
+						<line class="line3" x1="4" y1="18" x2="20" y2="18" />
+					</svg>
 				</button>
 			</template>
 		</menu-button>
+		</div>
 	</div>
 	<noscript>
 		<ul class="nav-items">
@@ -61,6 +66,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 	</noscript>
 	<noscript>
 		<div class="menu-footer">
+			<a class="nav-cta" href="/contact/#form">Let's talk</a>
 			<div class="socials">
 				{
 					iconLinks.map(({ href, icon, label, goal }) => (
@@ -107,7 +113,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 					))
 				}
 			</div>
-
+			<a class="nav-cta" href="/contact/#form">Let's talk</a>
 			<div class="theme-toggle">
 				<ThemeToggle />
 			</div>
@@ -130,10 +136,45 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 			// Add "menu-content" class in JS to avoid covering content in non-JS browsers.
 			menu.classList.add('menu-content');
 
+			const desktopQuery = window.matchMedia('(min-width: 50em)');
+			const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 			/** Set whether the menu is currently expanded or collapsed. */
 			const setExpanded = (expand: boolean) => {
 				btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
-				menu.hidden = !expand;
+				if (desktopQuery.matches) {
+					menu.hidden = false;
+					menu.classList.add('is-open');
+					return;
+				}
+				if (expand) {
+					menu.hidden = false;
+					if (motionQuery.matches) {
+						menu.classList.add('is-open');
+						return;
+					}
+					requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add('is-open')));
+					return;
+				}
+				menu.classList.remove('is-open');
+				if (menu.hidden || motionQuery.matches) {
+					menu.hidden = true;
+					return;
+				}
+				let settled = false;
+				const finish = () => {
+					if (settled) return;
+					settled = true;
+					menu.hidden = true;
+				};
+				menu.addEventListener(
+					'transitionend',
+					(event) => {
+						if (event.target === menu) finish();
+					},
+					{ once: true },
+				);
+				window.setTimeout(finish, 320);
 			};
 
 			// Toggle menu visibility when the menu button is clicked.
@@ -144,7 +185,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 				setExpanded(e.matches);
 				btn.hidden = e.matches;
 			};
-			const mediaQueries = window.matchMedia('(min-width: 50em)');
+			const mediaQueries = desktopQuery;
 			handleViewports(mediaQueries);
 			mediaQueries.addEventListener('change', handleViewports);
 		}
@@ -155,10 +196,12 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 <style>
 	nav {
 		z-index: 9999;
-		position: relative;
+		position: sticky;
+		top: 0;
 		font-family: var(--font-brand);
 		font-weight: 500;
 		margin-bottom: 3.5rem;
+		background: var(--gray-999);
 	}
 
 	.menu-header {
@@ -170,48 +213,122 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 
 	.site-title {
 		display: flex;
-		gap: 0.5rem;
 		align-items: center;
-		line-height: 1.1;
-		color: var(--gray-0);
+		line-height: 0;
 		text-decoration: none;
+	}
+
+	.site-title img {
+		height: 3.35rem;
+		width: auto;
+	}
+
+	.nav-cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.55rem 1.05rem;
+		border-radius: var(--radius-ui);
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		font-weight: 600;
+		font-size: var(--text-sm);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.nav-cta:hover,
+	.nav-cta:focus {
+		background: var(--accent-dark);
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.header-cta {
+		display: none;
 	}
 
 	.menu-button {
 		position: relative;
 		display: flex;
-		border: 0;
-		border-radius: 999rem;
+		border: 1px solid var(--gray-800);
+		border-radius: var(--radius-ui);
 		padding: 0.5rem;
-		font-size: 1.5rem;
-		color: var(--gray-300);
-		background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
-		box-shadow: var(--shadow-md);
+		color: var(--gray-0);
+		background: transparent;
+		box-shadow: none;
 	}
 
 	.menu-button[aria-expanded='true'] {
 		color: var(--gray-0);
-		background: linear-gradient(180deg, var(--gray-600), transparent),
-			radial-gradient(var(--gray-900), var(--gray-800) 150%);
+		background: transparent;
+	}
+
+	.menu-icon {
+		display: block;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+
+	.menu-icon line {
+		transform-box: fill-box;
+		transform-origin: center;
+		transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.2s ease;
+	}
+
+	.menu-button[aria-expanded='true'] .line1 {
+		transform: translateY(6px) rotate(45deg);
+	}
+
+	.menu-button[aria-expanded='true'] .line2 {
+		opacity: 0;
+	}
+
+	.menu-button[aria-expanded='true'] .line3 {
+		transform: translateY(-6px) rotate(-45deg);
 	}
 
 	.menu-button[hidden] {
 		display: none;
 	}
 
-	.menu-button::before {
-		position: absolute;
-		inset: -1px;
-		content: '';
-		background: var(--gradient-stroke);
-		border-radius: 999rem;
-		z-index: -1;
-	}
-
 	.menu-content {
 		position: absolute;
 		left: 0;
 		right: 0;
+		opacity: 0;
+		transform: translateY(-0.5rem);
+		transition: opacity 0.28s ease, transform 0.28s ease;
+	}
+
+	.menu-content.is-open {
+		opacity: 1;
+		transform: none;
+	}
+
+	.menu-content .link {
+		opacity: 0;
+		transform: translateY(0.4rem);
+	}
+
+	.menu-content.is-open .link {
+		opacity: 1;
+		transform: none;
+		transition: opacity 0.28s ease, transform 0.28s ease;
+	}
+
+	.menu-content.is-open .nav-items li:nth-child(2) .link {
+		transition-delay: 40ms;
+	}
+
+	.menu-content.is-open .nav-items li:nth-child(3) .link {
+		transition-delay: 80ms;
 	}
 
 	.nav-items {
@@ -247,13 +364,13 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 		padding: 1.5rem 2rem 1.5rem 1.5rem;
 		background-color: var(--gray-999);
 		border-radius: 0 0 0.75rem 0.75rem;
-		box-shadow: var(--shadow-lg);
+		border-bottom: 1px solid var(--gray-800);
 	}
 
 	.socials {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.625rem;
+		flex-wrap: nowrap;
+		gap: 0.25rem;
 		font-size: var(--icon-size);
 	}
 
@@ -281,7 +398,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 			display: grid;
 			grid-template-columns: 1fr auto 1fr;
 			align-items: center;
-			padding: 2.5rem 5rem;
+			padding: 1.15rem 5rem;
 			gap: 1rem;
 		}
 
@@ -289,37 +406,39 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 			padding: 0;
 		}
 
-		.site-title {
-			font-size: var(--text-lg);
+		.site-title img {
+			height: 4.15rem;
 		}
 
 		.menu-content {
 			display: contents;
+			opacity: 1;
+			transform: none;
+		}
+
+		.menu-content .link,
+		.menu-content.is-open .link {
+			opacity: 1;
+			transform: none;
+			transition: color var(--theme-transition), background-color var(--theme-transition);
 		}
 
 		.nav-items {
 			position: relative;
 			flex-direction: row;
-			font-size: var(--text-sm);
-			border-radius: 999rem;
-			border: 0;
+			font-size: 0.72rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			border-radius: var(--radius-ui);
+			border: 1px solid var(--gray-800);
 			padding: 0.5rem 0.5625rem;
-			background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
-			box-shadow: var(--shadow-md);
-		}
-
-		.nav-items::before {
-			position: absolute;
-			inset: -1px;
-			content: '';
-			background: var(--gradient-stroke);
-			border-radius: 999rem;
-			z-index: -1;
+			background: transparent;
+			box-shadow: none;
 		}
 
 		.link {
 			padding: 0.5rem 1rem;
-			border-radius: 999rem;
+			border-radius: var(--radius-ui);
 			transition:
 				color var(--theme-transition),
 				background-color var(--theme-transition);
@@ -343,6 +462,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 			align-items: center;
 			padding: 0;
 			background-color: transparent;
+			border: 0;
 			box-shadow: none;
 		}
 
@@ -353,11 +473,17 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 
 	@media (min-width: 60em) {
 		.socials {
-			display: flex;
-			justify-content: flex-end;
-			gap: 0;
+			display: none;
 		}
 	}
+	@media (prefers-reduced-motion: reduce) {
+		.menu-content,
+		.menu-content .link,
+		.menu-icon line {
+			transition: none;
+		}
+	}
+
 	@media (forced-colors: active) {
 		.link.active {
 			color: SelectedItem;

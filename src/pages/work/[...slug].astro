@@ -45,7 +45,6 @@ const articleLd = {
 	'@type': 'Article',
 	headline: entry.data.title,
 	description: entry.data.description,
-	...(entry.data.img ? { image: `${SITE}${entry.data.img}` } : {}),
 	datePublished: pub,
 	author: { '@type': 'Person', name: 'Francisco Cucullu', url: `${SITE}/` },
 	url: `${SITE}/work/${entry.id}/`,
@@ -56,7 +55,6 @@ const articleLd = {
 	title={`${entry.data.title} | Francisco Cucullu`}
 	description={entry.data.description}
 	canonical={BLOG_CANON.has(entry.id) ? `https://franciscocucullu.com/blog/${entry.id}/` : undefined}
-	image={entry.data.img ? `${SITE}${entry.data.img}` : undefined}
 	ogType="article"
 	publishedTime={pub}
 	jsonLd={articleLd}
@@ -65,7 +63,7 @@ const articleLd = {
 		<div class="stack gap-15">
 			<header>
 				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
+					<a class="back-link" href="/portfolio/#work"><Icon icon="arrow-left" /> Work</a>
 					<Hero title={entry.data.title} align="start">
 						<div class="details">
 							<div class="tags">
@@ -78,7 +76,6 @@ const articleLd = {
 			</header>
 			<main class="wrapper">
 				<div class="stack gap-10 content">
-					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
 					<div class="content">
 						<Content />
 					</div>
@@ -137,8 +134,7 @@ const articleLd = {
 
 	.content :global(img) {
 		border-radius: 1.5rem;
-		box-shadow: var(--shadow-sm);
-		background: var(--gradient-subtle);
+		background: transparent;
 		border: 1px solid var(--gray-800);
 	}
 
