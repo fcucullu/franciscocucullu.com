@@ -22,12 +22,6 @@ const channels = [
 		icon: 'github-logo',
 		goal: 'click_on_contact_github',
 	},
-	{
-		label: 'Email',
-		href: 'mailto:francisco.cucullu@gmail.com',
-		icon: 'mail-outline',
-		goal: 'click_on_contact_mail',
-	},
 ];
 ---
 
@@ -131,35 +125,56 @@ const channels = [
 
 	if (mobile.matches && location.hash === '#form') openDialog();
 
+	const fields = () =>
+		form.querySelectorAll('input, textarea, button[type="submit"]');
+
+	const lockForm = (locked) => {
+		fields().forEach((field) => {
+			field.disabled = locked;
+		});
+	};
+
 	form?.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		const submit = form.querySelector('button[type="submit"]');
 		const status = form.querySelector('.form-status');
-		if (!submit || !status) return;
+		if (!submit || !status || submit.disabled) return;
 
-		submit.disabled = true;
+		const payloadBody = new FormData(form);
+		lockForm(true);
 		status.dataset.state = '';
 		status.textContent = 'Sending…';
 
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'POST',
-				body: new FormData(form),
+				body: payloadBody,
 			});
 			const payload = await response.json().catch(() => ({}));
 			if (!response.ok) {
 				status.dataset.state = 'error';
 				status.textContent = payload.message || 'Something went wrong. Please try again.';
+				lockForm(false);
 				return;
 			}
 			form.reset();
 			status.dataset.state = 'ok';
-			status.textContent = 'Thanks. The message is on its way.';
+			let left = 60;
+			const tick = () => {
+				status.textContent = `Message sent. You can send another in ${left}s.`;
+				if (left <= 0) {
+					status.textContent = 'Message sent.';
+					lockForm(false);
+					return;
+				}
+				left -= 1;
+				window.setTimeout(tick, 1000);
+			};
+			tick();
 		} catch {
 			status.dataset.state = 'error';
 			status.textContent = 'Something went wrong. Please try again.';
-		} finally {
-			submit.disabled = false;
+			lockForm(false);
 		}
 	});
 </script>
@@ -237,7 +252,12 @@ const channels = [
 	}
 
 	.form-status[data-state='ok'] {
-		color: var(--gray-200);
+		padding: 0.9rem 1rem;
+		border-radius: var(--radius-ui);
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		font-size: var(--text-md);
+		font-weight: 600;
 	}
 
 	.form-status[data-state='error'] {

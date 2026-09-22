@@ -204,6 +204,14 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths; go
 		background: var(--gray-999);
 	}
 
+	@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+		nav {
+			background: color-mix(in srgb, var(--gray-999) 72%, transparent);
+			-webkit-backdrop-filter: blur(18px);
+			backdrop-filter: blur(18px);
+		}
+	}
+
 	.menu-header {
 		display: flex;
 		justify-content: space-between;
