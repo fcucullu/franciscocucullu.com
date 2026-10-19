@@ -19,26 +19,6 @@ const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 		tag: post.data.tag,
 	}));
 
-const cases = [
-	{
-		href: '/work/ai-quality-assurance',
-		kicker: 'Enterprise',
-		title: 'Leading an AI product at scale',
-		text: 'Four squads and 24 engineers. A multi-modal product in production for a global CX company: millions saved a year, 50% more efficient, live across 51 accounts. The technology is AI. The job is product leadership.',
-	},
-	{
-		href: '/work/hastee',
-		kicker: 'Product leadership',
-		title: '137% more engineering output',
-		text: 'Tech Product Manager at an HR fintech. Redesigned how 13 engineers across 3 teams delivered, and lined the roadmap up with what the business actually needed.',
-	},
-	{
-		href: '/work/timed-integrations',
-		kicker: 'Founder',
-		title: 'Built it, then sold it',
-		text: 'Factorial’s Italian clients were typing time-tracking in by hand. I built the integration and sold the product to Factorial.',
-	},
-];
 
 const principles = [
 	{
@@ -134,29 +114,13 @@ const products = [
 				</div>
 			</header>
 
-			<div data-reveal>
+			<div data-reveal class="stack gap-4">
 				<Skills />
+				<p class="more"><CallToAction href="/portfolio/#work" compact>All the work</CallToAction></p>
 			</div>
 		</div>
 
 		<main class="wrapper stack gap-15 lg:gap-30">
-			<section class="section" data-reveal>
-				<header class="section-header stack gap-2">
-					<p class="kicker">Selected impact</p>
-					<h3>Scope, not a stack.</h3>
-				</header>
-				<div class="cards">
-					{cases.map((item) => (
-						<a href={item.href} class="card">
-							<span class="kicker">{item.kicker}</span>
-							<h4>{item.title}</h4>
-							<p>{item.text}</p>
-						</a>
-					))}
-				</div>
-				<p class="more"><CallToAction href="/portfolio/#work" compact>All the work</CallToAction></p>
-			</section>
-
 			<section class="section" data-reveal>
 				<header class="section-header stack gap-2">
 					<p class="kicker">How I lead</p>
