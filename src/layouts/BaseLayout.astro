@@ -57,6 +57,26 @@ const { title, description, canonical, robots, image, ogType, publishedTime, art
 					{ "@type": "WebSite", "name": "Francisco Cucullu", "url": "https://franciscocucullu.com/" }
 				]
 			})} />
+
+		<!--
+			Red de seguridad para las animaciones de entrada. Las secciones nacen
+			con opacity:0 y es el observer de abajo quien les pone .is-in al
+			entrar en pantalla. Si el JavaScript no corre — bloqueado, o un error
+			en cualquier otro script de la pagina — la home se queda en blanco de
+			la foto para abajo. Esto las deja visibles sin animacion.
+			(prefers-reduced-motion ya estaba cubierto en global.css.)
+		-->
+		<noscript>
+			<style>
+				[data-reveal],
+				[data-reveal] .card,
+				[data-reveal] .product,
+				[data-reveal] .path li {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+			</style>
+		</noscript>
 </head>
 	<body>
 		<div class="stack backgrounds">
