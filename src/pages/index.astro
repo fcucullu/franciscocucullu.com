@@ -162,7 +162,9 @@ const ventures = [
 			</section>
 		</main>
 
-		<ContactCTA />
+		<div class="closing">
+			<ContactCTA />
+		</div>
 	</div>
 </BaseLayout>
 
@@ -261,6 +263,12 @@ const ventures = [
 	.section {
 		display: grid;
 		gap: 1.5rem;
+	}
+
+	/* la cinta de recomendaciones ya deja aire propio: el salto hasta el CTA
+	   final no necesita los 120px que pone la pila */
+	.closing {
+		margin-top: -4.5rem;
 	}
 
 	.section-header {
