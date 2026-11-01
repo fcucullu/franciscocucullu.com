@@ -1,0 +1,287 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CallToAction from '../components/CallToAction.astro';
+import Pill from '../components/Pill.astro';
+
+const colors = [
+	{ name: 'Ink', token: '--gray-0', note: 'Text. The logo blue, #131C4A in light mode.' },
+	{ name: 'Secondary text', token: '--gray-300', note: 'Supporting copy and card descriptions.' },
+	{ name: 'Kicker', token: '--gray-400', note: 'Uppercase labels.' },
+	{ name: 'Line', token: '--gray-800', note: 'Card borders and rules.' },
+	{ name: 'Page', token: '--gray-999', note: 'Base background. Cream in light mode.' },
+	{ name: 'Warm band', token: '--band-warm', note: 'Reserved token. The site does not alternate section backgrounds.' },
+	{ name: 'Cool band', token: '--band-cool', note: 'Reserved token. The site does not alternate section backgrounds.' },
+	{ name: 'Yellow', token: '--accent-regular', note: 'Fill only. #F8B83B.' },
+	{ name: 'Dark yellow', token: '--accent-dark', note: 'Accent variant, not for body text.' },
+	{ name: 'Text on yellow', token: '--accent-text-over', note: 'Always #131C4A.' },
+];
+
+const type = [
+	{ name: 'Display', sample: 'Product Leader', font: 'var(--font-display)', size: 'clamp(2.35rem, 4vw, 4.25rem)', note: 'Offside. Short titles, metrics, and key phrases only.' },
+	{ name: 'Section', sample: 'Scope, not a stack.', font: 'var(--font-body)', size: 'clamp(1.8rem, 3vw, 2.6rem)', note: 'Geist. Section titles.' },
+	{ name: 'Card', sample: 'Notes from the work.', font: 'var(--font-body)', size: 'var(--text-lg)', note: 'Geist 600. Title inside a card.' },
+	{ name: 'Body', sample: 'Leading software products from 0 to 1 to scale.', font: 'var(--font-body)', size: 'var(--text-md)', note: 'Geist. Paragraphs.' },
+	{ name: 'Kicker', sample: 'Selected impact', font: 'var(--font-body)', size: '0.72rem', note: 'Geist 600, uppercase, open tracking.' },
+];
+---
+
+<BaseLayout
+	title="Design system | Francisco Cucullu"
+	description="Visual system for the site. Reference for color, type, and components."
+	robots="noindex, nofollow"
+>
+	<div class="stack gap-20">
+		<main class="wrapper ds stack gap-15">
+			<header class="stack gap-4">
+				<p class="kicker">System</p>
+				<h1>Design system</h1>
+				<p class="lede">
+					This page shows the site's real tokens. If a color or component changes in the CSS, it shows up here. The header theme applies too.
+				</p>
+			</header>
+
+			<section class="stack gap-8" id="color">
+				<header class="stack gap-2">
+					<h2>Color</h2>
+					<p>Blue ink, cream page, yellow only as a fill.</p>
+				</header>
+				<div class="swatches">
+					{colors.map((color) => (
+						<figure class="swatch">
+							<div class="chip" style={`background: var(${color.token})`} data-token={color.token}></div>
+							<figcaption>
+								<strong>{color.name}</strong>
+								<code>{color.token}</code>
+								<span class="value" data-value-for={color.token}></span>
+								<span>{color.note}</span>
+							</figcaption>
+						</figure>
+					))}
+				</div>
+			</section>
+
+			<section class="stack gap-8" id="tipo">
+				<header class="stack gap-2">
+					<h2>Type</h2>
+					<p>Offside stays out of long titles and body copy.</p>
+				</header>
+				<div class="stack gap-8">
+					{type.map((item) => (
+						<div class="type-row">
+							<p class="kicker">{item.name}</p>
+							<p style={`font-family: ${item.font}; font-size: ${item.size};`}>{item.sample}</p>
+							<p class="note">{item.note}</p>
+						</div>
+					))}
+					<p class="display-sample">Product <span class="mark">Leader</span> who builds.</p>
+				</div>
+			</section>
+
+			<section class="stack gap-8" id="superficie">
+				<header class="stack gap-2">
+					<h2>Surfaces</h2>
+					<p>The whole site uses the same page background.</p>
+				</header>
+				<div class="surfaces">
+					<div class="surface">
+						<p class="kicker">Page</p>
+						<p>--gray-999</p>
+					</div>
+					<div class="surface warm">
+						<p class="kicker">Warm band</p>
+						<p>--band-warm</p>
+					</div>
+					<div class="surface cool">
+						<p class="kicker">Cool band</p>
+						<p>--band-cool</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="stack gap-8" id="controles">
+				<header class="stack gap-2">
+					<h2>Controls</h2>
+					<p>Rounded rectangle. Radius <code>--radius-ui</code> (0.5rem). On yellow, the text is blue.</p>
+				</header>
+				<div class="row">
+					<CallToAction href="/contact/">Let's talk</CallToAction>
+					<Pill>Work</Pill>
+				</div>
+			</section>
+
+			<section class="stack gap-8" id="cards">
+				<header class="stack gap-2">
+					<h2>Text card</h2>
+					<p>The home card and the Thinking card. Thin border, flat background, no gradient, no shadow, and no lift. On hover, only the border turns yellow.</p>
+				</header>
+				<div class="cards">
+						<a class="card" href="/blog/">
+							<span class="kicker">Product Management</span>
+							<h3>The 28-Second Bounce</h3>
+							<p>A new user signed up, opened the app, and left 28 seconds later without adding a single contact.</p>
+							<span class="card-meta">March 2026</span>
+						</a>
+						<a class="card" href="/blog/">
+							<span class="kicker">Engineering Judgment</span>
+							<h3>Choosing Not to Scale</h3>
+							<p>The most underrated engineering decision is removing the reason you needed to scale.</p>
+							<span class="card-meta">2025</span>
+						</a>
+				</div>
+			</section>
+
+			<section class="stack gap-4" id="reglas">
+				<header class="stack gap-2">
+					<h2>Rules</h2>
+				</header>
+				<ul class="rules">
+					<li>Yellow is a fill, not a color for long text. On yellow, the text is <code>#131C4A</code>.</li>
+					<li>There is one text card: border <code>--gray-800</code>, radius 1rem, transparent background. No gradient and no shadow.</li>
+					<li>The desktop navigation and the menu button also use neither a gradient nor a shadow.</li>
+					<li>Every section shares the page background, <code>--gray-999</code>.</li>
+					<li>Offside stays on the short title. Cases, articles, and paragraphs use Geist.</li>
+					<li>Controls (button, pill, navigation) use <code>--radius-ui</code>, not a capsule.</li>
+				</ul>
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<script>
+	function paintValues() {
+		const styles = getComputedStyle(document.documentElement);
+		document.querySelectorAll('[data-value-for]').forEach((node) => {
+			const token = node.getAttribute('data-value-for');
+			if (!token) return;
+			node.textContent = styles.getPropertyValue(token).trim();
+		});
+	}
+
+	paintValues();
+	new MutationObserver(paintValues).observe(document.documentElement, {
+		attributes: true,
+		attributeFilter: ['class'],
+	});
+</script>
+
+<style>
+	.ds h1 {
+		font-size: clamp(2.4rem, 5vw, 4rem);
+		max-width: 12ch;
+	}
+
+	.ds h2 {
+		font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+	}
+
+	.lede,
+	.ds section > header p,
+	.note {
+		max-width: 62ch;
+		color: var(--gray-300);
+	}
+
+	.swatches,
+	.surfaces,
+	.cards {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.swatch {
+		display: grid;
+		grid-template-columns: 4.5rem 1fr;
+		gap: 0.9rem;
+		align-items: center;
+		margin: 0;
+	}
+
+	.chip {
+		height: 4.5rem;
+		border: 1px solid var(--gray-800);
+		border-radius: var(--radius-ui);
+	}
+
+	.swatch figcaption,
+	.type-row,
+	.surface {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.swatch code,
+	.value,
+	.surface p,
+	.rules code {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.type-row + .type-row {
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--gray-800);
+	}
+
+	.display-sample {
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: clamp(2.2rem, 4vw, 3.4rem);
+		letter-spacing: -0.02em;
+		line-height: 1.05;
+		max-width: 14ch;
+	}
+
+	.mark {
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		padding: 0 0.18em;
+		border-radius: 0.12em;
+	}
+
+	.surfaces {
+		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+	}
+
+	.surface {
+		min-height: 8rem;
+		justify-content: flex-end;
+		padding: 1rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		background: var(--gray-999);
+	}
+
+	.surface.warm {
+		background: var(--band-warm);
+	}
+
+	.surface.cool {
+		background: var(--band-cool);
+	}
+
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.rules {
+		margin: 0;
+		padding-left: 1.1rem;
+		display: grid;
+		gap: 0.7rem;
+		max-width: 68ch;
+	}
+
+	@media (min-width: 50em) {
+		.swatches {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.cards {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>

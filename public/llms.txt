@@ -1,8 +1,8 @@
 # Francisco Cucullu
 
-> AI Product Leader who codes. Takes products from 0 to 1 to enterprise scale. Led up to 24 engineers across 4 squads, drove multi-million-dollar savings with AI in production, and founded and sold products. Open to senior AI product roles (remote) and B2B consultancy, worldwide.
+> Senior product leader with a founder mindset. Leads software products from 0 to 1 to scale, across startups and enterprise. Led up to 24 engineers, founded and sold products, and has shipped complex technology including enterprise AI. Open to senior product leadership roles, remote.
 
-Francisco Cucullu is a product leader, engineer, and founder with 15+ years across enterprise AI, fintech, and startups. Dual MSc in Quantitative Finance. Based in Barcelona, working worldwide.
+Francisco Cucullu is a product leader, builder, and founder with 15+ years across fintech, startups, and enterprise software. Dual MSc in Quantitative Finance. Based in Barcelona, working worldwide. AI is part of his experience, not the category.
 
 ## Selected work
 - [AI Quality Assurance at Scale](https://franciscocucullu.com/work/ai-quality-assurance/): AI calibration framework for a European telecom operator. Contact-center QA from under 1% manual sampling to 100% automated coverage, 82% accuracy, across 51 accounts and 9,400 users; architected to scale to 9M+ daily interactions.

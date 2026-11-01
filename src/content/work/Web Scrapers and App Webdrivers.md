@@ -33,3 +33,7 @@ The company wanted to guarantee the best FX price in the market. Marketing was r
 - Scheduled automation for continuous monitoring
 
 [View source code on GitHub →](https://github.com/fcucullu/scrapers-webdrivers)
+
+## The Full Story
+
+- [21 Scrapers, 20% Market Share: Building a Competitive Intelligence Engine](/blog/competitive-intelligence) — 21 scrapers watching every competitor in real time

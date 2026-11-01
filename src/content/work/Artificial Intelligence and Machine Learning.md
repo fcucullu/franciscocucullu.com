@@ -34,3 +34,7 @@ At Xcapit, we needed AI models that went beyond off-the-shelf solutions. Our por
 | LSTM models | Time-series prediction for price forecasting |
 
 [View source code on GitHub →](https://github.com/fcucullu/AI-ML)
+
+## The Full Story
+
+- [Building AI Before ChatGPT: Custom ML at a UNICEF-Backed Fintech](/blog/custom-ai-ml) — neural networks and genetic algorithms built from scratch with five PhDs

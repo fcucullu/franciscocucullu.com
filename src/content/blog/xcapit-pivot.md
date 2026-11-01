@@ -38,7 +38,7 @@ Over time, the impact side of the business became the focus. The trading engine 
 
 ## The Impact
 
-We delivered $650K in microloans to 330 underbanked individuals in Argentina. These were people who had never been able to access formal credit before. With our guarantee, they could borrow from banks, invest in their businesses, and break out of the cycle.
+We put credit in the hands of hundreds of people in Argentina who had never been able to borrow. With our guarantee, they could borrow from banks, invest in their businesses, and break out of the cycle.
 
 The product was recognized as a [UNICEF Digital Public Good](https://app.digitalpublicgoods.net/a/11545) and won an [AI Innovation Award](https://www.corporatevision-news.com/winners/xcapit/). It was featured in [Cronista](https://www.cronista.com/infotechnology/finanzas-digitales/la-unica-inversion-que-hoy-paga-400-en-dolares-sin-riesgo-argentino-ni-impuestos/) and [CriptoNoticias](https://www.criptonoticias.com/comunidad/ceo-xcapit-defi-democraticas-porque-barreras-mas-bajas/).
 

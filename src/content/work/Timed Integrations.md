@@ -28,3 +28,7 @@ Factorial's HR platform had a gap: clients using Italian ERP systems had to manu
 Solo founder. Designed, developed, and sold the product.
 
 [View source code on GitHub →](https://github.com/fcucullu/timed)
+
+## The Full Story
+
+- [Micro-SaaS Sold to Factorial: Building ERP Integrations](/blog/timed-integrations) — finding the gap in Factorial’s Italian market, building it, selling it

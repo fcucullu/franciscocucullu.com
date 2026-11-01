@@ -1,6 +1,6 @@
 ---
 title: Golden List
-description: Stay in touch with the people who matter. A native Android app with push notifications, contact import, interaction tracking, and smart reminders, so you never lose touch with the people who matter most.
+description: 2,600 users. A native Android app with push notifications, contact import, interaction tracking, and smart reminders, so you never lose touch with the people who matter most.
 url: https://goldenlist.franciscocucullu.com
 statsUrl: https://goldenlist.franciscocucullu.com/api/stats
 img: /assets/goldenlist-icon.png

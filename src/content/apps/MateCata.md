@@ -1,6 +1,6 @@
 ---
 title: MateCata
-description: Aprende las tablas de multiplicar jugando con MateCata. Un juego con gatitos, confetti y trofeos para hacer las matemáticas divertidas.
+description: Learn the multiplication tables by playing MateCata. A game with kittens, confetti, and trophies that makes math fun.
 url: https://matecata.franciscocucullu.com
 statsUrl: https://matecata.franciscocucullu.com/api/stats
 img: /assets/app-matecata.png
@@ -16,4 +16,4 @@ categories:
   - PWA
 ---
 
-MateCata es una PWA gamificada para aprender las tablas de multiplicar del 1 al 9. Cada tabla es un nivel con 10 preguntas de opción múltiple. Un gatito emoji reacciona a cada respuesta, las rachas desbloquean confetti masivo, y hay 10 trofeos por coleccionar. Incluye modo desafío con preguntas aleatorias de todas las tablas. El progreso se guarda con Google auth.
+MateCata is a gamified PWA for learning the multiplication tables from 1 to 9. Each table is a level with 10 multiple-choice questions. A kitten emoji reacts to every answer, streaks unlock a burst of confetti, and there are 10 trophies to collect. A challenge mode mixes random questions from every table. Progress is saved with Google auth.

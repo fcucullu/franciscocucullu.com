@@ -4,38 +4,53 @@ import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<BaseLayout title="About | Francisco Cucullu" description="About Francisco Cucullu">
+<BaseLayout title="About | Francisco Cucullu" description="Senior product leader with a founder mindset. From economics and trading software to founding products and leading enterprise teams.">
     <div class="stack gap-20">
         <main class="wrapper about">
+            <div class="about-hero" data-reveal>
             <Hero
-                title="Builder.<br/>Product Leader.<br/>AI at scale."
-                tagline=""
+                title="Senior Product Leader.<br/>Founder mindset."
+                display
+                align="center"
+                tagline="Product, software, business, and companies I started myself."
                 data-fast-scroll="scroll_to_about_start"
             >
-                <img
-                    width="1553"
-                    height="873"
-                    src="/assets/at-work.jpg"
-                    alt="Francisco Cucullu pitching at South Summit"
-                />
+                <p class="sr-only">Francisco Cucullu pitching at South Summit</p>
             </Hero>
+            </div>
 
-            <section>
+            <section data-reveal>
                 <h2 class="section-title">Summary</h2>
                 <div class="content">
                     <p>
-                        Product leader, engineer, and founder with over 15 years across enterprise AI, fintech, and startups. I have led up to 24 engineers, driven multi-million dollar savings with AI in production, designed custom AI/ML alongside a team of 5 PhDs, founded and sold products, and built work recognized by UNICEF and featured at South Summit and on TV. I lead from strategy through production, and still write code.
+                        Over fifteen years I’ve led software products. I also build them, and I have founded them. Here’s the walkthrough.
                     </p>
+                    <div class="spacer"></div>
+                    <p><strong>Economics, then markets.</strong> A degree from the University of Buenos Aires and then a dual MSc in Quantitative Finance at Solvay, Brussels, and Universidad de San Andrés. I started in banking, then moved into the markets.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>Then the software.</strong> First automating business performance management at HSBC, then the trading desk at IOL, Argentina’s largest retail broker. An FX engine, 21 scrapers, a desk that stopped spending five hours a day on reconciliation. I built my own quantitative trading team.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>From building to leading.</strong> I moved to the startup world with Xcapit, where I led a team of five PhDs — the most qualified team I’ve ever had. At Hastee, 13 engineers across three teams: product, forward-deployed engineers, and tech support. Everything aligned with the roadmap.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>I also started companies.</strong> FlexRent, from zero to a community and angel investment. Timed Integrations, built and sold to Factorial. Pepino, a B2B SaaS with seven agencies. Not just an engineer: I think about the business.</p>
+                    <div class="spacer-sm"></div>
+                    <p><strong>Then the scale.</strong> At Foundever I led four squads, 24 engineers, a flagship AI product in production for a global CX company. And now back to the startup world, scaling Telgea.</p>
                 </div>
             </section>
 
-            <section>
+            <section data-reveal>
                 <h2 class="section-title">Career</h2>
                 <div class="content">
                     <div class="role">
+                        <strong>Product Engineer</strong>
+                        <span class="role-meta">Telgea (telecom for global teams) | 2026 - Present</span>
+                        <p>Whatever the product needs: revenue features, new revenue streams, process design and <a href="/blog/wasp-framework">development methodology</a>. Ideation to production.</p>
+                    </div>
+
+                    <div class="role">
                         <strong>Senior AI/ML Product Manager</strong>
-                        <span class="role-meta">Foundever (via IAG) | 2024 - Present</span>
-                        <p>Leading a flagship multi-modal AI suite for a global CX leader (170K+ employees), driving multi-million dollar annual savings and a 50% efficiency gain. 4 squads, 24 engineers. Architected to scale to 9M+ daily interactions and 20K+ users. <a href="/blog/ai-quality-assurance">Read more</a></p>
+                        <span class="role-meta">Foundever (via IAG) | 2024 - 2026</span>
+                        <p>Led a flagship multi-modal AI suite for a global CX leader (170K+ employees), driving multi-million dollar annual savings and a 50% efficiency gain. 4 squads, 24 engineers. Architected to scale to 9M+ daily interactions and 20K+ users. Presented at the <a href="/blog/speaking-coach-summit">Coach Summit</a>. <a href="/blog/ai-quality-assurance">Read more</a></p>
                     </div>
 
                     <div class="role">
@@ -59,61 +74,55 @@ import Hero from '../components/Hero.astro';
                     <div class="role">
                         <strong>Founder & Product Lead</strong>
                         <span class="role-meta">FlexRent | 2023</span>
-                        <p>Room exchange platform for digital nomads. 620 community members, 32 paying customers. Pitched at South Summit, Warsaw, DES Malaga. Featured on TV. Angel investment secured. Team of up to 9. <a href="/blog/flexrent">Read more</a></p>
+                        <p>Room exchange platform for digital nomads. 620 community members, 32 paying customers. Pitched at <a href="/blog/speaking-south-summit">South Summit</a>, <a href="/blog/speaking-warsaw">Warsaw</a>, and <a href="/blog/speaking-des-malaga">DES Málaga</a>. Featured on <a href="/blog/speaking-tv-interview">TV</a> and <a href="/blog/speaking-radio-interview">radio</a>. Angel investment secured. Team of up to 9. <a href="/blog/flexrent">Read more</a></p>
                     </div>
 
                     <div class="role">
                         <strong>Engineering Manager</strong>
                         <span class="role-meta">Xcapit (AI + Blockchain) | 2019 - 2023</span>
-                        <p>AI-powered wealth management. $2M portfolio, 400%+ annual returns. $650K in microloans to 330 people. Team of 5 PhDs. Funded by <a href="https://app.digitalpublicgoods.net/a/11545">UNICEF</a> and Ethereum Foundation. <a href="https://www.corporatevision-news.com/winners/xcapit/">AI Innovation Award</a>. Featured in <a href="https://www.cronista.com/infotechnology/finanzas-digitales/la-unica-inversion-que-hoy-paga-400-en-dolares-sin-riesgo-argentino-ni-impuestos/">Cronista</a> and <a href="https://www.criptonoticias.com/comunidad/ceo-xcapit-defi-democraticas-porque-barreras-mas-bajas/">CriptoNoticias</a>.</p>
+                        <p><a href="/blog/custom-ai-ml">AI-powered wealth management</a>. $2M portfolio, <a href="/blog/bayesian-optimization">400%+ annual returns</a>. <a href="/blog/xcapit-pivot">Then the pivot</a>: credit for people with no banking history, helping hundreds escape the poverty trap. Team of 5 PhDs. Funded by <a href="https://app.digitalpublicgoods.net/a/11545">UNICEF</a> and Ethereum Foundation. <a href="https://www.corporatevision-news.com/winners/xcapit/">AI Innovation Award</a>. Featured in <a href="https://www.cronista.com/infotechnology/finanzas-digitales/la-unica-inversion-que-hoy-paga-400-en-dolares-sin-riesgo-argentino-ni-impuestos/">Cronista</a> and <a href="https://www.criptonoticias.com/comunidad/ceo-xcapit-defi-democraticas-porque-barreras-mas-bajas/">CriptoNoticias</a>.</p>
                     </div>
 
                     <div class="role">
-                        <strong>Quant Trader → Head of Business Intelligence</strong>
+                        <strong>Quant Trader → Business Intelligence Lead</strong>
                         <span class="role-meta">IOL (Argentina's largest retail broker) | 2017 - 2019</span>
                         <p>Built <a href="/blog/fx-arbitrage">FX arbitrage engine</a> capturing ~20% market share. <a href="/blog/competitive-intelligence">21 scrapers</a> monitoring every competitor. Cut churn 32% via ML segmentation. Onboarding 72h → 24h. Led team of 4. <a href="/blog/rpa-trading-desk">Automated 5h/day</a> of manual work.</p>
                     </div>
 
                     <div class="role">
-                        <strong>Banking Foundations</strong>
+                        <strong>Business Performance Management</strong>
                         <span class="role-meta">HSBC Bank | Earlier career</span>
-                        <p>Client relations specialist managing high-end investment products. Business Performance Management team. Built <a href="/blog/rpa-trading-desk">RPA automation tools</a>. Foundation for data, technology, and product leadership.</p>
+                        <p>Client relations specialist managing high-end investment products. Every HSBC branch in Argentina ran through my reports: operational metrics for the whole network. Built <a href="/blog/rpa-trading-desk">RPA automation tools</a>. Foundation for data, technology, and product leadership.</p>
                     </div>
                 </div>
             </section>
 
-            <section>
-                <h2 class="section-title">Key Achievements</h2>
+            <section data-reveal>
+                <h2 class="section-title" id="achievements">Key Achievements</h2>
                 <div class="content">
-                    <p><strong>AI Innovation Award</strong><br />Recognized for integrating AI/ML into blockchain wealth management. <a href="https://www.corporatevision-news.com/winners/xcapit/">See full story</a></p>
+                    <p><strong>24 engineers, four squads</strong><br />Enterprise product in production for a global CX company. Multi-million dollar savings and a 50% efficiency gain. The technology is AI. <a href="/blog/ai-quality-assurance">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>UNICEF Digital Public Good</strong><br />Led a team of 5 PhDs to build an open-source crypto wallet for financial inclusion. $650K in microloans to 330 people. <a href="https://app.digitalpublicgoods.net/a/11545">See recognition</a></p>
+                    <p><strong>137% engineering output</strong><br />Redesigned delivery at Hastee, leading 13 engineers across 3 teams. <a href="/blog/hastee">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>Micro-SaaS Acquired by Factorial</strong><br />Built ERP integrations for the Italian market. Solo founder, built and sold. <a href="/blog/timed-integrations">Read the story</a></p>
+                    <p><strong>Micro-SaaS sold to Factorial</strong><br />Built ERP integrations for the Italian market. Solo founder, built and sold. <a href="/blog/timed-integrations">Read the story</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>400%+ Annual Returns</strong><br />Algorithmic trading on a $2M portfolio using custom ML and Bayesian optimization. Featured in <a href="https://www.cronista.com/infotechnology/finanzas-digitales/la-unica-inversion-que-hoy-paga-400-en-dolares-sin-riesgo-argentino-ni-impuestos/">Cronista</a></p>
+                    <p><strong>Startup to angel investment</strong><br />Founded FlexRent, built a community of 620 members, pitched at South Summit and other stages, secured angel funding. <a href="/blog/flexrent">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>20% Market Capture via Automation</strong><br />Built 21 real-time scrapers monitoring every competitor in the Argentine FX market. <a href="https://github.com/fcucullu/scrapers-webdrivers">See repository</a></p>
+                    <p><strong>20% of a market, via automation</strong><br />21 real-time scrapers covering every competitor in the Argentine FX market. <a href="/blog/competitive-intelligence">Read more</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>Featured on TV and International Stages</strong><br />Television interview on 101 TV, pitches at South Summit, Warsaw, and DES Malaga. <a href="/blog/speaking-tv-interview">Watch</a></p>
+                    <p><strong>UNICEF Digital Public Good</strong><br />Led a team of 5 PhDs. An open-source wallet that helped hundreds of people escape the poverty trap, and an AI Innovation Award. <a href="https://app.digitalpublicgoods.net/a/11545">See recognition</a></p>
                     <div class="spacer"></div>
 
-                    <p><strong>Enterprise AI at Scale</strong><br />Leading an AI product driving multi-million dollar savings and a 50% efficiency gain for a global CX leader with 170K+ employees. Architected to scale to 9M+ daily interactions and 20K+ users. <a href="/blog/ai-quality-assurance">Read more</a></p>
-                    <div class="spacer"></div>
-
-                    <p><strong>137% Engineering Velocity Increase</strong><br />Redesigned delivery processes at Hastee, leading 13 engineers across 3 teams. <a href="/blog/hastee">Read more</a></p>
-                    <div class="spacer"></div>
-
-                    <p><strong>Startup from Zero to Angel Investment</strong><br />Founded FlexRent, built a community of 620 members, pitched at South Summit and international stages, secured angel funding. <a href="/blog/flexrent">Read more</a></p>
+                    <p><strong>On stage and on TV</strong><br /><a href="/blog/speaking-south-summit">South Summit</a>, <a href="/blog/speaking-warsaw">Warsaw</a>, <a href="/blog/speaking-des-malaga">DES Málaga</a>, the <a href="/blog/speaking-coach-summit">Coach Summit</a>, <a href="/blog/speaking-tv-interview">101 TV</a>, <a href="/blog/speaking-radio-interview">radio</a>, and a <a href="/blog/speaking-video-interview">video interview</a>.</p>
                 </div>
             </section>
 
-            <section>
+            <section data-reveal>
                 <h2 class="section-title">Education</h2>
                 <div class="content">
                     <p>
@@ -154,10 +163,34 @@ import Hero from '../components/Hero.astro';
         gap: 3.5rem;
     }
 
-    img {
-        margin-top: 1.5rem;
-        border-radius: 1.5rem;
-        box-shadow: var(--shadow-md);
+    .about-hero {
+        margin-top: -3.5rem;
+        margin-inline: -1.5rem;
+        width: calc(100% + 3rem);
+    }
+
+    .about-hero :global(.hero) {
+        min-height: clamp(26rem, 54vw, 36rem);
+        justify-content: flex-end;
+        align-items: center;
+        text-align: center;
+        padding: 2.5rem 1.5rem 2rem;
+        background-image:
+            linear-gradient(to bottom, rgba(19, 28, 74, 0.08) 0%, rgba(19, 28, 74, 0.05) 46%, rgba(19, 28, 74, 0.82) 100%),
+            url('/assets/at-work.jpg');
+        background-size: cover;
+        background-position: center 48%;
+        color: #f7f4ee;
+    }
+
+    .about-hero :global(.title),
+    .about-hero :global(.tagline) {
+        color: #f7f4ee;
+        margin-inline: auto;
+    }
+
+    .about-hero :global(.title.display) {
+        max-width: 24ch;
     }
 
     section {
@@ -178,14 +211,16 @@ import Hero from '../components/Hero.astro';
     }
 
     .content :global(a) {
-        color: #a855f7;
-        text-decoration: 1px solid underline transparent;
+        color: var(--accent-dark);
+        font-weight: 600;
+        text-decoration: none;
         text-underline-offset: 0.25em;
         transition: text-decoration-color var(--theme-transition);
     }
 
     .content :global(a:hover),
     .content :global(a:focus) {
+        text-decoration: underline;
         text-decoration-color: currentColor;
     }
 
@@ -231,12 +266,19 @@ import Hero from '../components/Hero.astro';
         }
 
         .about > :global(:first-child) {
-            grid-column-start: 2;
+            grid-column: 1 / -1;
         }
 
         section {
             display: contents;
             font-size: var(--text-lg);
+        }
+    }
+
+    @media (min-width: 83rem) {
+        .about-hero {
+            margin-inline: calc(-1 * ((100vw - 83rem) / 2 + 1.5rem));
+            width: 100vw;
         }
     }
 </style>

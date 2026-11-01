@@ -7,7 +7,9 @@ export default defineConfig({
 	integrations: [
 		sitemap({
 			// Keep the private content dashboard out of the public sitemap.
-			filter: (page) => !page.startsWith('https://franciscocucullu.com/content'),
+			filter: (page) =>
+				!page.startsWith('https://franciscocucullu.com/content') &&
+				!page.startsWith('https://franciscocucullu.com/design-system'),
 		}),
 	],
 });

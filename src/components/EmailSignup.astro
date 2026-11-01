@@ -86,7 +86,7 @@ const { source } = Astro.props;
 
 <style>
 	.email-signup {
-		background: var(--gradient-subtle);
+		background: transparent;
 		border: 1px solid var(--gray-800);
 		border-radius: 1rem;
 		padding: 2rem 1.5rem;
@@ -129,7 +129,7 @@ const { source } = Astro.props;
 		flex: 1 1 14rem;
 		min-width: 0;
 		padding: 0.65rem 0.9rem;
-		border-radius: 999rem;
+		border-radius: var(--radius-ui);
 		border: 1px solid var(--gray-800);
 		background: var(--gray-999);
 		color: var(--gray-200);
@@ -145,7 +145,7 @@ const { source } = Astro.props;
 	.email-button {
 		flex: 0 0 auto;
 		padding: 0.65rem 1.4rem;
-		border-radius: 999rem;
+		border-radius: var(--radius-ui);
 		border: none;
 		background: var(--accent-regular);
 		color: var(--accent-text-over);

@@ -1,6 +1,6 @@
 ---
 title: DaleDele
-description: Practica español DELE B2. Subjuntivo, pasados, ser/estar, condicionales, tildes y más con ejercicios interactivos.
+description: Practice Spanish for the DELE B2 exam. Subjunctive, past tenses, ser/estar, conditionals, accents, and more, with interactive exercises.
 url: https://daledele.franciscocucullu.com
 statsUrl: https://daledele.franciscocucullu.com/api/stats
 img: /assets/app-daledele.png
@@ -16,4 +16,4 @@ categories:
   - PWA
 ---
 
-DaleDele es una PWA gamificada para practicar gramática española al nivel DELE B2. Once categorías cubren los temas más difíciles: subjuntivo, pretérito vs imperfecto, estaba vs estuvo, ser vs estar, condicionales, por vs para, conectores, expresiones idiomáticas, verbos con preposiciones, voz pasiva, y tildes. Dos modos de ejercicio: elegir opción y escribir la respuesta. Cada respuesta incluye explicación detallada con botón manual para avanzar.
+DaleDele is a gamified PWA for practicing Spanish grammar at DELE B2 level. Eleven categories cover the hardest topics: subjunctive, preterite vs imperfect, estaba vs estuvo, ser vs estar, conditionals, por vs para, connectors, idioms, verbs with prepositions, passive voice, and accents. Two exercise modes: pick an option, or type the answer. Each answer includes a detailed explanation and a button to continue.

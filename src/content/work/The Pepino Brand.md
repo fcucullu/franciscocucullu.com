@@ -28,3 +28,7 @@ The Pepino Brand was a B2B SaaS platform helping branding agencies manage all th
 ## Role
 
 CPTO & Co-founder for 1.5 years. Owned product, engineering, and discovery cycles.
+
+## The Full Story
+
+- [Building a B2B SaaS from Scratch: The Pepino Brand Story](/blog/pepino-brand) — building the B2B SaaS from scratch and closing the first seven agencies

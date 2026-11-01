@@ -1,0 +1,182 @@
+---
+// Las recomendaciones de LinkedIn de Fran. No se pueden traer en vivo: LinkedIn
+// responde 999 a cualquier lectura automatica y no hay API publica, asi que
+// viven aqui. Orden: de la mas reciente a la mas antigua. Las que estaban en
+// castellano van traducidas y marcadas como tales. Fuera las de la epoca de
+// estudiante, que hablaban del companero de clase y no del profesional.
+const recommendations = [
+	{
+		name: 'Caleb Umberger',
+		role: 'Continuous Improvement Analyst at Sitel Group',
+		context: 'Worked on the same team · August 2026',
+		text: 'I worked with Francisco on a global AI product team at Foundever, where he drove a complex AI-powered product forward. He brings clarity to hard problems, keeps teams aligned, and stays focused on delivering value quickly without dropping quality. Someone I’d gladly work with again.',
+	},
+	{
+		name: 'Piotr Wierzbicki',
+		role: 'Senior Product Manager · AI Strategy & Implementation',
+		context: 'Worked on the same team · August 2026',
+		text: 'I worked with Francisco at Foundever. He knows AI well, but what stands out is how clearly he explains it. Engineers understand him. So do stakeholders. He focuses on what can actually ship, not what looks good in a demo.',
+	},
+	{
+		name: 'Leonardo Fister',
+		role: 'Commercial Strategy & Business Development',
+		context: 'Senior to Francisco · May 2025',
+		text: 'Francisco approaches every challenge with proactivity and a constant drive to improve. His sharp critical thinking uncovers smart, well-grounded solutions, and he uses change as a tool for transformation. I see him shine in leadership roles.',
+	},
+	{
+		name: 'Henna Melwani',
+		role: 'Customer Experience professional · UI/UX Designer',
+		context: 'Reported to Francisco · June 2024',
+		text: 'I interned under Francisco and he was pivotal in helping me grasp the tools our product team used. He explained complex concepts in simple terms, welcomed new ideas openly, and kept the whole team aware of our progress.',
+	},
+	{
+		name: 'Martin Bettaglio',
+		role: 'Data Analyst',
+		context: 'Worked on a different team · June 2024',
+		text: 'Francisco is the vital link between the IT department and the rest of the company. He took on the Product Team and understood our needs fast, which made my work much simpler. Extensive knowledge of processes, product management, and priorities.',
+	},
+	{
+		name: 'Muhammad Shaheen',
+		role: 'Senior QA Engineer',
+		context: 'Reported to Francisco · June 2024',
+		text: 'Francisco streamlines processes seamlessly and consistently exceeds expectations with high-quality results. He brings out the best in the team and keeps everyone aligned and informed. I cannot recommend him enough.',
+	},
+	{
+		name: 'Daniel Rodrigo',
+		role: 'Senior Full Stack Developer',
+		context: 'Reported to Francisco · May 2024',
+		text: 'Francisco became my Product Manager a few months after we both joined Hastee. I would highlight his proactivity and resilience, and how he maximizes everyone’s capabilities so you keep progressing as a programmer. Honest and transparent.',
+	},
+	{
+		name: 'Jackson Echeverri',
+		role: 'CTO · Product Builder · Founder',
+		context: 'Worked on the same team · November 2023',
+		text: 'Building a company alongside Francisco is a great adventure. He is proactive, tenacious, and highly adaptable, with the communication and leadership skills to express his ideas and connect with people. He always gives more than 100% to move the project forward.',
+	},
+	{
+		name: 'Emiliano Pellegrino',
+		role: 'Full Stack Developer',
+		context: 'Worked on a different team · November 2019',
+		text: 'Even though we held different roles, Francisco always offered support and knowledge to other areas, playing a key part in developing products and internal processes. Honest, self-taught by definition, with an enormous capacity for leadership.',
+	},
+	{
+		name: 'Lorena Malatesta',
+		role: 'VP of Marketing · Fintech and capital markets',
+		context: 'Senior to Francisco · November 2019',
+		text: 'His contribution from BI gave us a much better understanding of how a product that was new to the company actually worked. He is intelligent and self-taught. His time at IOL left a mark.',
+	},
+	{
+		name: 'Tobias Girado',
+		role: 'Senior Software Engineer · .NET, C# and Azure',
+		context: 'Worked on a different team · June 2019',
+		text: 'Francisco is what you would call an intrapreneur. He made a place for himself as a developer, using Python to build trading algorithms and creating a new area inside the company. Excellent disposition both to learn and to teach.',
+	},
+];
+---
+
+<div class="marquee">
+	<ul class="track">
+		{recommendations.map((item) => (
+			<li class="quote">
+				<blockquote>{item.text}</blockquote>
+				<footer>
+					<p class="name">{item.name}</p>
+					<p class="role">{item.role}</p>
+					<p class="context">{item.context}</p>
+				</footer>
+			</li>
+		))}
+		{/* copia para que el bucle no tenga costura; invisible para lectores de pantalla */}
+		{recommendations.map((item) => (
+			<li class="quote" aria-hidden="true">
+				<blockquote>{item.text}</blockquote>
+				<footer>
+					<p class="name">{item.name}</p>
+					<p class="role">{item.role}</p>
+					<p class="context">{item.context}</p>
+				</footer>
+			</li>
+		))}
+	</ul>
+</div>
+
+
+<style>
+	.marquee {
+		overflow: hidden;
+		/* el contenido se desvanece en los bordes en vez de cortarse en seco */
+		mask-image: linear-gradient(90deg, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
+	}
+
+	.track {
+		margin: 0;
+		padding: 0.25rem 0 0.75rem;
+		list-style: none;
+		display: flex;
+		align-items: start;
+		gap: 1.25rem;
+		width: max-content;
+		animation: slide 52s linear infinite;
+	}
+
+	.marquee:hover .track,
+	.marquee:focus-within .track {
+		animation-play-state: paused;
+	}
+
+	@keyframes slide {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-50% - 0.625rem));
+		}
+	}
+
+	.quote {
+		flex: 0 0 min(80vw, 23rem);
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		padding: 1.5rem;
+		border: 1px solid var(--gray-800);
+		border-radius: var(--radius-ui);
+	}
+
+	blockquote {
+		margin: 0;
+		color: var(--gray-200);
+		line-height: 1.5;
+	}
+
+	footer {
+		margin-top: auto;
+		border-top: 2px solid var(--accent-regular);
+		padding-top: 0.75rem;
+	}
+
+	footer p {
+		margin: 0;
+	}
+
+	.name {
+		font-weight: 600;
+		color: var(--gray-0);
+	}
+
+	.role,
+	.context {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marquee {
+			overflow-x: auto;
+		}
+
+		.track {
+			animation: none;
+		}
+	}
+</style>

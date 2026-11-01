@@ -1,24 +1,52 @@
 ---
+// Las cuatro cifras de la home.
+//
+// Antes esto era un bloque decorativo y justo debajo venia una seccion
+// "Selected impact" con tres tarjetas que contaban LOS MISMOS tres logros,
+// con casi las mismas palabras, a 400px de distancia. Se elimino esa seccion
+// y cada cifra pasa a ser la puerta a su caso: el numero promete y la pagina
+// enlazada lo demuestra.
+const stats = [
+	{
+		metric: '+137%',
+		title: 'Engineering output',
+		text: 'Redesigned how 13 engineers across 3 teams delivered, and lined the product roadmap up with the business pipeline.',
+		href: '/work/hastee',
+	},
+	{
+		metric: '24',
+		title: 'Engineers led',
+		text: 'Four squads on an enterprise product, from strategy through production.',
+		href: '/work/ai-quality-assurance',
+	},
+	{
+		metric: 'Sold',
+		title: 'To Factorial',
+		text: 'Found a gap in their Italian market, built the integration, and sold them the product.',
+		href: '/work/timed-integrations',
+	},
+	{
+		// Antes esta cuarta cifra era "51 Accounts live", que enlazaba al MISMO
+		// caso que "24 Engineers led" y ademas ensenaba el numero mas pequeno
+		// de los cuatro. Ahora apunta a un caso propio, el unico que trae un
+		// aval externo.
+		metric: 'UNICEF',
+		title: 'Backed product',
+		text: 'Funded by UNICEF and the Ethereum Foundation, and declared a Digital Public Good.',
+		href: '/work/quantitative-finance-for-blockchain',
+	},
+];
 ---
 
 <section data-fast-scroll="scroll_to_skills" class="box skills">
-  <div class="stack gap-2 lg:gap-4">
-    <div class="metric">$M+</div>
-    <h2>Annual Savings</h2>
-    <p>Multi-million dollar annual savings from AI products in production at a global CX leader (170K+ employees).</p>
-  </div>
-  <div class="stack gap-2 lg:gap-4">
-    <div class="metric">137%</div>
-    <h2>Engineering Velocity</h2>
-    <p>Increased engineering output by 137% at an HR fintech by redesigning the delivery process, leading 13 engineers across 3 teams.</p>
-  </div>
-  <div class="stack gap-2 lg:gap-4">
-    <div class="metric">0&#8594;1</div>
-    <h2>Product Leadership</h2>
-    <p>Lead AI products from zero to one to enterprise scale, across 4 squads and 24 engineers, from strategy through production.</p>
-  </div>
+	{stats.map((item) => (
+		<a class="stat stack gap-2" href={item.href}>
+			<div class="metric">{item.metric}</div>
+			<h2>{item.title}</h2>
+			<p>{item.text}</p>
+		</a>
+	))}
 </section>
-
 
 <style>
 	.box {
@@ -26,31 +54,64 @@
 		border-radius: 0.75rem;
 		padding: 1.5rem;
 		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
 	}
 
 	.skills {
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem 1.5rem;
+	}
+
+	.stat {
+		text-decoration: none;
+		color: inherit;
+		border-radius: 0.5rem;
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.stat:hover,
+	.stat:focus-visible {
+		transform: translateY(-2px);
+	}
+
+	.stat:hover h2,
+	.stat:focus-visible h2 {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
 	}
 
 	.skills h2 {
-		font-size: var(--text-lg);
+		font-family: var(--font-body);
+		font-size: var(--text-md);
+		font-weight: 600;
+		letter-spacing: 0;
 	}
 
 	.skills p {
-		color: var(--gray-400);
+		color: var(--gray-300);
+		font-size: var(--text-sm);
 	}
 
 	.metric {
-		font-size: 2.5rem;
-		font-weight: 800;
-		background: var(--gradient-accent-orange);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
+		font-family: var(--font-display);
+		font-size: 2.25rem;
+		font-weight: 400;
+		color: var(--gray-0);
 		line-height: 1;
+		letter-spacing: -0.03em;
+		box-shadow: inset 0 -0.35rem 0 var(--accent-regular);
+		width: fit-content;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.stat {
+			transition: none;
+		}
+
+		.stat:hover,
+		.stat:focus-visible {
+			transform: none;
+		}
 	}
 
 	@media (min-width: 50em) {
@@ -60,17 +121,12 @@
 		}
 
 		.skills {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 5rem;
-		}
-
-		.skills h2 {
-			font-size: var(--text-2xl);
+			grid-template-columns: repeat(4, 1fr);
+			gap: 2rem;
 		}
 
 		.metric {
-			font-size: 3rem;
+			font-size: 2.75rem;
 		}
 	}
 </style>
