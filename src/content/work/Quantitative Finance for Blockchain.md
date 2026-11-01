@@ -14,7 +14,7 @@ tags:
 
 ## Business Case
 
-Xcapit was a blockchain-based fintech startup focused on making financial services accessible through AI and DeFi. We combined algorithmic trading with financial inclusion to serve underbanked communities.
+Xcapit was a blockchain-based fintech startup focused on making financial services accessible through AI and DeFi. It started as AI-powered wealth management, and the returns were not the problem: the market was. Not everyone will put their savings into variable income. So we turned the same technology towards the people the banks had locked out, becoming their guarantee provider so they could borrow. That pivot is what brought UNICEF and the Ethereum Foundation in.
 
 ## Impact
 
@@ -35,3 +35,10 @@ Xcapit was a blockchain-based fintech startup focused on making financial servic
 4. **Open-source crypto wallet** recognized by UNICEF
 
 [View source code on GitHub →](https://github.com/fcucullu/trading-crypto)
+
+## The Full Story
+
+- [Why We Pivoted a $2M Trading Engine to Microloans](/blog/xcapit-pivot) — why the returns were not enough, and what we turned the technology into
+- [Building AI Before ChatGPT: Custom ML at a UNICEF-Backed Fintech](/blog/custom-ai-ml) — neural networks and genetic algorithms built from scratch with a team of five PhDs
+- [400% Returns: How Bayesian Optimization Tuned Our Trading Strategies](/blog/bayesian-optimization) — Gaussian Processes instead of grid search
+- [Reducing Data Requests to Zero](/blog/discord-data-bot) — the Discord bot that made company data self-serve
