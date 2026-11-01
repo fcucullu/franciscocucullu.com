@@ -220,88 +220,6 @@ const products = [
 	</div>
 </BaseLayout>
 
-<script>
-	const portrait = document.getElementById('portrait');
-	const root = document.documentElement;
-	let previousDark = root.classList.contains('theme-dark');
-	let audio: AudioContext | null = null;
-	let live: { stop: () => void } | null = null;
-
-	function flash() {
-		let el = document.querySelector('.mode-flash');
-		if (!el) {
-			el = document.createElement('div');
-			el.className = 'mode-flash';
-			document.body.appendChild(el);
-		}
-		el.classList.remove('is-on');
-		void (el as HTMLElement).offsetWidth;
-		el.classList.add('is-on');
-	}
-
-	function playTone() {
-		const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-		if (!AC) return;
-		audio = audio ?? new AC();
-		if (audio.state === 'suspended') audio.resume();
-		live?.stop();
-		const ctx = audio;
-		const t = ctx.currentTime;
-		const master = ctx.createGain();
-		master.gain.setValueAtTime(0.0001, t);
-		master.gain.exponentialRampToValueAtTime(0.045, t + 0.05);
-		master.gain.exponentialRampToValueAtTime(0.0001, t + 0.55);
-		master.connect(ctx.destination);
-
-		const oscs = [196, 293.66].map((freq, i) => {
-			const osc = ctx.createOscillator();
-			osc.type = 'sine';
-			osc.frequency.setValueAtTime(freq, t);
-			const gain = ctx.createGain();
-			gain.gain.setValueAtTime(i === 0 ? 0.8 : 0.28, t);
-			osc.connect(gain).connect(master);
-			osc.start(t);
-			osc.stop(t + 0.58);
-			return osc;
-		});
-
-		live = {
-			stop() {
-				const now = ctx.currentTime;
-				const level = Math.max(master.gain.value, 0.001);
-				master.gain.cancelScheduledValues(now);
-				master.gain.setValueAtTime(level, now);
-				master.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-				oscs.forEach((osc) => {
-					try {
-						osc.stop(now + 0.1);
-					} catch {
-						/* already stopped */
-					}
-				});
-			},
-		};
-	}
-
-	window.addEventListener('pointerdown', () => {
-		const AC = window.AudioContext;
-		if (!AC) return;
-		audio = audio ?? new AC();
-		if (audio.state === 'suspended') audio.resume();
-	});
-
-	portrait?.addEventListener('pointerenter', () => {
-		previousDark = root.classList.contains('theme-dark');
-		root.classList.toggle('theme-dark', !previousDark);
-		flash();
-		playTone();
-	});
-
-	portrait?.addEventListener('pointerleave', () => {
-		root.classList.toggle('theme-dark', previousDark);
-		live?.stop();
-	});
-</script>
 
 <style>
 	.hero {
@@ -370,27 +288,6 @@ const products = [
 		opacity: 1;
 	}
 
-	:global(.mode-flash) {
-		position: fixed;
-		inset: 0;
-		background: #fff;
-		opacity: 0;
-		pointer-events: none;
-		z-index: 80;
-	}
-
-	:global(.mode-flash.is-on) {
-		animation: mode-flash 260ms ease-out;
-	}
-
-	@keyframes mode-flash {
-		0% {
-			opacity: 0.28;
-		}
-		100% {
-			opacity: 0;
-		}
-	}
 
 	@media (min-width: 50em) {
 		.hero {
