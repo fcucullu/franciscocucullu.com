@@ -7,6 +7,7 @@ import CallToAction from '../components/CallToAction.astro';
 import Hero from '../components/Hero.astro';
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
+import Recommendations from '../components/Recommendations.astro';
 
 const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -153,17 +154,11 @@ const ventures = [
 
 			<section class="section" data-reveal>
 				<header class="section-header stack gap-2">
-					<p class="kicker">Path</p>
-					<h3>Why this profile makes sense.</h3>
+					<p class="kicker">References</p>
+					<h3>What the people I worked with say.</h3>
+					<p>Recommendations from LinkedIn: managers, engineers who reported to me, and co-founders.</p>
 				</header>
-				<ol class="path">
-					<li>Economics and quantitative finance.</li>
-					<li>Deep into software, on a trading desk.</li>
-					<li>From building the tools to leading the team.</li>
-					<li>Founded products and companies.</li>
-					<li>Led larger teams and products, including enterprise AI.</li>
-					<li>Product, software, business, and a founder’s way of deciding.</li>
-				</ol>
+				<Recommendations />
 				<p class="more"><CallToAction href="/about/" compact>Read the story</CallToAction></p>
 			</section>
 		</main>
