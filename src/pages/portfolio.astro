@@ -53,9 +53,10 @@ const projects = (await getCollection('work'))
 const appsByDate = (await getCollection('apps'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 // Pin Clientísima first, then the rest by date.
+const PINNED_APPS = ['Clientísima', 'Golden List'];
 const apps = [
-	...appsByDate.filter((a) => a.data.title === 'Clientísima'),
-	...appsByDate.filter((a) => a.data.title !== 'Clientísima'),
+	...PINNED_APPS.flatMap((name) => appsByDate.filter((a) => a.data.title === name)),
+	...appsByDate.filter((a) => !PINNED_APPS.includes(a.data.title)),
 ];
 // Filter chips (AI last so it can render as the highlighted one).
 const CATEGORIES = ['B2B SaaS', 'PWA', 'Native App', 'Consumer', 'AI'];
