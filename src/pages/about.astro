@@ -211,16 +211,16 @@ import Hero from '../components/Hero.astro';
     }
 
     .content :global(a) {
-        color: var(--link-color);
-        text-decoration: underline;
-        text-decoration-color: var(--accent-dark);
-        text-decoration-thickness: 2px;
+        color: var(--accent-dark);
+        font-weight: 600;
+        text-decoration: none;
         text-underline-offset: 0.25em;
         transition: text-decoration-color var(--theme-transition);
     }
 
     .content :global(a:hover),
     .content :global(a:focus) {
+        text-decoration: underline;
         text-decoration-color: currentColor;
     }
 
