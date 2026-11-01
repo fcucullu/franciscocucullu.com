@@ -20,18 +20,39 @@ const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 
 
 
+const jobs = [
+	{
+		title: 'Foundever',
+		text: 'Four squads, 24 engineers. A multi-modal AI product in production for a global CX company.',
+		href: '/work/ai-quality-assurance',
+	},
+	{
+		title: 'Hastee',
+		text: '13 engineers across three teams: product, forward-deployed engineers, and tech support. Output up 137%.',
+		href: '/work/hastee',
+	},
+	{
+		title: 'Xcapit',
+		text: 'A team of five PhDs. AI wealth management first, then credit for people the banks had locked out.',
+		href: '/work/quantitative-finance-for-blockchain',
+	},
+];
+
 const ventures = [
 	{
 		title: 'Timed Integrations',
 		text: 'Saw the gap, built the product alone, sold it to Factorial.',
+		href: '/work/timed-integrations',
 	},
 	{
 		title: 'FlexRent',
 		text: 'Room exchange for digital nomads. From zero to a community, angel investment, and stages at South Summit, Warsaw, and DES Málaga.',
+		href: '/work/flexrent',
 	},
 	{
 		title: 'The Pepino Brand',
 		text: 'Co-founded a B2B SaaS for agencies. Rebuilt the product, closed 7 customers including Credo and BBK Foundation.',
+		href: '/work/the-pepino-brand',
 	},
 ];
 
@@ -102,14 +123,22 @@ const products = [
 		<main class="wrapper stack gap-15 lg:gap-30">
 			<section class="section" data-reveal>
 				<header class="section-header stack gap-2">
-					<p class="kicker">Entrepreneurship</p>
-					<h3>I think like a founder because I've been one.</h3>
-					<p>That changes how I lead inside a company. These are not side projects.</p>
+					<p class="kicker">Leadership</p>
+					<h3>The teams I have led.</h3>
+					<p>24 engineers at Foundever, 13 at Hastee, five PhDs at Xcapit. And three companies of my own, where the team was mine to build.</p>
 				</header>
+				<ul class="ventures">
+					{jobs.map((item) => (
+						<li>
+							<h4><a href={item.href}>{item.title}</a></h4>
+							<p>{item.text}</p>
+						</li>
+					))}
+				</ul>
 				<ul class="ventures">
 					{ventures.map((item) => (
 						<li>
-							<h4>{item.title}</h4>
+							<h4><a href={item.href}>{item.title}</a></h4>
 							<p>{item.text}</p>
 						</li>
 					))}
@@ -123,7 +152,7 @@ const products = [
 						</a>
 					))}
 				</div>
-				<p class="more"><CallToAction href="/portfolio/#apps" compact>More products</CallToAction></p>
+				<p class="more"><CallToAction href="/portfolio/#work" compact>All the work</CallToAction></p>
 			</section>
 
 			<section class="section" data-reveal>
