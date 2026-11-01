@@ -23,17 +23,20 @@ const latestEssays = (await getCollection('blog', ({ data }) => !data.draft))
 const jobs = [
 	{
 		title: 'Foundever',
-		text: 'Four squads, 24 engineers. A multi-modal AI product in production for a global CX company.',
+		text: 'Owned the product for a global CX leader’s AI suite, from discovery to production: architecture decisions, priorities, and delivery across four squads.',
+		outcome: '24 engineers. Multi-million dollar savings a year.',
 		href: '/work/ai-quality-assurance',
 	},
 	{
 		title: 'Hastee',
-		text: '13 engineers across three teams: product, forward-deployed engineers, and tech support. Output up 137%.',
+		text: 'Rebuilt how the product reached production: one roadmap tied to the business pipeline, and engineering organised around it instead of around tickets.',
+		outcome: '13 engineers, three teams. Output up 137%.',
 		href: '/work/hastee',
 	},
 	{
 		title: 'Xcapit',
-		text: 'A team of five PhDs. AI wealth management first, then credit for people the banks had locked out.',
+		text: 'Product and engineering for an AI wealth platform, and the call to pivot it towards credit for people with no banking history.',
+		outcome: 'Five PhDs. UNICEF-backed, Digital Public Good.',
 		href: '/work/quantitative-finance-for-blockchain',
 	},
 ];
@@ -41,39 +44,21 @@ const jobs = [
 const ventures = [
 	{
 		title: 'Timed Integrations',
-		text: 'Saw the gap, built the product alone, sold it to Factorial.',
+		text: 'Spotted a gap in Factorial’s Italian market: their clients were typing time-tracking data by hand because the local ERPs did not connect. I built the integration end to end and sold them the product.',
+		outcome: 'Solo founder. Built and sold.',
 		href: '/work/timed-integrations',
 	},
 	{
 		title: 'FlexRent',
-		text: 'Room exchange for digital nomads. From zero to a community, angel investment, and stages at South Summit, Warsaw, and DES Málaga.',
+		text: 'Room exchange for digital nomads, from zero: product, growth, and fundraising. Pitched at South Summit, Warsaw, and DES Málaga, and covered on television.',
+		outcome: '620 members, 32 paying customers, angel investment.',
 		href: '/work/flexrent',
 	},
 	{
 		title: 'The Pepino Brand',
-		text: 'Co-founded a B2B SaaS for agencies. Rebuilt the product, closed 7 customers including Credo and BBK Foundation.',
+		text: 'Co-founded a B2B SaaS for branding agencies and rebuilt the product from scratch with a team of three, selling it while we built it.',
+		outcome: '7 agencies closed, including Credo and BBK Foundation.',
 		href: '/work/the-pepino-brand',
-	},
-];
-
-const products = [
-	{
-		title: 'Clientísima',
-		problem: 'Service businesses were running clients across too many tools.',
-		user: 'Women who run salons, wellness studios, and clinics.',
-		href: 'https://clientisima.com',
-	},
-	{
-		title: 'Golden List',
-		problem: 'Staying in touch with the people who matter does not happen on its own.',
-		user: '2,600 people using it on Android.',
-		href: 'https://goldenlist.franciscocucullu.com',
-	},
-	{
-		title: 'Scout',
-		problem: 'A generic AI agent can search jobs. It does not reliably do the job.',
-		user: 'People who want a daily shortlist matched to their CV.',
-		href: 'https://scout.franciscocucullu.com',
 	},
 ];
 ---
@@ -127,28 +112,21 @@ const products = [
 					<h3>The teams I have led.</h3>
 					<p>24 engineers at Foundever, 13 at Hastee, five PhDs at Xcapit. And three companies of my own, where the team was mine to build.</p>
 				</header>
-				<ul class="ventures">
-					{jobs.map((item) => (
-						<li>
-							<h4><a href={item.href}>{item.title}</a></h4>
-							<p>{item.text}</p>
-						</li>
-					))}
-				</ul>
-				<ul class="ventures">
-					{ventures.map((item) => (
-						<li>
-							<h4><a href={item.href}>{item.title}</a></h4>
-							<p>{item.text}</p>
-						</li>
-					))}
-				</ul>
 				<div class="products">
-					{products.map((item) => (
-						<a href={item.href} class="product" target="_blank" rel="noopener">
+					{jobs.map((item) => (
+						<a href={item.href} class="product">
 							<h4>{item.title}</h4>
-							<p>{item.problem}</p>
-							<p class="user">{item.user}</p>
+							<p>{item.text}</p>
+							<p class="user">{item.outcome}</p>
+						</a>
+					))}
+				</div>
+				<div class="products">
+					{ventures.map((item) => (
+						<a href={item.href} class="product">
+							<h4>{item.title}</h4>
+							<p>{item.text}</p>
+							<p class="user">{item.outcome}</p>
 						</a>
 					))}
 				</div>
