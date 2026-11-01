@@ -60,34 +60,10 @@ const recommendations = [
 		text: 'Even though we held different roles, Francisco always offered support and knowledge to other areas, playing a key part in developing products and internal processes. Honest, self-taught by definition, with an enormous capacity for leadership.',
 	},
 	{
-		name: 'Iván Ignacio Celaye',
-		role: 'Data & Analytics Engineer at MercadoLibre',
-		context: 'Worked on a different team · November 2019 · translated from Spanish',
-		text: 'Francisco has always been absolutely proactive and capable, standing out professionally and, even more, as a human being. A pleasure to have worked with him, both on framing problems and on solving them.',
-	},
-	{
 		name: 'Lorena Malatesta',
 		role: 'VP of Marketing · Fintech and capital markets',
 		context: 'Senior to Francisco · November 2019 · translated from Spanish',
 		text: 'His contribution from BI gave us a much better understanding of how a product that was new to the company actually worked. He is intelligent and self-taught. His time at IOL left a mark.',
-	},
-	{
-		name: 'Maximiliano Angrehs',
-		role: 'Fintech Business · Product Management',
-		context: 'Worked on a different team · November 2019 · translated from Spanish',
-		text: 'Fran is an excellent professional, with a strong analytical capacity behind his decision making.',
-	},
-	{
-		name: 'Maite Córdoba',
-		role: 'Brand Specialist at Personal Pay',
-		context: 'Worked on a different team · November 2019 · translated from Spanish',
-		text: 'Fran is a great professional and a great person. He explained everything carefully so the other person could understand it. He did not just make the most of the BI area, he created it and gave it real character.',
-	},
-	{
-		name: 'Celeste Lang',
-		role: 'Marketing Manager B2B · Digital Business Strategy',
-		context: 'Senior to Francisco · August 2019',
-		text: 'He shows deep knowledge about finance and technology, and has been very helpful with colleagues and managers, always bringing new ideas and value to the projects of the company.',
 	},
 	{
 		name: 'Tobias Girado',
@@ -95,29 +71,11 @@ const recommendations = [
 		context: 'Worked on a different team · June 2019 · translated from Spanish',
 		text: 'Francisco is what you would call an intrapreneur. He made a place for himself as a developer, using Python to build trading algorithms and creating a new area inside the company. Excellent disposition both to learn and to teach.',
 	},
-	{
-		name: 'Juan Ignacio Artero Cormenzana',
-		role: 'L/S Equity Analyst · TMT',
-		context: 'Worked on a different team · May 2019 · translated from Spanish',
-		text: 'From the first day I met him he showed real passion for his work and for the financial markets. Proactive and hard-working, and always ready to lend a hand to anyone who needed it.',
-	},
-	{
-		name: 'Gastón Ezequiel Parra',
-		role: 'Commercial Manager at Antomel Pharma',
-		context: 'Worked on the same team · August 2017 · translated from Spanish',
-		text: 'I would highlight his ability to work as part of a team, his analytical vision, and his commitment to every task he takes on. A great professional and a great person.',
-	},
-	{
-		name: 'Gisela Vergara',
-		role: 'Corporate Head of Contact Centre at MEDICUS and Sanatorio Otamendi',
-		context: 'Senior to Francisco · May 2017 · translated from Spanish',
-		text: 'Francisco has high potential. He is proactive and his work is focused on continuous improvement. An excellent collaborator.',
-	},
 ];
 ---
 
-<div class="carousel">
-	<ul class="track" id="rec-track">
+<div class="marquee">
+	<ul class="track">
 		{recommendations.map((item) => (
 			<li class="quote">
 				<blockquote>{item.text}</blockquote>
@@ -128,101 +86,58 @@ const recommendations = [
 				</footer>
 			</li>
 		))}
+		{/* copia para que el bucle no tenga costura; invisible para lectores de pantalla */}
+		{recommendations.map((item) => (
+			<li class="quote" aria-hidden="true">
+				<blockquote>{item.text}</blockquote>
+				<footer>
+					<p class="name">{item.name}</p>
+					<p class="role">{item.role}</p>
+					<p class="context">{item.context}</p>
+				</footer>
+			</li>
+		))}
 	</ul>
-
-	<div class="controls">
-		<button type="button" class="nav" data-dir="-1" aria-label="Previous recommendations">←</button>
-		<button type="button" class="nav" data-dir="1" aria-label="More recommendations">→</button>
-		<p class="count">{recommendations.length} recommendations on LinkedIn</p>
-	</div>
 </div>
 
-<script>
-	const track = document.getElementById('rec-track');
-
-	if (track) {
-		const step = () => {
-			const card = track.querySelector('.quote');
-			return card ? card.getBoundingClientRect().width + 20 : track.clientWidth;
-		};
-
-		const move = (dir: number) => {
-			const end = track.scrollWidth - track.clientWidth - 4;
-			// al llegar al final, vuelve al principio en vez de quedarse clavado
-			if (dir > 0 && track.scrollLeft >= end) {
-				track.scrollTo({ left: 0, behavior: 'smooth' });
-				return;
-			}
-			if (dir < 0 && track.scrollLeft <= 4) {
-				track.scrollTo({ left: end, behavior: 'smooth' });
-				return;
-			}
-			track.scrollBy({ left: dir * step(), behavior: 'smooth' });
-		};
-
-		document.querySelectorAll('.nav').forEach((button) => {
-			button.addEventListener('click', () => move(Number((button as HTMLElement).dataset.dir)));
-		});
-
-		// Avance automatico. Se para solo con el raton encima, con el foco dentro,
-		// con la pestana en segundo plano o si el sistema pide menos movimiento.
-		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-		let timer: ReturnType<typeof setInterval> | null = null;
-
-		const stop = () => {
-			if (timer) clearInterval(timer);
-			timer = null;
-		};
-
-		const play = () => {
-			if (timer || reduce.matches || document.hidden) return;
-			timer = setInterval(() => move(1), 6000);
-		};
-
-		track.addEventListener('pointerenter', stop);
-		track.addEventListener('pointerleave', play);
-		track.addEventListener('focusin', stop);
-		track.addEventListener('focusout', play);
-		document.querySelectorAll('.nav').forEach((button) => {
-			button.addEventListener('focus', stop);
-			button.addEventListener('blur', play);
-		});
-		document.addEventListener('visibilitychange', () => (document.hidden ? stop() : play()));
-		reduce.addEventListener('change', () => (reduce.matches ? stop() : play()));
-
-		play();
-	}
-</script>
+<p class="count">{recommendations.length} recommendations on LinkedIn</p>
 
 <style>
-	.carousel {
-		display: grid;
-		gap: 1rem;
+	.marquee {
+		overflow: hidden;
+		/* el contenido se desvanece en los bordes en vez de cortarse en seco */
+		mask-image: linear-gradient(90deg, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
 	}
 
 	.track {
 		margin: 0;
-		padding: 0 0 0.5rem;
+		padding: 0.25rem 0 0.75rem;
 		list-style: none;
-		display: grid;
-		grid-auto-flow: column;
-		grid-auto-columns: min(100%, 23rem);
-		gap: 1.25rem;
+		display: flex;
 		align-items: start;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		scrollbar-width: none;
+		gap: 1.25rem;
+		width: max-content;
+		animation: slide 90s linear infinite;
 	}
 
-	.track::-webkit-scrollbar {
-		display: none;
+	.marquee:hover .track,
+	.marquee:focus-within .track {
+		animation-play-state: paused;
+	}
+
+	@keyframes slide {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-50% - 0.625rem));
+		}
 	}
 
 	.quote {
-		scroll-snap-align: start;
+		flex: 0 0 min(100%, 23rem);
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 		gap: 1.25rem;
 		padding: 1.5rem;
 		border: 1px solid var(--gray-800);
@@ -236,6 +151,7 @@ const recommendations = [
 	}
 
 	footer {
+		margin-top: auto;
 		border-top: 2px solid var(--accent-regular);
 		padding-top: 0.75rem;
 	}
@@ -250,39 +166,23 @@ const recommendations = [
 	}
 
 	.role,
-	.context {
+	.context,
+	.count {
 		font-size: var(--text-sm);
 		color: var(--gray-300);
-	}
-
-	.controls {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
 	}
 
 	.count {
-		margin: 0 0 0 0.5rem;
-		font-size: var(--text-sm);
-		color: var(--gray-300);
+		margin: 0.75rem 0 0;
 	}
 
-	.nav {
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: var(--radius-ui);
-		border: 1px solid var(--gray-800);
-		background: transparent;
-		color: var(--gray-0);
-		font-size: 1rem;
-		cursor: pointer;
-		transition: border-color 0.2s, background 0.2s, color 0.2s;
-	}
+	@media (prefers-reduced-motion: reduce) {
+		.marquee {
+			overflow-x: auto;
+		}
 
-	.nav:hover,
-	.nav:focus-visible {
-		border-color: var(--accent-regular);
-		background: var(--accent-regular);
-		color: var(--accent-text-over);
+		.track {
+			animation: none;
+		}
 	}
 </style>
