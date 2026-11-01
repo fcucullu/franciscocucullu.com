@@ -4,7 +4,7 @@ publishDate: 2019-10-02 00:00:00
 img: /assets/stock-4.jpg
 img_alt: Blockchain and finance
 description: |
-  AI-powered wealth management platform. $2M portfolio with 400%+ returns. $650K in microloans to 330 people. Funded by UNICEF and Ethereum Foundation. Digital Public Good.
+  AI-powered wealth management platform. $2M portfolio with 400%+ returns. Credit for people with no banking history. Funded by UNICEF and Ethereum Foundation. Digital Public Good.
 tags:
   - AI/ML
   - Blockchain
@@ -20,7 +20,7 @@ Xcapit was a blockchain-based fintech startup focused on making financial servic
 
 - **$2M portfolio managed** with custom algorithmic trading strategies
 - **400%+ annual returns** through AI-driven portfolio optimization
-- **$650K in microloans** delivered to 330 underbanked individuals in Argentina
+- **Credit for the financially excluded** in Argentina, helping hundreds of people escape the poverty trap
 - **AI Innovation Award** for integrating AI/ML into blockchain wealth management
 - **Recognized as a [Digital Public Good](https://app.digitalpublicgoods.net/a/11545)**
 - **Funded by UNICEF Innovation Fund and Ethereum Foundation**
