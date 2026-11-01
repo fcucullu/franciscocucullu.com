@@ -100,7 +100,6 @@ const recommendations = [
 	</ul>
 </div>
 
-<p class="count">{recommendations.length} recommendations on LinkedIn</p>
 
 <style>
 	.marquee {
@@ -117,7 +116,7 @@ const recommendations = [
 		align-items: start;
 		gap: 1.25rem;
 		width: max-content;
-		animation: slide 90s linear infinite;
+		animation: slide 52s linear infinite;
 	}
 
 	.marquee:hover .track,
@@ -135,7 +134,7 @@ const recommendations = [
 	}
 
 	.quote {
-		flex: 0 0 min(100%, 23rem);
+		flex: 0 0 min(80vw, 23rem);
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
@@ -166,14 +165,9 @@ const recommendations = [
 	}
 
 	.role,
-	.context,
-	.count {
+	.context {
 		font-size: var(--text-sm);
 		color: var(--gray-300);
-	}
-
-	.count {
-		margin: 0.75rem 0 0;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
