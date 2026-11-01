@@ -45,3 +45,7 @@ With the problem framed and the workflow understood, we build. Over the back hal
 AI projects fail expensively because organizations commit before they validate. WASP moves the moment of evidence to the front, where being wrong is cheap. One week of focused work replaces months of speculative roadmap, and the most dangerous assumption is tested before a single engineer is committed to a quarter of delivery. Leaders get to make the large, irreversible decisions, headcount, budget, public commitment, with a working artifact and real user signal in hand rather than a forecast.
 
 The discipline is the point. By forcing a working prototype in five days, WASP exposes the hard problems immediately instead of letting them hide inside a long timeline. Initiatives that should not exist die cheaply and early. The ones that should exist enter the build phase already de-risked, already scoped, and already validated against the people they are meant to serve.
+
+## The Full Story
+
+- [The WASP Framework: From Challenge to AI MVP in One Week](/blog/wasp-framework) — the three phases, and why most AI initiatives die before the MVP

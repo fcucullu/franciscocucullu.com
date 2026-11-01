@@ -32,3 +32,7 @@ As a product leader managing engineering teams, I noticed a recurring pattern: f
 4. Contracts export to OpenAPI 3.0 spec
 
 [View source code on GitHub →](https://github.com/fcucullu/api-contract-hub)
+
+## The Full Story
+
+- [Zero Integration Bugs: How I Built an API Contract Platform for My Teams](/blog/api-contract-hub) — the platform that stopped frontend and backend from disagreeing on contracts

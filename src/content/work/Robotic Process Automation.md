@@ -31,3 +31,7 @@ After market close, the 5-person trading desk at IOL spent hours manually checki
 3. **Full Automation:** End-to-end pipeline covering navigation, extraction, transformation, export, and scheduling
 
 [View source code on GitHub →](https://github.com/fcucullu/RPA)
+
+## The Full Story
+
+- [From 5 Hours to Zero: Automating a Trading Desk's Post-Market Operations](/blog/rpa-trading-desk) — five hours a day of post-market work, down to zero

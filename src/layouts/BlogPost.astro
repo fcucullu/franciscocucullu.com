@@ -243,7 +243,15 @@ const jsonLd = {
 	}
 
 	.content :global(a) {
-		color: var(--link-color);
+		color: var(--accent-dark);
+		font-weight: 600;
+		text-decoration: none;
+		text-underline-offset: 0.25em;
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration: underline;
 	}
 
 	.content :global(.metrics-grid) {

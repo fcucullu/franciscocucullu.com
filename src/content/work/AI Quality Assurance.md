@@ -35,3 +35,8 @@ I built a calibration framework that lets non-technical QA managers tune AI accu
 - **Evaluator consistency over sample size.** A small set of well-distributed evaluations from experienced analysts beat hundreds of inconsistent reviews. Statistical significance arrived faster than expected.
 - **Score normalization.** Limiting scoring to automatable, required questions removed false penalties and improved perceived accuracy.
 - **Built for non-technical users.** I cut the dashboard down to accuracy, high/medium/low labels, and clear next actions, and surfaced accuracy evolution across cycles to build trust and adoption.
+
+## The Full Story
+
+- [Scaling QA with AI: From <1% to 100% Coverage](/blog/ai-quality-assurance) — how QA went from under 1% of interactions reviewed to all of them
+- [AI AutoQA at the Coach Summit: Presenting to 80+ Enterprise Leaders](/blog/speaking-coach-summit) — presenting it to 80+ enterprise leaders in Barcelona and Seville

@@ -28,3 +28,7 @@ As the data lead at Xcapit, every stakeholder in the company came to me with dat
 Team members send natural language commands in Discord. The bot interprets the request, queries the database, formats the response, and returns structured data instantly. Available 24/7 to the entire company.
 
 [View source code on GitHub →](https://github.com/fcucullu/discord_bot)
+
+## The Full Story
+
+- [Reducing Data Requests to Zero: Building a Self-Serve Analytics Bot](/blog/discord-data-bot) — making company data self-serve, and cutting ad-hoc requests to zero

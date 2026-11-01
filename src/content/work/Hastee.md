@@ -27,3 +27,7 @@ Hastee was an advanced wages app that let employees access part of their salary 
 ## Role
 
 Tech Product Manager for 1.5 years. Owned the operational transformation of engineering and product delivery.
+
+## The Full Story
+
+- [137% Engineering Velocity: Transforming Delivery at an HR Fintech](/blog/hastee) — where the 137% actually came from

@@ -35,3 +35,7 @@ The Argentine FX market had persistent pricing inefficiencies due to rapid regul
 - Mobile push notifications for critical alerts
 
 [View source code on GitHub →](https://github.com/fcucullu/trading-fx)
+
+## The Full Story
+
+- [Building an FX Arbitrage Engine: How I Automated a Trading Desk](/blog/fx-arbitrage) — how the engine worked, and how the desk stopped doing it by hand

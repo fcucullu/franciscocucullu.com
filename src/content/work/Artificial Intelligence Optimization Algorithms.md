@@ -28,3 +28,7 @@ Algorithmic trading strategies have dozens of hyperparameters. Grid search is co
 Applied Bayesian optimization using Gaussian Processes to efficiently search the hyperparameter space. Tested multiple strategies including VWAP vs SMA, Three Standard Moving Average, Chandelier Exit, and Bollinger Bands Volume.
 
 [View source code on GitHub →](https://github.com/fcucullu/optimization_algorithms)
+
+## The Full Story
+
+- [400% Returns: How Bayesian Optimization Tuned Our Trading Strategies](/blog/bayesian-optimization) — Gaussian Processes instead of grid search, and what it did to the returns
