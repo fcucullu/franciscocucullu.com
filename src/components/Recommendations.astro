@@ -224,8 +224,15 @@ const recommendations = [
 	 * que quepa con holgura, el degradado se reduce, y la vuelta pasa a 120 s.
 	 */
 	@media (max-width: 49.99em) {
+		/*
+		 * 160 s = 20 px/s, con la ficha entera en pantalla ~3,9 s.
+		 * Fue 52 s (0,4 s de lectura), luego 120 s (2,9 s), y Fran pidió otro
+		 * paso más lento el 02/11 viéndolo ya en producción. No bajar mucho más:
+		 * por debajo de ~15 px/s el movimiento deja de leerse como movimiento y
+		 * parece que la cinta se ha quedado colgada.
+		 */
 		.track {
-			animation-duration: 120s;
+			animation-duration: 160s;
 		}
 
 		.quote {
