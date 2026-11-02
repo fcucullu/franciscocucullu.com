@@ -225,14 +225,20 @@ const recommendations = [
 	 */
 	@media (max-width: 49.99em) {
 		/*
-		 * 160 s = 20 px/s, con la ficha entera en pantalla ~3,9 s.
-		 * Fue 52 s (0,4 s de lectura), luego 120 s (2,9 s), y Fran pidió otro
-		 * paso más lento el 02/11 viéndolo ya en producción. No bajar mucho más:
-		 * por debajo de ~15 px/s el movimiento deja de leerse como movimiento y
-		 * parece que la cinta se ha quedado colgada.
+		 * 320 s = 9,8 px/s, con la ficha entera en pantalla ~7,9 s.
+		 *
+		 * El recorrido: 52 s (0,4 s de lectura) → 120 → 160 → 320, cada paso
+		 * pedido por Fran mirándolo en producción. El último fue "ponlo a la
+		 * mitad de lo actual" (02/11).
+		 *
+		 * Queda POR DEBAJO de los ~15 px/s que marqué como suelo, donde el
+		 * movimiento deja de leerse como movimiento. Se lo dije y aun así lo
+		 * pidió, así que la decisión es suya y está tomada mirando la pantalla,
+		 * que es como hay que tomarla. Si alguien la vuelve a tocar: el riesgo
+		 * no es que sea lenta, es que parezca que se ha quedado colgada.
 		 */
 		.track {
-			animation-duration: 160s;
+			animation-duration: 320s;
 		}
 
 		.quote {
