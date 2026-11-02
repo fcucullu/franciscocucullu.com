@@ -104,8 +104,50 @@ const recommendations = [
 <style>
 	.marquee {
 		overflow: hidden;
-		/* el contenido se desvanece en los bordes en vez de cortarse en seco */
-		mask-image: linear-gradient(90deg, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
+	}
+
+	/*
+	 * El desvanecido de los bordes es un ADORNO, así que va detrás de @supports:
+	 * si el navegador no puede con la máscara se queda sin degradado, nunca sin
+	 * tarjetas.
+	 *
+	 * Lo de atrás no era teórico. El 02/11/2026 Carlos lo abrió en el móvil y en
+	 * producción vio el título "What people say about me" y debajo un hueco
+	 * vacío del tamaño de la cinta: las tarjetas ocupaban su sitio y no se
+	 * pintaban. Una máscara mal aplicada deja exactamente eso.
+	 *
+	 * Dos cosas que lo provocaban:
+	 *   - faltaba `-webkit-mask-image`, y en iPhone TODOS los navegadores son
+	 *     WebKit por dentro, Chrome incluido;
+	 *   - el minificador comprimía los cuatro topes del degradado en la forma de
+	 *     doble posición con un calc() dentro
+	 *     (`#000 3rem calc(100% - 3rem)`). Con porcentajes no hay calc() que
+	 *     interpretar y no se puede colapsar así.
+	 */
+	@supports (mask-image: linear-gradient(90deg, #000, transparent)) or
+		(-webkit-mask-image: linear-gradient(90deg, #000, transparent)) {
+		.marquee {
+			-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+			mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+		}
+
+		/*
+		 * En el móvil, NINGUNA máscara.
+		 *
+		 * No es por estética: es que no puedo probarlo. El fallo se vio en un
+		 * iPhone y aquí no hay forma de levantar WebKit (la instalación pide
+		 * permisos de root), así que en Chrome no lo reproduzco. Reescribir el
+		 * degradado y cruzar los dedos sería confiar en un diagnóstico sin
+		 * confirmar; quitarlo elimina la vía entera justo en los aparatos donde
+		 * se reportó. En una ventana de 342 px el desvanecido tampoco aportaba
+		 * casi nada. En escritorio se queda, que es donde está comprobado.
+		 */
+		@media (max-width: 49.99em) {
+			.marquee {
+				-webkit-mask-image: none;
+				mask-image: none;
+			}
+		}
 	}
 
 	.track {
@@ -168,6 +210,27 @@ const recommendations = [
 	.context {
 		font-size: var(--text-sm);
 		color: var(--gray-300);
+	}
+
+	/*
+	 * En el móvil la misma cinta se lee fatal, y no es la velocidad: es que la
+	 * ficha ocupa casi toda la ventana. Medido en producción a 390 px, con los
+	 * 52 s de escritorio, cada ficha estaba ENTERA en pantalla 0,4 s — frente a
+	 * los 11,1 s del escritorio a 1440. Y el degradado de 3rem por lado se comía
+	 * 96 de los 342 px visibles, así que no llegaba a verse nunca sin difuminar.
+	 *
+	 * Fran (02/11/2026): que siga moviéndose sola, pero lenta. Así que aquí no
+	 * se cambia el mecanismo, solo sus tres números: la ficha se estrecha para
+	 * que quepa con holgura, el degradado se reduce, y la vuelta pasa a 120 s.
+	 */
+	@media (max-width: 49.99em) {
+		.track {
+			animation-duration: 120s;
+		}
+
+		.quote {
+			flex-basis: min(68vw, 20rem);
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
